@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Cookie Policy | Web Analyzer Pro{% endblock %}
+{% block content %}
+<div class="container mx-auto py-10 animate-fade-in">
+  <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-8">
+    <h1 class="text-3xl font-bold mb-6 relative pb-4">
+      <span class="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Cookie Policy</span>
+      <span class="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-indigo-600 to-blue-500"></span>
+    </h1>
+    
+    <div class="prose max-w-none">
+      <p class="text-gray-700 leading-relaxed mb-6">
+        This Cookie Policy explains how Web Analyzer Pro uses cookies and similar technologies to recognize you when you visit our website.
+      </p>
+      
+      <div class="my-8 p-6 bg-indigo-50 rounded-lg">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800 flex items-center">
+          <i class="fas fa-cookie-bite text-indigo-600 mr-2"></i>
+          What Are Cookies?
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Cookies are small data files placed on your device when you visit a website. They help improve your browsing experience and enable functionality.
+        </p>
+      </div>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800 flex items-center">
+        <i class="fas fa-cogs text-indigo-600 mr-2"></i>
+        How We Use Cookies
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow transition-all">
+          <div class="flex items-center mb-2">
+            <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+              <i class="fas fa-sliders-h text-indigo-600 text-sm"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800">Preferences</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            To remember your preferences and settings when you use our website.
+          </p>
+        </div>
+        
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow transition-all">
+          <div class="flex items-center mb-2">
+            <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+              <i class="fas fa-chart-bar text-indigo-600 text-sm"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800">Analytics</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            To analyze site usage and performance to improve our services.
+          </p>
+        </div>
+        
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow transition-all">
+          <div class="flex items-center mb-2">
+            <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+              <i class="fas fa-shield-alt text-indigo-600 text-sm"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800">Security</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            To improve security and prevent fraud when using our services.
+          </p>
+        </div>
+        
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow transition-all">
+          <div class="flex items-center mb-2">
+            <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+              <i class="fas fa-user-check text-indigo-600 text-sm"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800">Authentication</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            To recognize you when you return to our website and maintain your logged-in status.
+          </p>
+        </div>
+      </div>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800 flex items-center">
+        <i class="fas fa-tasks text-indigo-600 mr-2"></i>
+        Managing Cookies
+      </h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        You can manage or disable cookies in your browser settings. Please note that disabling cookies may affect site functionality.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Most web browsers allow you to control cookies through their settings preferences. To find out more about cookies, including how to see what cookies have been set and how to manage and delete them, visit <a href="https://www.aboutcookies.org" class="text-indigo-600 hover:text-indigo-800 transition-colors">www.aboutcookies.org</a>.
+      </p>
+      
+      <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-blue-800">Changes to This Cookie Policy</h3>
+            <p class="mt-1 text-sm text-blue-600">
+              We may update our Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <a href="{{ url_for('index') }}" class="btn btn-primary inline-flex items-center">
+          <i class="fas fa-home mr-2"></i> Return to Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

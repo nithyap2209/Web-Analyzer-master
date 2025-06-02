@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  /* Prevent content from overflowing image cards */
+  .image-card .card {
+    overflow: hidden;
+  }
+  
+  .image-card .card-body {
+    overflow: hidden;
+  }
+  
+  .image-card .text-truncate {
+    max-width: 100%;
+    display: block;
+  }
+  
+  .image-card .card-text table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  .image-card .card-text table td {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .image-card .mt-3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  /* Error card styling */
+  .bg-danger-subtle {
+    background-color: rgba(220, 53, 69, 0.1);
+  }
+</style>
+
+<div class="container my-4">
+  <h1 class="text-center mb-4">Image Analysis Results</h1>
+  
+  <!-- Header Card -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center bg-light">
+      <div>
+        <i class="fas fa-image me-2"></i>
+        <span class="fw-bold">Analyzing:</span> 
+        <a href="{{ link }}" target="_blank" class="text-decoration-underline text-break text-white" title="Open image source in new tab">{{ link }}</a>
+      </div>
+      <div>
+        <a href="{{ url_for('image_search') }}" class="btn btn_outline-primary" aria-label="Back to image search">
+          <i class="fas fa-arrow-left me-1"></i> Back to Image Search
+        </a>
+        <a href="{{ url_for('download_image_csv', link=link) }}" class="btn btn_outline-primary" aria-label="Download CSV report">
+          <i class="fas fa-download me-1"></i> Download Report
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Filter & Counts Card -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <!-- Filters -->
+        <div class="col-md-4 mb-3 mb-md-0">
+          <label for="extensionFilter" class="form-label visually-hidden">Filter by Extension</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-filter"></i></span>
+            <select id="extensionFilter" class="form-select" aria-label="Filter images by file extension">
+              <option value="">All Extensions</option>
+              {% set extensions = images|map(attribute='file_extension')|unique|list %}
+              {% for ext in extensions %}
+                <option value="{{ ext }}">{{ ext|upper }}</option>
+              {% endfor %}
+              <option value="error">Errors</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Search by Alt Text -->
+        <div class="col-md-4 mb-3 mb-md-0">
+          <label for="searchInput" class="form-label visually-hidden">Search</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search alt text or title" aria-label="Search images">
+          </div>
+        </div>
+        
+        <!-- Filter by SEO Status -->
+        <div class="col-md-4 mb-3 mb-md-0">
+          <label for="seoFilter" class="form-label visually-hidden">Filter by SEO Status</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-tag"></i></span>
+            <select id="seoFilter" class="form-select" aria-label="Filter by SEO status">
+              <option value="">All Images</option>
+              <option value="missing-alt">Missing Alt Text</option>
+              <option value="has-alt">Has Alt Text</option>
+              <option value="missing-title">Missing Title</option>
+              <option value="has-title">Has Title</option>
+              <option value="error">Errors</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- SEO Counts -->
+      <div class="row text-center mt-4">
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <div class="p-3 border rounded bg-light">
+            <h6>Total Images</h6>
+            <p class="mb-0 fs-4 fw-bold text-primary" id="totalImagesCount">0</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <div class="p-3 border rounded bg-light">
+            <h6>Alt Text Present</h6>
+            <p class="mb-0 fs-4 fw-bold text-success" id="altTextCount">0</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <div class="p-3 border rounded bg-light">
+            <h6>Missing Alt Text</h6>
+            <p class="mb-0 fs-4 fw-bold text-danger" id="missingAltCount">0</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="p-3 border rounded bg-light">
+            <h6>SEO Score</h6>
+            <p class="mb-0 fs-4 fw-bold" id="seoScore">0%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results Message -->
+  <div id="noResults" class="alert alert-info text-center d-none" role="alert">
+    <i class="fas fa-info-circle me-2"></i> No images match your current filters.
+  </div>
+
+  <!-- Images Grid -->
+  <div class="row g-4" id="imagesContainer">
+    {% for image in images %}
+    <div class="col-lg-4 col-md-6 mb-4 image-card {% if image.is_error %}bg-danger-subtle{% endif %}" 
+         data-extension="{{ image.file_extension or 'error' }}"
+         data-alt="{{ (image.alt_text or '')|lower }}"
+         data-title="{{ (image.title or '')|lower }}"
+         data-seo="{{ 'missing-alt' if not image.alt_text or image.alt_text == 'None' or image.alt_text|trim == '' else 'has-alt' }} {{ 'missing-title' if not image.title or image.title == 'None' or image.title|trim == '' else 'has-title' }} {{ 'error' if image.is_error else '' }}">
+      <div class="card h-100 shadow-sm border-0 hover-shadow {% if image.is_error %}border-danger{% endif %}">
+        <div class="position-relative">
+          {% if image.is_error %}
+            <div class="card-img-top bg-danger-subtle d-flex align-items-center justify-content-center" style="height: 200px;">
+              <div class="text-center text-danger">
+                <i class="fas fa-exclamation-triangle fa-4x mb-3"></i>
+                <h5>Image Extraction Error</h5>
+              </div>
+            </div>
+          {% else %}
+            <img src="{{ image.url }}" class="card-img-top" alt="{{ image.alt_text or 'No alt text' }}" 
+                 style="height: 200px; object-fit: contain;" 
+                 onerror="this.onerror=null; this.src='{{ url_for('static', filename='img/broken-image.png') }}'; this.alt='Image failed to load'">
+          {% endif %}
+          
+          <div class="position-absolute top-0 end-0 m-2">
+            {% if image.is_error %}
+              <span class="badge rounded-pill bg-danger text-white">ERROR</span>
+            {% else %}
+              <span class="badge rounded-pill bg-dark text-white">{{ (image.file_extension or 'Unknown')|upper }}</span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <h5 class="card-title d-flex justify-content-between">
+            <span>{% if image.is_error %}Error {% endif %}Image {{ image.image_number }}</span>
+            <button class="btn btn-sm {% if image.is_error %}btn-outline-danger{% else %}btn-outline-primary{% endif %} copy-url-btn" 
+                    data-url="{{ image.url }}" 
+                    title="Copy URL to clipboard">
+              <i class="fas fa-copy"></i>
+            </button>
+          </h5>
+          
+          <div class="card-text">
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">URL:</th>
+                  <td>
+                    <a href="{{ image.url }}" target="_blank" 
+                       class="text-truncate d-inline-block" 
+                       style="max-width: 180px;" 
+                       title="{{ image.url }}">{{ image.url }}</a>
+                  </td>
+                </tr>
+                
+                {% if image.is_error %}
+                  <tr>
+                    <th scope="row">Error:</th>
+                    <td class="text-danger">
+                      {{ image.error or 'Unknown error occurred' }}
+                    </td>
+                  </tr>
+                  {% if image.details %}
+                    <tr>
+                      <th scope="row">Details:</th>
+                      <td class="text-muted small">
+                        {{ image.details[:300] }}{% if image.details|length > 300 %}...{% endif %}
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% else %}
+                  <tr>
+                    <th scope="row">Title:</th>
+                    <td class="text-truncate" title="{{ image.title or 'None' }}">{{ image.title or 'None' }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Alt Text:</th>
+                    <td class="text-truncate" title="{{ image.alt_text or 'None' }}">{{ image.alt_text or 'None' }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Size:</th>
+                    <td>{{ image.file_size }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Resolution:</th>
+                    <td>{{ image.resolution }}</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- SEO Analysis Badges -->
+          <div class="mt-3">
+            {% if image.is_error %}
+              <span class="badge bg-danger mb-1">
+                <i class="fas fa-exclamation-circle me-1"></i> 
+                Image Extraction Failed
+              </span>
+            {% else %}
+              {% if image.alt_text == 'None' or image.alt_text|trim == '' %}
+                <span class="badge bg-danger mb-1">
+                  <i class="fas fa-times-circle me-1"></i> Missing Alt Text
+                </span>
+              {% else %}
+                <span class="badge bg-success mb-1">
+                  <i class="fas fa-check-circle me-1"></i> Alt Text Present
+                </span>
+              {% endif %}
+              
+              {% if image.title == 'None' or image.title|trim == '' %}
+                <span class="badge bg-warning text-dark mb-1">
+                  <i class="fas fa-exclamation-triangle me-1"></i> Missing Title
+                </span>
+              {% else %}
+                <span class="badge bg-info mb-1">
+                  <i class="fas fa-check-circle me-1"></i> Title Present
+                </span>
+              {% endif %}
+              
+              {% if image.file_size and image.file_size|float > 200 %}
+                <span class="badge bg-warning text-dark mb-1">
+                  <i class="fas fa-weight-hanging me-1"></i> Large File Size
+                </span>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Error Image Details Modal -->
+      {% if image.is_error %}
+      <div class="modal fade" id="imageDetailsModal-{{ image.image_number }}" tabindex="-1" 
+           aria-labelledby="imageDetailsModalLabel-{{ image.image_number }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-danger">
+            <div class="modal-header bg-danger-subtle">
+              <h5 class="modal-title text-danger" id="imageDetailsModalLabel-{{ image.image_number }}">
+                <i class="fas fa-exclamation-triangle me-2"></i>Image Extraction Error
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-danger">
+                <h6 class="alert-heading">Error Details</h6>
+                <p><strong>URL:</strong> {{ image.url }}</p>
+                <p><strong>Error:</strong> {{ image.error or 'Unknown error occurred' }}</p>
+                
+                {% if image.details %}
+                  <hr>
+                  <p class="mb-0">
+                    <strong>Additional Details:</strong><br>
+                    {{ image.details }}
+                  </p>
+                {% endif %}
+              </div>
+              
+              <div class="card mt-3">
+                <div class="card-header">
+                  <h6 class="mb-0">Troubleshooting Suggestions</h6>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <i class="fas fa-globe me-2"></i>Verify the image URL is accessible
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-lock me-2"></i>Check for SSL/security restrictions
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-server me-2"></i>Ensure the server allows image downloads
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-network-wired me-2"></i>Check network connectivity
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary copy-url-btn" data-url="{{ image.url }}">
+                <i class="fas fa-copy me-1"></i> Copy URL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4" style="display: none;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to update counts and calculate SEO score
+  function updateStats() {
+    const allCards = document.querySelectorAll('.image-card');
+    const visibleCards = document.querySelectorAll('.image-card:not(.d-none)');
+    const totalImages = allCards.length;
+    const visibleImageCount = visibleCards.length;
+    
+    if (visibleImageCount === 0) {
+      document.getElementById('noResults').classList.remove('d-none');
+    } else {
+      document.getElementById('noResults').classList.add('d-none');
+    }
+    
+    // Count images with alt text (excluding error images)
+    let altCount = 0;
+    let errorCount = 0;
+    
+    allCards.forEach(card => {
+      if (card.classList.contains('bg-danger-subtle')) {
+        errorCount++;
+      } else {
+        const altText = card.getAttribute('data-alt');
+        if (altText && altText !== 'none' && altText.trim() !== '') {
+          altCount++;
+        }
+      }
+    });
+    
+    const noAltCount = totalImages - altCount - errorCount;
+    
+    // Calculate SEO score (excluding error images)
+    const seoScore = (totalImages - errorCount) > 0 
+      ? Math.round((altCount / (totalImages - errorCount)) * 100) 
+      : 0;
+    
+    // Update display
+    document.getElementById('totalImagesCount').innerText = totalImages;
+    document.getElementById('altTextCount').innerText = altCount;
+    document.getElementById('missingAltCount').innerText = noAltCount;
+    
+    const scoreElement = document.getElementById('seoScore');
+    scoreElement.innerText = `${seoScore}%`;
+    
+    // Color-code SEO score
+    scoreElement.classList.remove('text-success', 'text-warning', 'text-danger');
+    if (seoScore >= 90) {
+      scoreElement.classList.add('text-success');
+    } else if (seoScore >= 70) {
+      scoreElement.classList.add('text-warning');
+    } else {
+      scoreElement.classList.add('text-danger');
+    }
+  }
+  
+  // Filter functions
+  function applyFilters() {
+    const extensionFilter = document.getElementById('extensionFilter').value.toLowerCase();
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    const seoFilter = document.getElementById('seoFilter').value;
+    
+    const cards = document.querySelectorAll('.image-card');
+    cards.forEach(card => {
+      const ext = card.getAttribute('data-extension') || '';
+      const isErrorCard = card.classList.contains('bg-danger-subtle');
+      const alt = (card.getAttribute('data-alt') || '').toLowerCase();
+      const title = (card.getAttribute('data-title') || '').toLowerCase();
+      const seoStatus = card.getAttribute('data-seo') || '';
+      
+      // Check extension filter
+      const matchesExtension = extensionFilter === '' || 
+                               ext.toLowerCase() === extensionFilter || 
+                               (isErrorCard && extensionFilter === 'error');
+      
+      // Check search query
+      const matchesSearch = searchQuery === '' || 
+                            alt.includes(searchQuery) || 
+                            title.includes(searchQuery);
+      
+      // Check SEO filter
+      const matchesSeo = seoFilter === '' || 
+                        seoStatus.includes(seoFilter) || 
+                        (isErrorCard && seoFilter === 'error');
+      
+      if (matchesExtension && matchesSearch && matchesSeo) {
+        card.classList.remove('d-none');
+      } else {
+        card.classList.add('d-none');
+      }
+    });
+    
+    // Update stats after filtering
+    updateStats();
+  }
+    
+  // Initialize filters
+  const extensionFilter = document.getElementById('extensionFilter');
+  const searchInput = document.getElementById('searchInput');
+  const seoFilter = document.getElementById('seoFilter');
+  
+  extensionFilter.addEventListener('change', applyFilters);
+  searchInput.addEventListener('input', applyFilters);
+  seoFilter.addEventListener('change', applyFilters);
+  
+  // Copy URL buttons
+  document.querySelectorAll('.copy-url-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const url = this.getAttribute('data-url');
+      navigator.clipboard.writeText(url).then(() => {
+        // Create and show a temporary tooltip
+        const originalTitle = this.getAttribute('title');
+        this.setAttribute('title', 'Copied!');
+        this.classList.add('btn-success');
+        this.classList.remove('btn-outline-danger', 'btn-outline-primary', 'btn-primary');
+        
+        setTimeout(() => {
+          this.setAttribute('title', originalTitle || 'Copy URL to clipboard');
+          this.classList.remove('btn-success');
+          if (this.closest('.image-card').classList.contains('bg-danger-subtle')) {
+            this.classList.add('btn-outline-danger');
+          } else {
+            this.classList.add('btn-outline-primary');
+          }
+        }, 1500);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    });
+  });
+  
+  // Back to top button
+  const backToTopBtn = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+  
+  backToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Image error handling
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.src = '{{ url_for("static", filename="img/broken-image.png") }}';
+      this.alt = 'Image failed to load';
+    });
+  });
+  
+  // Initialize stats on page load
+  updateStats();
+});
+</script>
+{% endblock %}

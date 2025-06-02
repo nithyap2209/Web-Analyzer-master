@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fourth Dimension | Enterprise SEO Analytics Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        'primary-dark': '#4338ca',
+                        'primary-light': '#6366f1',
+                        secondary: '#0ea5e9',
+                        accent: '#38bdf8',
+                        background: '#f8fafc',
+                        surface: '#ffffff',
+                        text: '#1e293b',
+                        'text-light': '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #4f46e5, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -5px rgba(79, 70, 229, 0.04);
+        }
+        
+        .subtle-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(180deg, rgba(79, 70, 229, 0.06) 0%, rgba(14, 165, 233, 0.06) 100%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            filter: blur(50px);
+            z-index: 0;
+            animation: subtle-blob-animation 25s infinite alternate;
+        }
+        
+        @keyframes subtle-blob-animation {
+            0% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                transform: rotate(0deg);
+            }
+            50% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(1deg);
+            }
+            100% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                transform: rotate(0deg);
+            }
+        }
+        
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        /* Formal animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        /* Elegant underline animation */
+        .elegant-link {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .elegant-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            bottom: -2px;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+        
+        .elegant-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Subtle shadow effect for depth */
+        .depth-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
+        
+        .depth-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-4px);
+        }
+        
+        /* 3D floating effect */
+        .floating-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Border animation */
+        .border-animation {
+            position: relative;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        
+        .border-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #4f46e5, #0ea5e9);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .border-animation:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-text">
+    <!-- 3D Canvas Background -->
+    <div id="canvas-container"></div>
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">4D</span>
+                    </div>
+                    <h1 class="text-xl font-bold">Fourth Dimension</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="elegant-link font-medium">Features</a>
+                    <a href="#how-it-works" class="elegant-link font-medium">How It Works</a>
+                    <a href="#analytics" class="elegant-link font-medium">Analytics</a>
+                    <a href="#clients" class="elegant-link font-medium">Our Clients</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="/login" class="elegant-link font-medium">Login</a>
+                    <a href="/signup" class="bg-primary hover:bg-primary-dark text-white font-medium px-5 py-2 rounded-lg transition-colors">Get start</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-32 pb-24 overflow-hidden">
+        <div class="subtle-blob top-0 right-0"></div>
+        <div class="subtle-blob bottom-0 left-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 fade-in">
+                        <span class="gradient-text" id="main-headline">Enterprise SEO Analytics</span> 
+                        <span>for Data-Driven Organizations</span>
+                    </h1>
+                    <p class="text-text-light text-lg md:text-xl mb-8 max-w-2xl fade-in" id="hero-description" style="transition-delay: 0.2s;">
+                        Advanced insights for optimizing digital presence and maximizing organic visibility through comprehensive data analysis and actionable recommendations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 fade-in" style="transition-delay: 0.4s;">
+                        <a href="/contact" class="bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors text-center">
+                            Request Consultation
+                        </a>
+                        <a href="#demo" class="border border-primary-light text-primary hover:bg-primary hover:text-white font-medium px-8 py-3 rounded-lg transition-colors text-center flex items-center justify-center">
+                            <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center fade-in" style="transition-delay: 0.6s;">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://randomuser.me/api/portraits/men/86.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://randomuser.me/api/portraits/women/63.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium">Trusted by <span class="text-primary font-bold">2,000+</span> enterprise clients</p>
+                            <div class="flex items-center mt-1">
+                                <div class="flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-text-light">4.9/5 from 500+ reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 relative">
+                    <div class="relative w-full h-[500px] perspective-1000 fade-in" style="transition-delay: 0.5s;">
+                        <div id="floating-dashboard" class="absolute inset-0 rounded-xl shadow-2xl border border-gray-200 overflow-hidden floating-card">
+                            <img src="static\images\screencapture-127-0-0-1-5000-dashboard-2025-05-07-10_30_34.png" alt="Analytics Dashboard Preview" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="absolute top-10 -right-16 w-48 h-48 bg-accent rounded-full opacity-10 filter blur-3xl"></div>
+                        <div class="absolute -bottom-10 -left-16 w-72 h-72 bg-primary rounded-full opacity-5 filter blur-3xl"></div>
+                    </div>
+                    
+                    <!-- Floating data points -->
+                    <div class="absolute top-10 -left-4 bg-white p-3 rounded-lg shadow-lg z-20 fade-in" style="transition-delay: 0.7s;">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fas fa-arrow-up text-sm"></i>
+                            </div>
+                            <div class="ml-2">
+                                <p class="text-xs font-medium">Organic Traffic</p>
+                                <p class="text-sm font-bold">+127%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-20 -right-4 bg-white p-3 rounded-lg shadow-lg z-20 fade-in" style="transition-delay: 0.9s;">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-chart-line text-sm"></i>
+                            </div>
+                            <div class="ml-2">
+                                <p class="text-xs font-medium">Keywords Ranked</p>
+                                <p class="text-sm font-bold">432</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg depth-card stagger-item">
+                    <i class="fas fa-search text-4xl text-primary mb-4"></i>
+                    <div class="text-3xl font-bold mb-2">1.2M+</div>
+                    <p class="text-text-light">URLs Analyzed</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg depth-card stagger-item">
+                    <i class="fas fa-chart-line text-4xl text-primary mb-4"></i>
+                    <div class="text-3xl font-bold mb-2">98%</div>
+                    <p class="text-text-light">Client Success Rate</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg depth-card stagger-item">
+                    <i class="fas fa-bolt text-4xl text-primary mb-4"></i>
+                    <div class="text-3xl font-bold mb-2">3.5x</div>
+                    <p class="text-text-light">Traffic Increase</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg depth-card stagger-item">
+                    <i class="fas fa-globe text-4xl text-primary mb-4"></i>
+                    <div class="text-3xl font-bold mb-2">50k+</div>
+                    <p class="text-text-light">Global Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 relative">
+        <div class="subtle-blob top-1/4 left-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Comprehensive SEO Analytics</h2>
+                <p class="text-text-light text-lg">
+                    Our enterprise platform integrates cutting-edge analytics for thorough website analysis, providing actionable insights to improve your search engine ranking.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-link text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">URL Analysis</h3>
+                        <p class="text-text-light mb-4">
+                            Analyze your website's link structure, internal linking patterns, and discover broken links that may affect user experience.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Internal & External Link Discovery</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Broken Link Detection</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Robots.txt Compliance Check</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-key text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Keyword Analysis</h3>
+                        <p class="text-text-light mb-4">
+                            Extract and analyze keywords from your content to optimize for search engines and improve visibility.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Density & Distribution Analysis</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Semantic Relevance Scoring</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Competitor Keyword Comparison</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-image text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Image Optimization</h3>
+                        <p class="text-text-light mb-4">
+                            Identify image optimization opportunities to improve page loading speed and accessibility.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Alt Text Analysis</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Image Size & Format Recommendations</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Loading Speed Impact Assessment</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-heading text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Heading Structure</h3>
+                        <p class="text-text-light mb-4">
+                            Analyze your content's heading structure for optimal SEO and reader experience.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>H1-H6 Hierarchy Analysis</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Keyword Placement Recommendations</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Content Structure Visualization</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Meta Tag Analysis</h3>
+                        <p class="text-text-light mb-4">
+                            Audit and optimize your meta tags for better search engine visibility and click-through rates.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Title & Description Evaluation</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Schema Markup Validation</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Social Media Optimization</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg depth-card relative overflow-hidden group stagger-item">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-light opacity-5 rounded-bl-[100px] group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-sitemap text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Site Structure</h3>
+                        <p class="text-text-light mb-4">
+                            Visualize and optimize your website's structure for better crawlability and user experience.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Interactive Site Maps</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Navigation Flow Analysis</span>
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Sitemap.xml Validation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-24 bg-gradient-to-b from-background to-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+                <p class="text-text-light text-lg">
+                    Our enterprise platform makes SEO analysis simple and actionable with a three-step process designed for organizational efficiency.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="relative fade-in">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">1</div>
+                    <div class="bg-white p-8 pt-12 rounded-xl shadow-lg text-center depth-card">
+                        <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-link text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Data Collection</h3>
+                        <p class="text-text-light">
+                            Our system collects comprehensive data from your website's pages, analyzing content, structure, and technical elements.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative fade-in" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">2</div>
+                    <div class="bg-white p-8 pt-12 rounded-xl shadow-lg text-center depth-card">
+                        <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-bar text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">AI-Powered Analysis</h3>
+                        <p class="text-text-light">
+                            Our advanced algorithms analyze multiple aspects of your website and provide comprehensive reports with detailed metrics.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative fade-in" style="transition-delay: 0.4s;">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">3</div>
+                    <div class="bg-white p-8 pt-12 rounded-xl shadow-lg text-center depth-card">
+                        <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-rocket text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Strategic Implementation</h3>
+                        <p class="text-text-light">
+                            Our consultants work with your team to implement actionable recommendations that improve your website's SEO performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center fade-in" style="transition-delay: 0.6s;">
+                <a href="#demo" class="inline-flex items-center text-primary font-medium hover:text-primary-dark elegant-link">
+                    <span>See it in action</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Showcase Section -->
+    <section id="analytics" class="py-24 relative bg-white">
+        <div class="subtle-blob top-1/3 right-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Enterprise Analytics Dashboard</h2>
+                <p class="text-text-light text-lg">
+                    Comprehensive visualization of your SEO data with actionable insights and real-time monitoring.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-xl border border-gray-100">
+                        <img src="static\images\screencapture-127-0-0-1-5000-dashboard-2025-05-07-10_30_34.png" alt="Analytics Dashboard" class="w-full h-auto" />
+                    </div>
+                </div>
+                
+                <div class="space-y-6 fade-in" style="transition-delay: 0.3s;">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-md depth-card">
+                        <div class="flex items-start">
+                            <div class="bg-blue-50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-chart-line text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-2">Real-time Performance Tracking</h3>
+                                <p class="text-text-light">
+                                    Monitor your website's performance metrics in real-time, with historical comparison and trend analysis.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-md depth-card">
+                        <div class="flex items-start">
+                            <div class="bg-blue-50 p-3 rounded-lg mr-4">
+                                <i class="fa-regular fa-magnifying-glass-chart text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-2">Competitor Analysis</h3>
+                                <p class="text-text-light">
+                                    Compare your performance against competitors with side-by-side metrics and opportunity identification.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-md depth-card">
+                        <div class="flex items-start">
+                            <div class="bg-blue-50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-file-export text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-2">Customizable Reports</h3>
+                                <p class="text-text-light">
+                                    Generate comprehensive reports tailored to your organization's needs with exportable formats for stakeholders.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-24 relative bg-gray-50">
+        <div class="subtle-blob bottom-0 right-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">See It In Action</h2>
+                <p class="text-text-light text-lg">
+                    Watch how our platform can transform your organization's SEO strategy with enterprise-grade analytics.
+                </p>
+            </div>
+            
+            <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 aspect-video fade-in">
+                <!-- This would normally be a video, using placeholder for design -->
+                <div class="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto bg-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary-dark transition-colors">
+                            <i class="fas fa-play text-white text-2xl"></i>
+                        </div>
+                        <p class="mt-4 text-text-light">Watch Product Demo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="clients" class="py-24 relative">
+        <div class="subtle-blob top-1/4 right-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Enterprise Clients</h2>
+                <p class="text-text-light text-lg">
+                    Discover how Fourth Dimension has helped organizations improve their SEO performance.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg relative depth-card fade-in" style="transition-delay: 0.1s;">
+                    <div class="absolute -top-5 -left-5 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-text-light mb-6 italic">
+                        "Fourth Dimension transformed our SEO strategy. We've seen a 127% increase in organic traffic within just 3 months of implementing their strategic recommendations."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-12 h-12 rounded-full mr-4" alt="Testimonial Author">
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-text-light text-sm">Chief Marketing Officer, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg relative depth-card fade-in" style="transition-delay: 0.3s;">
+                    <div class="absolute -top-5 -left-5 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-text-light mb-6 italic">
+                        "The site structure visualization tool helped us identify critical navigation issues we had missed. Our bounce rate decreased by 45% after implementing the recommended changes."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" class="w-12 h-12 rounded-full mr-4" alt="Testimonial Author">
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-text-light text-sm">CEO, WebSolutions Global</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg relative depth-card fade-in" style="transition-delay: 0.5s;">
+                    <div class="absolute -top-5 -left-5 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-text-light mb-6 italic">
+                        "As a multinational corporation, we rely on Fourth Dimension daily. It gives us comprehensive insights for all our regional sites and has become an indispensable part of our global SEO strategy."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-12 h-12 rounded-full mr-4" alt="Testimonial Author">
+                        <div>
+                            <h4 class="font-bold">Emily Rodriguez</h4>
+                            <p class="text-text-light text-sm">Global Marketing Director, Nexus Corp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logos Section -->
+            <div class="mt-20">
+                <p class="text-center text-text-light mb-8 fade-in">Trusted by leading enterprises worldwide</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 1</div>
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 2</div>
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 3</div>
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 4</div>
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 5</div>
+                    <div class="w-32 h-12 bg-gray-200 rounded flex items-center justify-center stagger-item">Logo 6</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-primary opacity-5"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border-animation fade-in">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-12 flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold mb-4">Ready to Transform Your SEO Strategy?</h2>
+                        <p class="text-text-light mb-8">
+                            Request a personalized consultation with our SEO analysts to discuss your organization's needs.
+                        </p>
+                        <a href="/contact" class="bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors inline-block text-center">
+                            Request Consultation
+                        </a>
+                    </div>
+                    <div class="md:w-1/2 bg-gradient-to-br from-primary to-secondary p-12 text-white">
+                        <h3 class="text-xl font-bold mb-6">Our Enterprise Solution Includes:</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Dedicated Account Manager</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Custom Implementation Strategy</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Comprehensive Analytics Dashboard</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-white mt-1 mr-3"></i>
+                                <span>Strategic Quarterly Reviews</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-text py-12 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-primary font-bold text-xl">4D</span>
+                        </div>
+                        <h1 class="text-xl font-bold">Fourth Dimension</h1>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Enterprise SEO analytics platform for data-driven organizations. Unlock insights, improve digital presence.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Solutions</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">URL Analysis</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Keyword Analysis</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Image Optimization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Heading Structure</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Meta Tag Analysis</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Site Structure</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Knowledge Base</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">White Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Webinars</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{{url_for('about')}}" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Leadership</a></li>
+                
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; {{ current_year }} Fourth Dimension. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <a href="{{url_for('privacy')}}" class="text-gray-400 hover:text-white text-sm transition-colors mr-4">Privacy Policy</a>
+                    <a href="{{url_for('terms')}}" class="text-gray-400 hover:text-white text-sm transition-colors mr-4">Terms of Service</a>
+                    <a href="{{url_for('contact')}}" class="text-gray-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 3D Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize GSAP
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // 3D Animation with Three.js - More subtle/formal
+            const container = document.getElementById('canvas-container');
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+            
+            // Create particles - reduced count for more subtle effect
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1200; // Reduced from 2000
+            
+            const posArray = new Float32Array(particlesCount * 3);
+            const colors = new Float32Array(particlesCount * 3);
+            
+            for (let i = 0; i < particlesCount * 3; i += 3) {
+                // Position - more spread out
+                posArray[i] = (Math.random() - 0.5) * 20;
+                posArray[i + 1] = (Math.random() - 0.5) * 20;
+                posArray[i + 2] = (Math.random() - 0.5) * 20;
+                
+                // Color - more subtle, professional color palette
+                colors[i] = 0.4 + Math.random() * 0.1; // R (blue range)
+                colors[i + 1] = 0.4 + Math.random() * 0.1; // G
+                colors[i + 2] = 0.7 + Math.random() * 0.1; // B
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.012, // Smaller particles
+                transparent: true,
+                opacity: 0.6, // More subtle
+                vertexColors: true,
+                sizeAttenuation: true
+            });
+            
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+            
+            camera.position.z = 5;
+            
+            // Animation - slower rotation for more formal/professional feel
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                particlesMesh.rotation.x += 0.0001; // Slower rotation
+                particlesMesh.rotation.y += 0.0002; // Slower rotation
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // 3D card effect for dashboard preview - more subtle movement
+            const dashboard = document.getElementById('floating-dashboard');
+            if (dashboard) {
+                document.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 40; // More subtle movement
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 40; // More subtle movement
+                    dashboard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+            }
+            
+            // Initial animation for hero section
+            // Activate initial fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('active');
+            });
+            
+            // Scroll animations - more formal/subtle
+            ScrollTrigger.batch('.fade-in:not(.active)', {
+                start: "top 85%",
+                onEnter: batch => {
+                    gsap.to(batch, {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.1,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                },
+                once: true
+            });
+            
+            // Staggered animations for cards and stats
+            const staggerItems = document.querySelectorAll('.stagger-item');
+            gsap.set(staggerItems, { opacity: 0, y: 20 });
+            
+            ScrollTrigger.batch(staggerItems, {
+                start: "top 85%",
+                onEnter: batch => {
+                    gsap.to(batch, {
+                        opacity: 1, 
+                        y: 0,
+                        stagger: 0.08, // Faster stagger for more formal feel
+                        duration: 0.6, // Quicker animation
+                        ease: "power2.out"
+                    });
+                },
+                once: true
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80, // Account for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

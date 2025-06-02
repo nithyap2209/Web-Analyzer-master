@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Web Analyzer Pro{% endblock %}</title>
+  <meta name="description" content="Web Analyzer Pro helps you analyze headings, keywords, images, and more for your website.">
+  <!-- Resource hints for performance -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Preload styles -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" crossorigin>
+  <!-- Stylesheets -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    /* CSS Variables (organized by category) */
+    :root {
+      /* Colors */
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --primary-light: #6366f1;
+      --secondary: #0ea5e9;
+      --accent: #38bdf8;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      
+      /* Layout Dimensions */
+      --sidebar-width: 17.5rem; /* 280px */
+      --collapsed-sidebar-width: 4.375rem; /* 70px */
+      --header-height: 4.375rem; /* 70px */
+      
+      /* Typography & Shadows */
+      --border-radius: 0.75rem; /* 12px */
+      --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1);
+      
+      /* Timings */
+      --transition-speed: 0.3s;
+      
+      /* Scale for responsive design */
+      --sidebar-scale: 1; /* Will be modified with JavaScript for responsive sizing */
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Enhanced Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      transition: padding var(--transition-speed) ease;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-icon {
+      font-size: 1.8rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1));
+    }
+
+    .brand-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1));
+    }
+
+    /* Enhanced Auth Buttons */
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--border-radius);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: transform 0.5s ease;
+      transform: skewX(-15deg);
+    }
+
+    .btn:hover::before {
+      transform: translateX(200%) skewX(-15deg);
+    }
+
+    /* Improved contrast for btn-outline */
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      transform: translateY(-0.1875rem);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-0.1875rem);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn:active {
+      transform: translateY(0.0625rem);
+    }
+
+    /* Enhanced Sidebar with scale transformation */
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--surface);
+      box-shadow: var(--shadow-lg);
+      transition: width var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 90;
+      padding: 1.5rem 1rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      will-change: transform, width;
+      scrollbar-color: var(--primary-light) transparent;
+      transform-origin: left center;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 0.375rem;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background-color: var(--primary-light);
+      border-radius: 0.625rem;
+    }
+
+    /* Collapsed Sidebar */
+    .sidebar.collapsed {
+      width: var(--collapsed-sidebar-width);
+      transform: translateX(0);
+      padding: 1.5rem 0.5rem;
+    }
+
+    /* Navigation Items with keyboard focus for tooltips */
+    .nav-item {
+      margin-bottom: 0.75rem;
+      position: relative;
+      outline: none;
+    }
+
+    .nav-item:focus .tooltip,
+    .nav-item:focus-within .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Navigation Links with aria-label */
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--border-radius);
+      color: var(--text);
+      text-decoration: none;
+      transition: all var(--transition-speed) ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0.25rem;
+      height: 100%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .nav-link:hover {
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.1), transparent);
+      color: var(--primary);
+      transform: translateX(0.3125rem);
+    }
+
+    .nav-link:hover::before {
+      opacity: 1;
+    }
+
+    .nav-link.active {
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.2), transparent);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-link.active::before {
+      opacity: 1;
+    }
+
+    /* Icons */
+    .nav-icon {
+      font-size: 1.25rem;
+      width: 1.5rem;
+      text-align: center;
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .nav-link:hover .nav-icon {
+      transform: scale(1.2);
+      color: var(--primary);
+    }
+
+    /* Nav Link Text */
+    .nav-text {
+      transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+      opacity: 1;
+      transform: translateX(0);
+      white-space: nowrap;
+    }
+
+    /* Hide text when sidebar is collapsed */
+    .sidebar.collapsed .nav-text {
+      opacity: 0;
+      transform: translateX(0.625rem);
+      display: none;
+    }
+
+    /* Center Icons in Collapsed Sidebar */
+    .sidebar.collapsed .nav-link {
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    /* Adjust Main Content Margin */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      margin-top: var(--header-height);
+      padding: 2rem;
+      transition: margin-left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Main Content Adjusts for Collapsed Sidebar */
+    .sidebar.collapsed ~ .main-content {
+      margin-left: var(--collapsed-sidebar-width);
+    }
+
+    /* Enhanced Search Container */
+    .search-container {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-container:hover {
+      transform: translateY(-0.125rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.1875rem rgba(79, 70, 229, 0.1);
+    }
+
+    /* Enhanced Stats Grid (use semantic <section> if applicable) */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0.25rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-0.3125rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-card:hover::after {
+      opacity: 1;
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform: scale(1.1);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .stat-card:hover .stat-value {
+      color: var(--primary);
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+
+    /* Enhanced Results Grid (use semantic <section> if applicable) */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .result-card {
+      background: var(--surface);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-0.3125rem);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-header {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .link-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .link-item:last-child {
+      border-bottom: none;
+    }
+
+    .link-item:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+      transform: translateX(0.3125rem);
+    }
+
+    .link-text {
+      color: var(--text);
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .link-text:hover {
+      color: var(--primary);
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      bottom: 2rem;
+      left: calc(var(--sidebar-width) - 1.875rem);
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 95;
+      box-shadow: var(--shadow-lg);
+      border: none;
+      overflow: hidden;
+    }
+
+    .toggle-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.5s ease;
+    }
+
+    .toggle-btn:hover::before {
+      transform: scale(2);
+    }
+
+    .toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .toggle-btn:active {
+      transform: scale(0.95);
+    }
+
+    .sidebar.collapsed ~ .toggle-btn {
+      left: calc(var(--collapsed-sidebar-width) - 1.375rem);
+    }
+
+    /* Toggle icon animation */
+    .toggle-icon {
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .sidebar.collapsed ~ .toggle-btn .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Loading spinner overlay with improved visibility */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .spinner {
+      width: 3.75rem;
+      height: 3.75rem;
+      border: 0.375rem solid rgba(79, 70, 229, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+      box-shadow: 0 0 1rem rgba(79, 70, 229, 0.3);
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Enhanced Tooltip for collapsed sidebar */
+    .tooltip {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--text);
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+    }
+
+    .tooltip::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 0.375rem;
+      border-style: solid;
+      border-color: transparent var(--text) transparent transparent;
+    }
+
+    .sidebar.collapsed .nav-item:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      :root {
+        --sidebar-width: 15.625rem; /* 250px */
+      }
+    }
+
+    /* Tablet breakpoint (992px) */
+    @media (max-width: 992px) and (min-width: 769px) {
+      .header {
+        padding: 0 1.5rem;
+      }
+      .sidebar {
+        width: 13.75rem; /* approx 220px */
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 3.75rem; /* 60px */
+      }
+      
+      .header {
+        padding: 0 1rem;
+      }
+
+      .brand-text {
+        font-size: 1.25rem;
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        box-shadow: none;
+      }
+
+      .sidebar.collapsed {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.mobile-active {
+        transform: translateX(0);
+        box-shadow: var(--shadow-lg);
+        width: var(--sidebar-width);
+      }
+
+      .sidebar.mobile-active .nav-text {
+        opacity: 1;
+        display: block;
+      }
+
+      .sidebar.mobile-active .nav-link {
+        justify-content: flex-start;
+        padding: 1rem 1.25rem;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 1.5rem 1rem;
+      }
+
+      .toggle-btn {
+        left: 1rem;
+        bottom: 1.5rem;
+      }
+
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 80;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation for content loading */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    /* Improved navigation button styles for clarity and focused states */
+    .nav-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: -2px;
+    }
+    
+    /* Enhanced loading indicator for better visibility */
+    .loading-indicator {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--surface);
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-lg);
+      z-index: 90;
+      transform: translateY(200%);
+      transition: transform 0.3s ease;
+    }
+    
+    .loading-indicator.active {
+      transform: translateY(0);
+    }
+    
+    .mini-spinner {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0.1875rem solid rgba(79, 70, 229, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    .loading-text {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: var(--surface);
+      color: var(--text);
+      padding: 3rem 0 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+      margin-left: var(--sidebar-width);
+      transition: margin-left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 80;
+    }
+
+    .sidebar.collapsed ~ .footer {
+      margin-left: var(--collapsed-sidebar-width);
+    }
+
+    .footer-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+     
+    }
+
+    .footer-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-icon {
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1));
+    }
+
+    .footer-brand-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1));
+    }
+
+    .footer-description {
+      color: var(--text-light);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: var(--shadow-md);
+    }
+
+    .social-link:active {
+      transform: translateY(0);
+    }
+
+    .footer-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 3rem;
+      height: 0.25rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: var(--border-radius);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0.125rem;
+      bottom: -0.25rem;
+      left: 0;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: var(--border-radius);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(0.3125rem);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-newsletter-text {
+      color: var(--text-light);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-form {
+      width: 100%;
+    }
+
+    .form-group {
+      display: flex;
+      position: relative;
+    }
+
+    .footer-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .footer-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.1875rem rgba(79, 70, 229, 0.1);
+    }
+
+    .footer-btn {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .footer-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .footer-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 0.875rem;
+    }
+
+    .footer-copyright {
+      color: var(--text-light);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-legal a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-legal a:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive adjustments for footer */
+    @media (max-width: 768px) {
+      .footer {
+        margin-left: 0;
+      }
+      
+      .footer-row {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      .footer-legal {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* Adjust main content for better spacing with footer */
+    .main-content {
+      min-height: calc(100vh - var(--header-height) - 400px);
+    }
+
+    /* Ensure toggle button stays above footer */
+    .toggle-btn {
+      z-index: 101;
+    }
+    /* Enhanced Metrics Cards */
+    .animated-card {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .animated-card.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .metric-card:hover::before {
+      opacity: 1;
+    }
+
+    .metric-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      background: linear-gradient(to right, rgba(249, 250, 251, 0.8), rgba(255, 255, 255, 0.8));
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .metric-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-left: 0.8rem;
+    }
+
+    .metric-body {
+      padding: 1rem 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trend-value[data-trend="positive"] {
+      color: #10b981;
+    }
+
+    .trend-value[data-trend="negative"] {
+      color: #ef4444;
+    }
+
+    .positive {
+      color: #10b981;
+    }
+
+    .negative {
+      color: #ef4444;
+    }
+
+    .trend-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .trend-indicator.positive {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .trend-indicator.negative {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+
+    /* Time Zone Badge */
+    .timezone-info {
+      margin-bottom: 1rem;
+    }
+
+    .timezone-info .badge {
+      font-weight: normal;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay with improved spinner -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Mobile Overlay with improved touch handling -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- Enhanced Header with improved accessibility -->
+  <header class="header">
+    <div class="brand">
+      <i class="brand-icon fas fa-chart-line" aria-hidden="true"></i>
+      <span class="brand-text">Web Analyzer</span>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="authDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user" aria-hidden="true"></i> 
+      </button>
+      {% if current_user.is_authenticated %}
+      <ul class="dropdown-menu" aria-labelledby="authDropdown" role="menu">
+        {% if request.endpoint != 'dashboard' %}
+        <li>
+          <a class="dropdown-item" href="{{ url_for('index') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-tachometer-alt me-2" aria-hidden="true"></i>Dashboard
+          </a>
+        </li>
+        {% endif %}
+        
+        {% if request.endpoint != 'profile' %}
+        <li>
+          <a class="dropdown-item" href="{{ url_for('profile') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-user-circle me-2" aria-hidden="true"></i>Profile
+          </a>
+        </li>
+        {% endif %}
+        
+        {% if request.endpoint != 'user_subscriptions' %}
+        <li>
+          <a class="dropdown-item" href="{{ url_for('user_subscriptions') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-credit-card me-2" aria-hidden="true"></i>Subscriptions
+          </a>
+        </li>
+        {% endif %}
+        
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item text-danger" href="{{ url_for('logout') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Logout
+          </a>
+        </li>
+      </ul>
+      {% else %}
+      <ul class="dropdown-menu" aria-labelledby="authDropdown" role="menu">
+        <li>
+          <a class="dropdown-item" href="{{ url_for('login') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>Login
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('user_subscriptions') }}" role="menuitem" tabindex="0">
+            <i class="fas fa-credit-card me-2" aria-hidden="true"></i>Subscriptions
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </header>
+
+
+  <!-- Enhanced Sidebar with improved navigation behavior -->
+  <nav class="sidebar" id="sidebar">
+    <div class="nav-list">
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" aria-label="Dashboard" data-page="index">
+          <i class="nav-icon fas fa-home" aria-hidden="true"></i>
+          <span class="nav-text">Dashboard</span>
+          <span class="tooltip">Dashboard</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('url_search') }}" class="nav-link {% if request.endpoint == 'url_search' %}active{% endif %}" aria-label="URL Analysis" data-page="url_search">
+          <i class="nav-icon fas fa-search" aria-hidden="true"></i>
+          <span class="nav-text">URL Analysis</span>
+          <span class="tooltip">URL Analysis</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('h_search') }}" class="nav-link {% if request.endpoint == 'h_search' %}active{% endif %}" aria-label="Heading Analysis" data-page="h_search">
+          <i class="nav-icon fas fa-heading" aria-hidden="true"></i>
+          <span class="nav-text">Heading Analysis</span>
+          <span class="tooltip">Heading Analysis</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('keyword_search') }}" class="nav-link {% if request.endpoint == 'keyword_search' %}active{% endif %}" aria-label="Keyword Analysis" data-page="keyword_search">
+          <i class="nav-icon fas fa-key" aria-hidden="true"></i>
+          <span class="nav-text">Keyword Analysis</span>
+          <span class="tooltip">Keyword Analysis</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('image_search') }}" class="nav-link {% if request.endpoint == 'image_search' %}active{% endif %}" aria-label="Image Analysis" data-page="image_search">
+          <i class="nav-icon fas fa-images" aria-hidden="true"></i>
+          <span class="nav-text">Image Analysis</span>
+          <span class="tooltip">Image Analysis</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('meta_search') }}" class="nav-link {% if request.endpoint == 'meta_search' %}active{% endif %}" aria-label="Meta Analysis" data-page="meta_search">
+          <i class="nav-icon fas fa-tags" aria-hidden="true"></i>
+          <span class="nav-text">Meta Analysis</span>
+          <span class="tooltip">Meta Analysis</span>
+        </a>
+      </div>
+      <div class="nav-item" tabindex="0">
+        <a href="{{ url_for('site_structure') }}" class="nav-link {% if request.endpoint == 'site_structure' %}active{% endif %}" aria-label="Sitemap Analysis" data-page="site_structure">
+          <i class="nav-icon fas fa-sitemap" aria-hidden="true"></i>
+          <span class="nav-text">Sitemap Analysis</span>
+          <span class="tooltip">Sitemap Analysis</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Enhanced Main Content -->
+  <main class="main-content">
+    <div class="animate-fade-in">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+  
+  <!-- Loading indicator for navigation feedback -->
+  <div class="loading-indicator" id="loadingIndicator">
+    <div class="mini-spinner"></div>
+    <span class="loading-text">Loading...</span>
+  </div>
+
+  <!-- Enhanced Toggle Button -->
+  <button class="toggle-btn" id="sidebarToggle" aria-label="Toggle Sidebar">
+    <i class="fas fa-chevron-left toggle-icon" id="toggleIcon" aria-hidden="true"></i>
+  </button>
+  
+  <!-- Enhanced Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-row">
+      <!-- Brand Column -->
+      <div class="footer-col">
+        <div class="footer-brand">
+          <i class="footer-brand-icon fas fa-chart-line" aria-hidden="true"></i>
+          <span class="footer-brand-text">Web Analyzer</span>
+        </div>
+        <p class="footer-description">Powerful tools to analyze and optimize your website performance, improve SEO, and enhance user experience.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <!-- Quick Links Column -->
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+          <li><a href="{{ url_for('url_search') }}">URL Analysis</a></li>
+          <li><a href="{{ url_for('h_search') }}">Heading Analysis</a></li>
+          <li><a href="{{ url_for('keyword_search') }}">Keyword Analysis</a></li>
+          <li><a href="{{ url_for('image_search') }}">Image Analysis</a></li>
+        </ul>
+      </div>
+      
+      <!-- Resources Column -->
+      <div class="footer-col">
+        <h3 class="footer-title">More Tools</h3>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('meta_search') }}">Meta Analysis</a></li>
+          <li><a href="{{ url_for('site_structure') }}">Sitemap Analysis</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('profile') }}">Profile</a></li>
+          <li><a href="{{ url_for('user_subscriptions') }}">Subscriptions</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="{{ url_for('user_subscriptions') }}">Subscriptions</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      
+      <!-- Newsletter Column -->
+      <div class="footer-col">
+        <h3 class="footer-title">Stay Updated</h3>
+        <p class="footer-newsletter-text">Get the latest features and announcements</p>
+        <form class="footer-form" action="#" method="post">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="form-group">
+            <input type="email" class="footer-input" name="email" placeholder="Your email address" required>
+            <button type="submit" class="footer-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>&copy; <span id="currentYear"></span> Web Analyzer. All rights reserved.</p>
+      </div>
+      <div class="footer-legal">
+        <a href="{{url_for('privacy')}}">Privacy Policy</a>
+        <a href="{{url_for('terms')}}">Terms of Service</a>
+        <a href="{{url_for('cookie_policy')}}">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <!-- Updated script section with improved functionality -->
+  <script>
+    // Utility functions
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    };
+    
+    // Elements
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Track navigation state
+    let isNavigating = false;
+    let sidebarScale = 1;
+    
+    // Show loading animation
+    function showLoading() {
+      loadingOverlay.classList.add('active');
+    }
+
+    // Hide loading animation
+    function hideLoading() {
+      loadingOverlay.classList.remove('active');
+    }
+    
+    // Show mini loading indicator
+    function showLoadingIndicator() {
+      loadingIndicator.classList.add('active');
+    }
+    
+    // Hide mini loading indicator
+    function hideLoadingIndicator() {
+      loadingIndicator.classList.remove('active');
+    }
+    
+    // Apply sidebar scale transformation
+    function applySidebarScale() {
+      if (window.innerWidth <= 768) return; // Don't scale on mobile
+      
+      // Apply scale to sidebar elements based on sidebarScale variable
+      document.documentElement.style.setProperty('--sidebar-scale', sidebarScale);
+      
+      // Scale nav icons and text
+      const navIcons = document.querySelectorAll('.nav-icon');
+      const navTexts = document.querySelectorAll('.nav-text');
+      
+      navIcons.forEach(icon => {
+        icon.style.transform = `scale(${sidebarScale})`;
+      });
+      
+      navTexts.forEach(text => {
+        if (!sidebar.classList.contains('collapsed')) {
+          text.style.transform = `scale(${sidebarScale})`;
+        }
+      });
+    }
+
+    // Toggle sidebar function with improved behavior
+    function toggleSidebar() {
+      // Prevent toggling during navigation
+      if (isNavigating) return;
+      
+      const isCollapsed = sidebar.classList.contains('collapsed');
+      const isMobile = window.innerWidth <= 768;
+      const navTexts = document.querySelectorAll('.nav-text');
+
+      if (isMobile) {
+        if (sidebar.classList.contains('mobile-active')) {
+          sidebar.classList.remove('mobile-active');
+          mobileOverlay.classList.remove('active');
+        } else {
+          sidebar.classList.add('mobile-active');
+          mobileOverlay.classList.add('active');
+        }
+      } else {
+        // Use requestAnimationFrame for smoother transitions
+        requestAnimationFrame(() => {
+          if (isCollapsed) {
+            sidebar.classList.remove('collapsed');
+            toggleIcon.classList.remove('fa-chevron-right');
+            toggleIcon.classList.add('fa-chevron-left');
+
+            // Batch update nav-text elements with staggered timing
+            setTimeout(() => {
+              navTexts.forEach((text, index) => {
+                text.style.display = 'block';
+                setTimeout(() => {
+                  text.style.opacity = '1';
+                  text.style.transform = `scale(${sidebarScale})`;
+                }, 30 * index); // Staggered animation
+              });
+            }, 150);
+          } else {
+            // Batch update nav-text elements
+            navTexts.forEach((text, index) => {
+              text.style.opacity = '0';
+              setTimeout(() => {
+                text.style.display = 'none';
+              }, 300);
+            });
+
+            sidebar.classList.add('collapsed');
+            toggleIcon.classList.add('fa-chevron-right');
+            toggleIcon.classList.remove('fa-chevron-left');
+          }
+          
+          // Save sidebar state
+          saveStateToLocalStorage();
+          
+          // Update toggle button position
+          updateToggleButtonPosition();
+        });
+      }
+    }
+    
+    // Update toggle button position with correct offset calculation
+    function updateToggleButtonPosition() {
+      const isCollapsed = sidebar.classList.contains('collapsed');
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        sidebarToggle.style.left = '1rem';
+        return;
+      }
+      
+      if (isCollapsed) {
+        sidebarToggle.style.left = `calc(var(--collapsed-sidebar-width) - 1.375rem)`;
+      } else {
+        sidebarToggle.style.left = `calc(var(--sidebar-width) - 1.875rem)`;
+      }
+    }
+
+    // Save sidebar state to localStorage and session cookie for redundancy
+    function saveStateToLocalStorage() {
+      const isCollapsed = sidebar.classList.contains('collapsed');
+      localStorage.setItem('sidebarCollapsed', isCollapsed);
+      localStorage.setItem('sidebarScale', sidebarScale.toString());
+      
+      // Also set a session cookie for more reliable state persistence
+      document.cookie = `sidebarCollapsed=${isCollapsed}; path=/; SameSite=Strict;`;
+      document.cookie = `sidebarScale=${sidebarScale}; path=/; SameSite=Strict;`;
+    }
+
+    // Get sidebar state from either localStorage or cookie, with localStorage taking precedence
+    function getSidebarState() {
+      // Get collapse state
+      const localState = localStorage.getItem('sidebarCollapsed');
+      if (localState !== null) {
+        return localState === 'true';
+      }
+      
+      // Fall back to cookie if localStorage is empty
+      const cookieMatch = document.cookie.match(/sidebarCollapsed=(true|false)/);
+      if (cookieMatch) {
+        return cookieMatch[1] === 'true';
+      }
+      
+      // Default to false (expanded) if neither exists
+      return false;
+    }
+    
+    // Get sidebar scale from either localStorage or cookie
+    function getSidebarScale() {
+      // Try localStorage first
+      const localScale = localStorage.getItem('sidebarScale');
+      if (localScale !== null) {
+        return parseFloat(localScale);
+      }
+      
+      // Fall back to cookie
+      const cookieMatch = document.cookie.match(/sidebarScale=([0-9.]+)/);
+      if (cookieMatch) {
+        return parseFloat(cookieMatch[1]);
+      }
+      
+      // Default to 1 if neither exists
+      return 1;
+    }
+
+    // Apply sidebar state with improved reliability
+    function applySidebarState() {
+      const isMobile = window.innerWidth <= 768;
+      const shouldBeCollapsed = getSidebarState();
+      
+      // Get saved scale
+      sidebarScale = getSidebarScale();
+      
+      if (isMobile) {
+        // On mobile, always start with sidebar hidden
+        sidebar.classList.remove('collapsed');
+        sidebar.classList.remove('mobile-active');
+        sidebarToggle.style.left = '1rem';
+        return;
+      }
+      
+      // Apply scale transformation
+      applySidebarScale();
+      
+      // Handle desktop state
+      if (shouldBeCollapsed) {
+        // Apply collapsed state immediately to prevent flashing
+        sidebar.classList.add('collapsed');
+        toggleIcon.classList.add('fa-chevron-right');
+        toggleIcon.classList.remove('fa-chevron-left');
+        
+        // Hide nav text immediately
+        document.querySelectorAll('.nav-text').forEach(text => {
+          text.style.display = 'none';
+          text.style.opacity = '0';
+        });
+        
+        // Update main content margin and toggle button position
+        updateToggleButtonPosition();
+      } else {
+        // Apply expanded state
+        sidebar.classList.remove('collapsed');
+        toggleIcon.classList.remove('fa-chevron-right');
+        toggleIcon.classList.add('fa-chevron-left');
+        
+        // Show nav text
+        document.querySelectorAll('.nav-text').forEach(text => {
+          text.style.display = 'block';
+          text.style.opacity = '1';
+          text.style.transform = `scale(${sidebarScale})`;
+        });
+        
+        // Update toggle button position
+        updateToggleButtonPosition();
+      }
+    }
+    
+    // Handle navigation with better state preservation and loading indicators
+    function handleNavigation(e) {
+      const navLink = e.currentTarget;
+      
+      // Don't handle hash links or other special links
+      if (navLink.getAttribute('href').startsWith('#')) {
+        return;
+      }
+      
+      // Prevent navigation during active navigation
+      if (isNavigating) {
+        e.preventDefault();
+        return;
+      }
+      
+      // Set navigation state
+      isNavigating = true;
+      
+      // Save state explicitly before navigation
+      saveStateToLocalStorage();
+      
+      // Show loading indicator instead of full overlay for better UX
+      showLoadingIndicator();
+      
+      // Close mobile sidebar if open
+      if (sidebar.classList.contains('mobile-active')) {
+        sidebar.classList.remove('mobile-active');
+        mobileOverlay.classList.remove('active');
+      }
+      
+      // We don't prevent default, allowing normal navigation
+    }
+
+    // Toggle sidebar on button click with improved touch handling
+    sidebarToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleSidebar();
+    });
+    
+    // Handle touch events properly for toggle button
+    sidebarToggle.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // Prevent default touch behavior
+    });
+    
+    sidebarToggle.addEventListener('touchend', (e) => {
+      e.preventDefault(); // Prevent default touch behavior
+      e.stopPropagation(); // Stop event propagation
+      toggleSidebar();
+    });
+
+    // Close sidebar on mobile overlay click
+    mobileOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('mobile-active');
+      mobileOverlay.classList.remove('active');
+    });
+    
+    // Add navigation event listeners to all nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', handleNavigation);
+    });
+    
+    // Apply state immediately to prevent flashing
+    applySidebarState();
+
+    // Restore sidebar state on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Re-apply sidebar state to ensure consistency
+      applySidebarState();
+      
+      // Add ARIA attributes to dropdown items for accessibility
+      document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.setAttribute('role', 'menuitem');
+        item.setAttribute('tabindex', '0');
+      });
+      
+      setTimeout(() => {
+        hideLoading();
+        // Reset navigation state
+        isNavigating = false;
+      }, 300);
+    });
+
+    // Ensure sidebar state is saved before page unload
+    window.addEventListener('beforeunload', () => {
+      saveStateToLocalStorage();
+    });
+
+    // Handle window resize with debounce for better performance
+    const handleResize = debounce(() => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        sidebar.classList.remove('collapsed');
+        if (!sidebar.classList.contains('mobile-active')) {
+          sidebar.style.transform = 'translateX(-100%)';
+        }
+        sidebarToggle.style.left = '1rem';
+      } else {
+        mobileOverlay.classList.remove('active');
+        sidebar.classList.remove('mobile-active');
+        sidebar.style.transform = '';
+        applySidebarState();
+        updateToggleButtonPosition();
+      }
+      
+      // Apply scale transformation after resize
+      applySidebarScale();
+    }, 100);
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Focus trap for improved accessibility
+    sidebar.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (sidebar.classList.contains('mobile-active')) {
+          sidebar.classList.remove('mobile-active');
+          mobileOverlay.classList.remove('active');
+          sidebarToggle.focus();
+        }
+      }
+    });
+    
+    // Keyboard support for toggle button
+    sidebarToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleSidebar();
+      }
+    });
+    
+    // Page visibility change handler to reset navigation state
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        isNavigating = false;
+        hideLoadingIndicator();
+      }
+    });
+    
+    // Navigation completion detection
+    window.addEventListener('pageshow', (event) => {
+      // Reset navigation state
+      isNavigating = false;
+      hideLoadingIndicator();
+      hideLoading();
+      
+      // If page is loaded from cache (back button), re-apply state
+      if (event.persisted) {
+        applySidebarState();
+      }
+    });
+    // Add this at the end of your existing script section
+
+    // Update footer position when sidebar state changes
+    function updateFooterPosition() {
+      const footer = document.querySelector('.footer');
+      if (!footer) return;
+      
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        footer.style.marginLeft = '0';
+      } else {
+        // The CSS transitions will handle the rest
+        // This just ensures any manual style changes are cleared
+        footer.style.marginLeft = '';
+      }
+    }
+
+    // Extend existing toggleSidebar function to also update footer
+    const originalToggleSidebar = window.toggleSidebar || function() {};
+    window.toggleSidebar = function() {
+      originalToggleSidebar.apply(this, arguments);
+      updateFooterPosition();
+    };
+
+    // Extend existing handleResize function
+    const originalHandleResize = window.handleResize || function() {};
+    window.handleResize = function() {
+      originalHandleResize.apply(this, arguments);
+      updateFooterPosition();
+    };
+
+    // Add current year to footer copyright
+    document.addEventListener('DOMContentLoaded', function() {
+      const yearElement = document.getElementById('currentYear');
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+      
+      // Ensure footer positioning is initialized
+      updateFooterPosition();
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

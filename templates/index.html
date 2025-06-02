@@ -1,0 +1,1318 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Web Analyzer Pro{% endblock %}
+
+{% block content %}
+  <!-- Welcome Section - More Compact -->
+  <section class="welcome-section">
+    <div class="search-container compact">
+      <h1 class="welcome-title">Hello {{ user_name|title }}, Welcome to SEO Analyzer</h1>
+      <p class="welcome-text">Your comprehensive tool for analyzing websites and improving online presence.</p>
+      
+      <!-- Modified search form with smaller, centered-text buttons -->
+      <form method="POST" action="{{ url_for('url_analysis') }}" class="mb-3">
+        <div class="search-bar input-group">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+          <input type="text" name="url" class="form-control search-input" id="urlInput" 
+                placeholder="Enter website URL to analyze..." 
+                value="{{ url_input|default('https://') }}" required>
+          <button type="submit" class="btn btn-primary compact-btn" id="analyzeBtn">
+            <span>Analyze</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Home Links Results Section - More Compact -->
+  <section id="homeLinksSection" class="home-links-section" {% if view_mode == "dashboard" %}style="display: none;"{% endif %}>
+    <div class="container-fluid px-2">
+      <div class="row">
+        <div class="col-12 mb-2">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-1 mb-2">
+              <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+              <li class="breadcrumb-item active" id="analyzedUrl">{{ url_input }}</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-3 compact-card">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+              <h5 class="mb-0 fs-6" id="displayUrl">{{ url_input }}</h5>
+              <a href="{{ url_for('download_url', url=url_input) }}" id="downloadCsvBtn" class="btn btn-sm btn-success compact-btn">
+                <i class="fas fa-download"></i> CSV
+              </a>
+            </div>
+            <div class="card-body py-2">
+              <h6 class="card-subtitle mb-2 fs-6">Home Links <span class="badge bg-primary" id="homeLinksCount">{% if links_data %}{{ links_data.home|length }}{% else %}0{% endif %}</span></h6>
+              
+              <!-- Only show loading when no links data yet -->
+              {% if not links_data %}
+              <div id="loadingIndicator" class="text-center py-3">
+                <div class="spinner-border spinner-border-sm text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 small">Analyzing URL and fetching home links...</p>
+              </div>
+              {% endif %}
+              
+              <!-- Home Links Container with Scrollbar - show only when we have data -->
+              {% if links_data and links_data.home %}
+              <div id="homeLinksContainer" class="home-links-container compact">
+                <div class="list-group" id="homeLinks">
+                  <!-- Display Home Links Only -->
+                  {% for link in links_data.home %}
+                  <div class="list-group-item link-item py-2">
+                    <div class="link-text small" title="{{ link }}">{{ link|replace('http://', '')|replace('https://', '') }}</div>
+                    <div class="action-buttons">
+                      <a href="{{ link }}" class="badge bg-secondary action-badge" target="_blank" title="Open link in new tab">
+                        <i class="fas fa-external-link-alt fa-sm"></i>
+                      </a>
+                      <a href="{{ url_for('h_detail', url=link) }}" class="badge bg-secondary action-badge" title="View heading analysis">
+                        <i><strong>H</strong></i>
+                      </a>
+                      <a href="{{ url_for('keyword_detail', link=link) }}" class="badge bg-secondary action-badge" title="View keyword analysis">
+                        <i class="fas fa-key fa-sm"></i>
+                      </a>
+                      <a href="{{ url_for('image_detail', link=link) }}" class="badge bg-secondary action-badge" title="View image analysis">
+                        <i class="fas fa-image fa-sm"></i>
+                      </a>
+                      <a href="{{ url_for('meta_detail', link=link) }}" class="badge bg-secondary action-badge" title="View meta tags analysis">
+                        <i class="fas fa-tags fa-sm"></i>
+                      </a>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+              
+              <!-- No Links Message - Only show when we have an empty result -->
+              {% if links_data and not links_data.home %}
+              <div id="noLinksMessage" class="text-center py-3">
+                <i class="fas fa-info-circle text-muted mb-2"></i>
+                <p class="small">No home links found for this URL.</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Dashboard Stats Summary Section -->
+  <section class="stats-grid compact-grid" id="dashboardStatsSection" {% if view_mode == "analysis" %}style="display: none;"{% endif %}>
+    <div class="stat-card compact-stat metric-card">
+      <div class="metric-header">
+        <i class="stat-icon fas fa-globe"></i>
+        <div class="metric-title">Today's Analysis</div>
+      </div>
+      <div class="metric-body">
+        <div class="stat-value counter-value">{{ websites_analyzed_today }}</div>
+        <div class="metric-trend">
+          <div class="trend-indicator positive">
+            <i class="fas fa-arrow-up"></i>
+            <span>8%</span>
+          </div>
+          <div class="trend-label">vs yesterday</div>
+        </div>
+      </div>
+      <div class="metric-footer">
+        <div class="mini-chart" id="todayChart"></div>
+      </div>
+    </div>
+    
+    <div class="stat-card compact-stat metric-card">
+      <div class="metric-header">
+        <i class="stat-icon fas fa-chart-line"></i>
+        <div class="metric-title">Total Analyses</div>
+      </div>
+      <div class="metric-body">
+        <div class="stat-value counter-value">
+          {% if total_analyses is defined %}
+             {{ '{:,}'.format(total_analyses) }}
+          {% else %}
+            0
+          {% endif %}
+        </div>
+        <div class="metric-info">Lifetime performance</div>
+      </div>
+      <div class="metric-footer">
+        <div class="progress-container">
+          <div class="progress">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+          <div class="progress-label">75% to next milestone</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stat-card compact-stat metric-card">
+      <div class="metric-header">
+        <i class="stat-icon fas fa-tools"></i>
+        <div class="metric-title">Top Tool</div>
+      </div>
+      <div class="metric-body">
+        <div class="stat-value tool-value">{{ favorite_tool }}</div>
+        <div class="metric-info">Most frequently used</div>
+      </div>
+      <div class="metric-footer">
+        <div class="tool-distribution">
+          <div class="tool-bar primary" style="width: 45%" title="URL Analysis: 45%"></div>
+          <div class="tool-bar secondary" style="width: 30%" title="Keyword Analysis: 30%"></div>
+          <div class="tool-bar tertiary" style="width: 15%" title="Heading Analysis: 15%"></div>
+          <div class="tool-bar quaternary" style="width: 10%" title="Others: 10%"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stat-card compact-stat metric-card">
+      <div class="metric-header">
+        <i class="stat-icon fas fa-percentage"></i>
+        <div class="metric-title">Weekly Growth</div>
+      </div>
+      <div class="metric-body">
+        <div class="stat-value trend-value"
+             {% if weekly_trend is defined and weekly_trend > 0 %}data-trend="positive"
+             {% elif weekly_trend is defined and weekly_trend < 0 %}data-trend="negative"{% endif %}>
+          {% if weekly_trend is defined %}
+            {% if weekly_trend > 0 %}+{% endif %}{{ '%.1f'|format(weekly_trend) }}%
+          {% else %}
+            0.0%
+          {% endif %}
+        </div>
+        <div class="metric-trend">
+          <div class="trend-indicator {% if weekly_trend is defined and weekly_trend > 0 %}positive{% elif weekly_trend is defined and weekly_trend < 0 %}negative{% else %}neutral{% endif %}">
+            <i class="fas {% if weekly_trend is defined and weekly_trend > 0 %}fa-arrow-up{% elif weekly_trend is defined and weekly_trend < 0 %}fa-arrow-down{% else %}fa-minus{% endif %}"></i>
+          </div>
+          <div class="trend-label">Last 7 days</div>
+        </div>
+      </div>
+      <div class="metric-footer">
+        <div class="mini-chart" id="weeklyChart"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section - More Compact -->
+  <section class="features-section" id="featuresSection" {% if links_data %}style="display: none;"{% endif %}>
+    <h2 class="section-title compact-title">Powerful Analysis Tools</h2>
+    
+    <div class="results-grid compact-results narrower-cards">
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-heading"></i>
+          <h3 class="card-title">Heading Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Analyze H1-H6 tags to ensure proper heading structure and SEO optimization.</p>
+          <a href="{{ url_for('h_search') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-key"></i>
+          <h3 class="card-title">Keyword Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Extract and analyze keyword usage and density across your web pages.</p>
+          <a href="{{ url_for('keyword_search') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-images"></i>
+          <h3 class="card-title">Image Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Check image optimization, alt tags, and loading performance.</p>
+          <a href="{{ url_for('image_search') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-tags"></i>
+          <h3 class="card-title">Meta Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Evaluate meta tags, descriptions, and other critical SEO elements.</p>
+          <a href="{{ url_for('meta_search') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-sitemap"></i>
+          <h3 class="card-title">Sitemap Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Review your site structure and navigation patterns for better UX.</p>
+          <a href="{{ url_for('site_structure') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+
+      <div class="result-card compact-feature">
+        <div class="card-header py-2">
+          <i class="fas fa-search"></i>
+          <h3 class="card-title">URL Analysis</h3>
+        </div>
+        <div class="card-content py-2">
+          <p class="small">Comprehensive analysis of individual URLs for performance and SEO.</p>
+          <a href="{{ url_for('url_search') }}" class="btn btn-primary compact-btn mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Recent Analysis Section - More Compact -->
+<section class="recent-analysis compact-section" id="recentAnalysisSection" {% if links_data %}style="display: none;"{% endif %}>
+  <h2 class="section-title compact-title">Recent Analyses</h2>
+ 
+  <div class="search-container compact">
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Analysis Type</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if recent_analyses %}
+            {% for analysis in recent_analyses %}
+              <tr class="analysis-row">
+                <td>
+                  <a href="{{ analysis.search_history }}" class="link-text small" title="{{ analysis.search_history }}">
+                    {{ analysis.search_history|replace('http://', '')|replace('https://', '') }}
+                  </a>
+                </td>
+                <td class="small">{{ analysis.usage_tool }}</td>
+                <td class="small">
+                  {% if analysis.created_at %}
+                    {{ analysis.created_at.strftime('%d %b %Y, %H:%M') }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td>
+                  {% if analysis.usage_tool == "URL Analysis" %}
+                    <a href="{{ url_for('url_analysis', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% elif analysis.usage_tool == "Heading Analysis" or analysis.usage_tool == "Heading Search" %}
+                    <a href="{{ url_for('h_search', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% elif analysis.usage_tool == "Keyword Search" %}
+                    <a href="{{ url_for('keyword_search', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% elif analysis.usage_tool == "Image Search" or analysis.usage_tool == "Image Analysis" %}
+                    <a href="{{ url_for('image_search', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% elif analysis.usage_tool == "Meta Search" or analysis.usage_tool == "Meta Analysis" %}
+                    <a href="{{ url_for('meta_search', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% elif analysis.usage_tool == "Site Structure" %}
+                    <a href="{{ url_for('site_structure') }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% else %}
+                    <a href="{{ url_for('url_analysis', url=analysis.search_history) }}" class="btn btn-outline btn-sm compact-btn">View</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4" class="text-center">No recent analyses found</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="text-center mt-2">
+      <a href="{{ url_for('search_history') }}" class="btn btn-primary compact-btn">
+        <i class="fas fa-history"></i> View Full History
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Loading Overlay (initially hidden) -->
+<div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; align-items: center; justify-content: center;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<style>
+  /* CSS Variables for Animation and Formal Design */
+  :root {
+    --transition-standard: 0.3s ease;
+    --shadow-formal: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-formal-hover: 0 8px 15px rgba(0, 0, 0, 0.1);
+    --color-primary: #4f46e5;
+    --color-primary-light: #6366f1;
+    --color-secondary: #0ea5e9;
+    --color-text: #1e293b;
+    --color-text-light: #64748b;
+    --color-border: #e5e7eb;
+    --color-background: #f8fafc;
+    --radius-standard: 8px;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+  }
+  
+  /* Button Styles - More Formal, Animated */
+  .compact-btn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    border-radius: var(--radius-standard);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.01em;
+    transition: all var(--transition-standard);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-formal);
+  }
+  
+  .compact-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+    transition: transform 0.6s ease;
+  }
+  
+  .compact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-formal-hover);
+  }
+  
+  .compact-btn:hover::after {
+    transform: translateX(200%);
+  }
+  
+  .compact-btn:active {
+    transform: translateY(1px);
+  }
+  
+  .btn-sm.compact-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Card Styles - More Formal, Animated */
+  .compact-card {
+    box-shadow: var(--shadow-formal);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-standard);
+    transition: transform var(--transition-standard), 
+                box-shadow var(--transition-standard);
+    background: white;
+  }
+  
+  .compact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-formal-hover);
+  }
+  
+  /* Features Grid - Formal Layout */
+  .compact-results {
+    gap: 1rem;
+  }
+  
+  .narrower-cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.7rem;
+    animation: fadeInStaggered 0.8s ease-out forwards;
+  }
+  
+  .compact-feature {
+    box-shadow: var(--shadow-formal);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-standard);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    transition: transform 0.3s ease, 
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .compact-feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: 1;
+  }
+  
+  .compact-feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-formal-hover);
+    border-color: var(--color-primary-light);
+  }
+  
+  .compact-feature:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .compact-feature .card-header {
+    padding: 0.7rem;
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  
+  .compact-feature:hover .card-header {
+    background: linear-gradient(45deg, #f3f4f6, #ffffff);
+  }
+  
+  .compact-feature .card-header h3 {
+    font-size: 1rem;
+    margin-bottom: 0;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    transition: color 0.3s ease;
+  }
+  
+  .compact-feature:hover .card-header h3 {
+    color: var(--color-primary);
+  }
+  
+  .compact-feature .card-header i {
+    transition: transform 0.4s ease;
+    color: var(--color-primary);
+  }
+  
+  .compact-feature:hover .card-header i {
+    transform: translateY(-2px);
+  }
+  
+  .compact-feature .card-content {
+    padding: 0.8rem;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .compact-feature .card-content p.small {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Section Styling */
+  .compact-section {
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+  
+  .compact-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    position: relative;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .compact-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 10px;
+  }
+  
+  .search-container.compact {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-standard);
+    background: white;
+    box-shadow: var(--shadow-formal);
+    animation: fadeInDown 0.5s ease backwards;
+  }
+  
+  .welcome-title {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: 0.8rem;
+    animation: fadeInRight 0.6s ease backwards;
+  }
+  
+  .welcome-text {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    animation: fadeInRight 0.6s ease backwards;
+    animation-delay: 0.2s;
+  }
+  
+  .search-bar {
+    position: relative;
+    animation: fadeInUp 0.7s ease backwards;
+    animation-delay: 0.3s;
+  }
+  
+  .search-input {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-standard);
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+  
+  .home-links-container.compact {
+    max-height: 350px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-standard);
+    animation: fadeIn 0.5s ease backwards;
+  }
+  
+  .link-item {
+    padding: 0.7rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: fadeInStaggered 0.6s ease backwards;
+  }
+  
+  .link-item:last-child {
+    border-bottom: none;
+  }
+  
+  .link-item:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+    transform: translateX(5px);
+  }
+  
+  .action-badge {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .action-badge:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  
+  /* Enhanced Table Styles */
+  .table {
+    animation: fadeIn 0.8s ease backwards;
+    animation-delay: 0.2s;
+  }
+  
+  .table thead {
+    background-color: #f8fafc;
+  }
+  
+  .table th {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-border);
+    padding: 0.7rem;
+  }
+  
+  .table td {
+    padding: 0.7rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .analysis-row {
+    transition: background-color 0.3s ease;
+  }
+  
+  .analysis-row:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+  
+  /* Enhanced Performance Metrics Styles */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .metric-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    min-height: 180px;
+    animation: fadeIn 0.6s ease backwards;
+  }
+  
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  .metric-card:hover::before {
+    opacity: 1;
+  }
+  
+  .metric-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(to right, rgba(249, 250, 251, 0.8), rgba(255, 255, 255, 0.8));
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .metric-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-left: 0.8rem;
+  }
+  
+  .stat-icon {
+    font-size: 1.1rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+    transition: transform 0.4s ease;
+  }
+  
+  .metric-card:hover .stat-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .metric-body {
+    padding: 1rem 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    transition: transform 0.3s ease;
+  }
+  
+  .metric-card:hover .stat-value {
+    transform: scale(1.05);
+    color: var(--color-primary);
+  }
+  
+  .counter-value {
+    position: relative;
+  }
+  
+  .counter-value::after {
+    content: 'websites';
+    position: absolute;
+    bottom: 0.2rem;
+    right: -4.5rem;
+    font-size: 0.7rem;
+    font-weight: normal;
+    color: #64748b;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+  
+  .metric-card:hover .counter-value::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .tool-value {
+    font-size: 1.5rem;
+  }
+  
+  .trend-value {
+    position: relative;
+    font-size: 1.8rem;
+  }
+  
+  .trend-value[data-trend="positive"] {
+    color: #10b981;
+  }
+  
+  .trend-value[data-trend="negative"] {
+    color: #ef4444;
+  }
+  
+  .metric-info {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.2rem;
+  }
+  
+  .metric-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+  
+  .trend-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+  
+  .trend-indicator.positive {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+  
+  .trend-indicator.negative {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+  
+  .trend-indicator.neutral {
+    background-color: rgba(100, 116, 139, 0.1);
+    color: #64748b;
+  }
+  
+  .trend-label {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+  
+  .metric-footer {
+    padding: 0.8rem 1.2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(249, 250, 251, 0.5);
+  }
+  
+  .mini-chart {
+    height: 30px;
+    background: linear-gradient(90deg, 
+      rgba(99, 102, 241, 0.2) 0%, 
+      rgba(14, 165, 233, 0.2) 50%, 
+      rgba(99, 102, 241, 0.2) 100%);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .mini-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        rgba(255, 255, 255, 0.1) 5px,
+        rgba(255, 255, 255, 0.1) 10px
+      ),
+      linear-gradient(
+        to right,
+        rgba(99, 102, 241, 0.3),
+        rgba(14, 165, 233, 0.3),
+        rgba(99, 102, 241, 0.3)
+      );
+    clip-path: polygon(
+      0% 100%,
+      5% 80%,
+      10% 90%,
+      15% 70%,
+      20% 80%,
+      25% 60%,
+      30% 70%,
+      35% 50%,
+      40% 60%,
+      45% 40%,
+      50% 50%,
+      55% 30%,
+      60% 40%,
+      65% 20%,
+      70% 30%,
+      75% 15%,
+      80% 25%,
+      85% 10%,
+      90% 20%,
+      95% 5%,
+      100% 15%,
+      100% 100%
+    );
+  }
+  
+  .progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  .progress {
+    height: 8px;
+    background-color: rgba(99, 102, 241, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 4px;
+    width: 0;
+    animation: progressAnimation 1.5s ease forwards;
+  }
+  
+  .progress-label {
+    font-size: 0.7rem;
+    color: #64748b;
+    text-align: right;
+  }
+  
+  .tool-distribution {
+    height: 10px;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .tool-bar {
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: scaleXAnimation 1s ease forwards;
+  }
+  
+  .tool-bar.primary {
+    background-color: #4f46e5;
+    animation-delay: 0.1s;
+  }
+  
+  .tool-bar.secondary {
+    background-color: #0ea5e9;
+    animation-delay: 0.3s;
+  }
+  
+  .tool-bar.tertiary {
+    background-color: #8b5cf6;
+    animation-delay: 0.5s;
+  }
+  
+  .tool-bar.quaternary {
+    background-color: #64748b;
+    animation-delay: 0.7s;
+  }
+  
+  
+  
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInStaggered {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes progressAnimation {
+    from { width: 0; }
+    to { width: 75%; }
+  }
+  
+  @keyframes scaleXAnimation {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+  }
+  
+  /* Apply staggered animations to items */
+  .compact-feature:nth-child(1) { animation-delay: 0.1s; }
+  .compact-feature:nth-child(2) { animation-delay: 0.2s; }
+  .compact-feature:nth-child(3) { animation-delay: 0.3s; }
+  .compact-feature:nth-child(4) { animation-delay: 0.4s; }
+  .compact-feature:nth-child(5) { animation-delay: 0.5s; }
+  .compact-feature:nth-child(6) { animation-delay: 0.6s; }
+  
+  .link-item:nth-child(1) { animation-delay: 0.05s; }
+  .link-item:nth-child(2) { animation-delay: 0.1s; }
+  .link-item:nth-child(3) { animation-delay: 0.15s; }
+  .link-item:nth-child(4) { animation-delay: 0.2s; }
+  .link-item:nth-child(5) { animation-delay: 0.25s; }
+  
+  .metric-card:nth-child(1) { animation-delay: 0.1s; }
+  .metric-card:nth-child(2) { animation-delay: 0.2s; }
+  .metric-card:nth-child(3) { animation-delay: 0.3s; }
+  .metric-card:nth-child(4) { animation-delay: 0.4s; }
+  
+  /* Small text style */
+  .small {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .narrower-cards {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    
+    .compact-feature {
+      max-width: 100%;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .narrower-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .compact-feature .card-content {
+      min-height: auto;
+      padding-bottom: 1rem;
+    }
+    
+    .metric-card {
+      min-height: 160px;
+    }
+    
+    .welcome-section {
+      padding: 1rem 0;
+    }
+    
+    .welcome-title {
+      font-size: 1.3rem;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .narrower-cards {
+      grid-template-columns: 1fr;
+    }
+    
+    .compact-title {
+      font-size: 1.2rem;
+    }
+    
+    .welcome-title {
+      font-size: 1.2rem;
+    }
+  }
+    /* Fix for footer overlapping home links */
+    .home-links-section {
+      margin-bottom: 1px !important; /* Add significant bottom margin to push content above footer */
+      position: relative;
+      z-index: 5; /* Ensure content is above footer */
+    }
+    
+    /* Ensure home links container has enough height */
+    .home-links-container.compact {
+      max-height: 50%;
+      overflow-y: auto;
+      margin-bottom: 0px; /* Add space at bottom of container */
+    }
+    
+    
+    /* Ensure main content has proper padding */
+    .main-content {
+      padding-bottom: 25px !important; /* Add extra padding to bottom of main content */
+      position: relative;
+      z-index: 10; /* Higher than footer */
+    }
+    
+    /* Fix for link items to ensure they're clickable */
+    .link-item {
+      position: relative;
+      z-index: 15; /* Even higher z-index */
+    }
+    
+    /* Ensure action buttons are clickable */
+    .action-buttons {
+      position: relative;
+      z-index: 20;
+    }
+  
+    /* Added padding to ensure bottom content is fully visible */
+    #homeLinksSection {
+      padding-bottom: 10px;
+    }
+    
+    /* Make sure there's enough space at the bottom of the page */
+    body {
+      padding-bottom: 0px;
+    }
+  </style>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlInput = document.getElementById('urlInput');
+    const analyzeForm = document.querySelector('form[action*="url_analysis"]');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    
+    // Set default value if empty
+    if (urlInput && !urlInput.value) {
+      urlInput.value = 'https://';
+    }
+    
+    // On focus, if the value is just the protocol, select it all
+    if (urlInput) {
+      urlInput.addEventListener('focus', function() {
+        if (this.value === 'http://' || this.value === 'https://') {
+          this.select();
+        }
+      });
+      
+      // On blur, check if protocol is missing and add if needed
+      urlInput.addEventListener('blur', function() {
+        if (this.value && !this.value.match(/^https?:\/\//i)) {
+          this.value = 'https://' + this.value;
+        }
+        if (!this.value) {
+          this.value = 'https://';
+        }
+      });
+    }
+    
+    // Check before form submission and show loading overlay
+    if (analyzeForm) {
+      analyzeForm.addEventListener('submit', function(e) {
+        if (urlInput) {
+          const url = urlInput.value.trim();
+          if (!url.match(/^https?:\/\/.+/i)) {
+            e.preventDefault();
+            urlInput.value = 'https://' + (url.replace(/^https?:\/\//i, ''));
+            
+            // Show loading overlay
+            if (loadingOverlay) {
+              loadingOverlay.style.display = 'flex';
+            }
+            
+            // Submit the form after a brief delay to allow the overlay to appear
+            setTimeout(() => {
+              this.submit();
+            }, 50);
+            return;
+          }
+        }
+        
+        // Show loading overlay for valid submissions too
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+        }
+      });
+    }
+
+    // For handling URL param from manual navigation
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlParam = urlParams.get('url');
+    if (urlParam) {
+      if (urlInput) {
+        urlInput.value = urlParam;
+      }
+      
+      // Show relevant sections
+      const homeLinksSection = document.getElementById('homeLinksSection');
+      const dashboardStatsSection = document.getElementById('dashboardStatsSection');
+      const featuresSection = document.getElementById('featuresSection');
+      const recentAnalysisSection = document.getElementById('recentAnalysisSection');
+      
+      if (homeLinksSection) homeLinksSection.style.display = 'block';
+      if (dashboardStatsSection) dashboardStatsSection.style.display = 'none';
+      if (featuresSection) featuresSection.style.display = 'none';
+      if (recentAnalysisSection) recentAnalysisSection.style.display = 'none';
+    }
+    
+    // Set up tooltips
+    if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      });
+    }
+    
+    // Handle view buttons to show loading overlay
+    const viewButtons = document.querySelectorAll('.btn[href*="search"], .btn[href*="analysis"]');
+    
+    viewButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Show loading overlay when a view button is clicked
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+        }
+      });
+    });
+    
+    // Animate counters when they come into view
+    const counterElements = document.querySelectorAll('.counter-value');
+    
+    counterElements.forEach(counter => {
+      const target = parseInt(counter.innerText.replace(/,/g, ''), 10);
+      if (isNaN(target)) return;
+      
+      const duration =
+ 2000; // ms
+      const steps = 50;
+      const stepDuration = duration / steps;
+      let currentStep = 0;
+      
+      counter.innerText = '0';
+      
+      const interval = setInterval(() => {
+        currentStep++;
+        const progress = currentStep / steps;
+        // Easing function for natural counting animation
+        const easeOutQuad = t => t * (2 - t);
+        const easedProgress = easeOutQuad(progress);
+        
+        const current = Math.floor(easedProgress * target);
+        counter.innerText = current.toLocaleString();
+        
+        if (currentStep >= steps) {
+          counter.innerText = target.toLocaleString();
+          clearInterval(interval);
+        }
+      }, stepDuration);
+    });
+  });
+
+</script>
+{% endblock %}
+
+{% block scripts %}
+<!-- Any additional scripts specific to this page can go here -->
+{% endblock %}

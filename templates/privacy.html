@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy | Web Analyzer Pro{% endblock %}
+{% block content %}
+<div class="container mx-auto py-10 animate-fade-in">
+  <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-8">
+    <h1 class="text-3xl font-bold mb-6 relative pb-4">
+      <span class="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Privacy Policy</span>
+      <span class="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-indigo-600 to-blue-500"></span>
+    </h1>
+    
+    <div class="prose max-w-none">
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Your privacy is important to us. This policy explains how we collect, use, and protect your data when you use Web Analyzer Pro.
+      </p>
+      
+      <div class="my-8 p-6 bg-indigo-50 rounded-lg border-l-4 border-indigo-500">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Key Points</h2>
+        <ul class="list-disc ml-6 space-y-2 text-gray-600">
+          <li>We do not sell your data.</li>
+          <li>We only collect essential analytics.</li>
+          <li>You can request data removal at any time.</li>
+        </ul>
+      </div>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Information We Collect</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        We collect information that you provide directly to us, such as when you create an account, subscribe to our service, or contact us for support. This may include your name, email address, and billing information.
+      </p>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">How We Use Your Information</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        We use the information we collect to provide, maintain, and improve our services, to process your subscriptions, and to communicate with you about our services, new features, and updates.
+      </p>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Data Security</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.
+      </p>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Your Rights</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        You have the right to access, correct, or delete your personal information. You can also object to or restrict the processing of your personal data. To exercise these rights, please contact us at privacy@webanalyzerpro.com.
+      </p>
+      
+      <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-blue-800">Updates to This Policy</h3>
+            <p class="mt-1 text-sm text-blue-600">
+              We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the effective date.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <p class="text-gray-500 text-sm">Last Updated: May 1, 2025</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

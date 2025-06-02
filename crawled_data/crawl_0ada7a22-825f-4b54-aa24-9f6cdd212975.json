@@ -1,0 +1,3234 @@
+{
+    "domain": "0ada7a22-825f-4b54-aa24-9f6cdd212975",
+    "status_codes": {
+        "https://www.marutisuzuki.com/": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/service/servicepackages": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/contacts": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/leadership": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/swift": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/sedans": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/cng/wagonr": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/strength": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/cng/eeco": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/more-from-us/insurance": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/alto-k10": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/celerio": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/hybrid": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/meet-our-people": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/tour/eeco": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-driving-school": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/suv-experiences": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/wagonr": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/ertiga": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng/ertiga": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/exports": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/engage/index.html": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/stock-information": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/business-opportunities": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/book-a-test-drive": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/hybrid/strong-hybrid": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/all-cars": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/book-showroom-visit": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/manifest.json": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/training-academy": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/tour/wagonr": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/s-presso": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/business-payments": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/true-value-channel": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/committees": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/engine": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng/s-presso": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/suzuki-connect": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/heartect": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/values": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/events": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/brezza": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/join-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/autoexpo2023": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/tour/alto": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/service/maruti-care-app": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/vans": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/terms-of-use": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/cng/alto-k10": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/smartplay-systems": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/cng": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/tour/dzire": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/imp-information-customer": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/hybrid/smart-hybrid": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/forms-and-circulars": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/cng/brezza": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/csr": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/financials": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/history": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/tour/ertiga": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/news": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/genuine-accessories": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/why-work-with-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/life-at-msil": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/tour": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/service": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/eeco/hindi": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-genuine-parts": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/subscribe": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/book-car-online": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/careers/fraudulent-recruitment": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/marutisuzukiworld": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/institutional-customers/enquiry": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/together-against-covid-19": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/eeco": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/alto": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/icon-192.webp": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/data-provider-consent-policy": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/contact-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng/swift": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/hatchbacks": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/privacy-policy": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/all-offices": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/sitemap": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng-pump": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/terms-of-appointment-of-independent-directors": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/nexa-channel": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/genuine-parts": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-rewards": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/codes-and-policies": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/suvs-muvs": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/exchange": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/{{:pr_url}}": {
+            "status": 403,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/details-of-the-business": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/locate-a-dealer": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/commercial-channel": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-subscribe": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/ebook": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/cng/dzire": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/dzire": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/finance": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/about-us/sustainability": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/company-reports": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/more-from-us/institutional-customers": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/service/book-service-appointment": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/cng-adoption-in-india-where-we-are-and-where-we-will-be": {
+            "status": 404,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/events/experiences": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/alto k10/brochure": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/investors/forms": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/suzuki-motor-corporation-and-maruti-suzuki-india-limited": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-sales-in-april-2025": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/reach-us/press-releases": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/honble-president-of-india-confers-padma-vibhushan-on-mr-osamu-suzuki-posthumously": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-arena-enhances-safety-by-offering-6-airbags-as-standard": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/dealer-showrooms": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/service/arenaworld": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-production-in-april-2025": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/maruti-suzuki-announces-financial-results-for-fy2024-25": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/suvs-muvs/ertiga": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/cng/celerio": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/error-404?item=/channels/arena/suvs-muvs/s-presso&amp;user=extranet\\Anonymous&amp;site=marutisuzuki": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/hatchbacks/alto-k10": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/error-404?item=/channels/arena/hatchbacks/wagon-r&amp;user=extranet\\Anonymous&amp;site=marutisuzuki": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/vans/eeco": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/hatchbacks/swift": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/hatchbacks/celerio": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/get-a-quote": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/channels/arena/sedans/dzire": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/carType_6306517C-73D2-4F89-9660-D5676017E70B": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/carType_82650C08-E0C2-4978-91CD-6E81CDD14E8A": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/carType_fdfe931bbc7d44ce93b4053f9d740716": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/carType_28AAACE1-8B33-4A1E-91C0-F8585DD990A2": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/carType_84DA4506-0DC3-4A48-8C29-89FC42550A09": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/alto-k10/alto-k10-mileage": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/swift/swift-mileage": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/swift/brochure": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/price-list/alto-k10-price": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/events": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/configurator/newswift": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/book-a-test-drive?model=AT": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/s-presso/spresso-mileage": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/configurator/altok10": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/cng-common-myths-vs-reality": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/4-things-you-definitely-didnt-know-about-cng-vehicles": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/how-to-maintain-your-factory-fitted-scng-car": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/how-to-pick-the-right-cng-vehicle-things-to-consider": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/why-a-factory-fitted-cng-car": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/book-a-showroom-visit": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/swift": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/at-automatic": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/error-404?item=/corporate/investors/netsales&amp;user=extranet\\Anonymous&amp;site=marutisuzuki": {
+            "status": 404,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/css/technology_new.css ": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/wagonr": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/Tour S/brochure": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/error-404?item=/corporate/investors/sales_volume&amp;user=extranet\\Anonymous&amp;site=marutisuzuki": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/about-retail": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/Everything-You-Need-to-Know-About-Automatic-Transmission": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/how-it-works": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/s-presso": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/What-are-the-benefits-of-Automatic-Transmission": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/what-is-AGS-technology-and-what-makes-it-highly-preferable": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/about-corporate": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/TOUR M/brochure": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/ags-automatic": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/maruti-suzuki-pioneer-of-ags-in-india-enjoy-a-whole-new-automatic-experience": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/here-an-easy-guide-to-buying-a-Maruti-Suzuki-automatic-car": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/upgrade-to-a-great-drive-experience-with-the-advanced-automatic-transmission-at-from-maruti-suzuki": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/celerio": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/ushering-in-an-automatic-revolution-advanced-cvt-technology-from-maruti-suzuki": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/alto-k10": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/dzire": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/ertiga": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/faq": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/contact-us": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/price.aspx": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/benefits": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/corporate/technology/automatic/vitara-brezza": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Road Safety": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Reviews": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/price.aspx": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/finance": {
+            "status": 200,
+            "error": "No error"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Automobile": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/articles/what-is-ags-technology-and-what-makes-it-highly-preferable": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/campaigns": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Features": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Campaigns": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Sports": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Association": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/reviews": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Finance": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Car Safety": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/events": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/associations": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Article": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Event": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        },
+        "https://www.marutisuzuki.com/arenaworld/segments?segment=Road+Safety": {
+            "status": "not connected",
+            "error": "TimeoutError"
+        }
+    },
+    "home_links": {
+        "www.marutisuzuki.com": {
+            "name": "www.marutisuzuki.com",
+            "url": "https://www.marutisuzuki.com",
+            "status": "not connected",
+            "children": {
+                "service": {
+                    "name": "service",
+                    "url": "https://www.marutisuzuki.com/service",
+                    "status": "not connected",
+                    "children": {
+                        "servicepackages": {
+                            "name": "servicepackages",
+                            "url": "https://www.marutisuzuki.com/service/servicepackages",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "maruti-care-app": {
+                            "name": "maruti-care-app",
+                            "url": "https://www.marutisuzuki.com/service/maruti-care-app",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "book-service-appointment": {
+                            "name": "book-service-appointment",
+                            "url": "https://www.marutisuzuki.com/service/book-service-appointment",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "channels": {
+                    "name": "channels",
+                    "url": "https://www.marutisuzuki.com/channels",
+                    "status": "not connected",
+                    "children": {
+                        "arena": {
+                            "name": "arena",
+                            "url": "https://www.marutisuzuki.com/channels/arena",
+                            "status": "not connected",
+                            "children": {
+                                "all-cars": {
+                                    "name": "all-cars",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/all-cars",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "sedans": {
+                                    "name": "sedans",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/sedans",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "dzire": {
+                                            "name": "dzire",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/sedans/dzire",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "hatchbacks": {
+                                    "name": "hatchbacks",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/hatchbacks",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "alto-k10": {
+                                            "name": "alto-k10",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/hatchbacks/alto-k10",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "celerio": {
+                                            "name": "celerio",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/hatchbacks/celerio",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "swift": {
+                                            "name": "swift",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/hatchbacks/swift",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "suvs-muvs": {
+                                    "name": "suvs-muvs",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/suvs-muvs",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "ertiga": {
+                                            "name": "ertiga",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/suvs-muvs/ertiga",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "service": {
+                                    "name": "service",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/service",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "arenaworld": {
+                                            "name": "arenaworld",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/service/arenaworld",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "vans": {
+                                    "name": "vans",
+                                    "url": "https://www.marutisuzuki.com/channels/arena/vans",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "eeco": {
+                                            "name": "eeco",
+                                            "url": "https://www.marutisuzuki.com/channels/arena/vans/eeco",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "true-value-channel": {
+                            "name": "true-value-channel",
+                            "url": "https://www.marutisuzuki.com/channels/true-value-channel",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "commercial-channel": {
+                            "name": "commercial-channel",
+                            "url": "https://www.marutisuzuki.com/channels/commercial-channel",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "nexa-channel": {
+                            "name": "nexa-channel",
+                            "url": "https://www.marutisuzuki.com/channels/nexa-channel",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "corporate": {
+                    "name": "corporate",
+                    "url": "https://www.marutisuzuki.com/corporate",
+                    "status": "not connected",
+                    "children": {
+                        "about-us": {
+                            "name": "about-us",
+                            "url": "https://www.marutisuzuki.com/corporate/about-us",
+                            "status": 200,
+                            "children": {
+                                "leadership": {
+                                    "name": "leadership",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/leadership",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "values": {
+                                    "name": "values",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/values",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "csr": {
+                                    "name": "csr",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/csr",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "history": {
+                                    "name": "history",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/history",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "sustainability": {
+                                    "name": "sustainability",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/sustainability",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "strength": {
+                                    "name": "strength",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/strength",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "exports": {
+                                    "name": "exports",
+                                    "url": "https://www.marutisuzuki.com/corporate/about-us/exports",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "media": {
+                            "name": "media",
+                            "url": "https://www.marutisuzuki.com/corporate/media",
+                            "status": "not connected",
+                            "children": {
+                                "press-releases": {
+                                    "name": "press-releases",
+                                    "url": "https://www.marutisuzuki.com/corporate/media/press-releases",
+                                    "status": 200,
+                                    "children": {
+                                        "2025": {
+                                            "name": "2025",
+                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025",
+                                            "status": "Unknown",
+                                            "children": {
+                                                "april": {
+                                                    "name": "april",
+                                                    "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april",
+                                                    "status": "Unknown",
+                                                    "children": {
+                                                        "maruti-suzuki-announces-financial-results-for-fy2024-25": {
+                                                            "name": "maruti-suzuki-announces-financial-results-for-fy2024-25",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/maruti-suzuki-announces-financial-results-for-fy2024-25",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        },
+                                                        "suzuki-motor-corporation-and-maruti-suzuki-india-limited": {
+                                                            "name": "suzuki-motor-corporation-and-maruti-suzuki-india-limited",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/suzuki-motor-corporation-and-maruti-suzuki-india-limited",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        },
+                                                        "honble-president-of-india-confers-padma-vibhushan-on-mr-osamu-suzuki-posthumously": {
+                                                            "name": "honble-president-of-india-confers-padma-vibhushan-on-mr-osamu-suzuki-posthumously",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/april/honble-president-of-india-confers-padma-vibhushan-on-mr-osamu-suzuki-posthumously",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        }
+                                                    }
+                                                },
+                                                "may": {
+                                                    "name": "may",
+                                                    "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may",
+                                                    "status": "Unknown",
+                                                    "children": {
+                                                        "maruti-suzuki-production-in-april-2025": {
+                                                            "name": "maruti-suzuki-production-in-april-2025",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-production-in-april-2025",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        },
+                                                        "maruti-suzuki-arena-enhances-safety-by-offering-6-airbags-as-standard": {
+                                                            "name": "maruti-suzuki-arena-enhances-safety-by-offering-6-airbags-as-standard",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-arena-enhances-safety-by-offering-6-airbags-as-standard",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        },
+                                                        "maruti-suzuki-sales-in-april-2025": {
+                                                            "name": "maruti-suzuki-sales-in-april-2025",
+                                                            "url": "https://www.marutisuzuki.com/corporate/media/press-releases/2025/may/maruti-suzuki-sales-in-april-2025",
+                                                            "status": "not connected",
+                                                            "children": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "together-against-covid-19": {
+                                    "name": "together-against-covid-19",
+                                    "url": "https://www.marutisuzuki.com/corporate/media/together-against-covid-19",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "{{:pr_url}}": {
+                                    "name": "{{:pr_url}}",
+                                    "url": "https://www.marutisuzuki.com/corporate/media/{{:pr_url}}",
+                                    "status": 403,
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "careers": {
+                            "name": "careers",
+                            "url": "https://www.marutisuzuki.com/corporate/careers",
+                            "status": "not connected",
+                            "children": {
+                                "meet-our-people": {
+                                    "name": "meet-our-people",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/meet-our-people",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "training-academy": {
+                                    "name": "training-academy",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/training-academy",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "why-work-with-us": {
+                                    "name": "why-work-with-us",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/why-work-with-us",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "life-at-msil": {
+                                    "name": "life-at-msil",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/life-at-msil",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "fraudulent-recruitment": {
+                                    "name": "fraudulent-recruitment",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/fraudulent-recruitment",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "join-us": {
+                                    "name": "join-us",
+                                    "url": "https://www.marutisuzuki.com/corporate/careers/join-us",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "technology": {
+                            "name": "technology",
+                            "url": "https://www.marutisuzuki.com/corporate/technology",
+                            "status": 200,
+                            "children": {
+                                "heartect": {
+                                    "name": "heartect",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/heartect",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "hybrid": {
+                                    "name": "hybrid",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/hybrid",
+                                    "status": "not connected",
+                                    "children": {
+                                        "strong-hybrid": {
+                                            "name": "strong-hybrid",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/hybrid/strong-hybrid",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "smart-hybrid": {
+                                            "name": "smart-hybrid",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/hybrid/smart-hybrid",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "automatic": {
+                                    "name": "automatic",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/automatic",
+                                    "status": 200,
+                                    "children": {
+                                        "vitara-brezza": {
+                                            "name": "vitara-brezza",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/vitara-brezza",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "swift": {
+                                            "name": "swift",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/swift",
+                                            "status": 200,
+                                            "children": {}
+                                        },
+                                        "ertiga": {
+                                            "name": "ertiga",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/ertiga",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "wagonr": {
+                                            "name": "wagonr",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/wagonr",
+                                            "status": 200,
+                                            "children": {}
+                                        },
+                                        "alto-k10": {
+                                            "name": "alto-k10",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/alto-k10",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "celerio": {
+                                            "name": "celerio",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/celerio",
+                                            "status": "not connected",
+                                            "children": {}
+                                        },
+                                        "s-presso": {
+                                            "name": "s-presso",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/s-presso",
+                                            "status": 200,
+                                            "children": {}
+                                        },
+                                        "dzire": {
+                                            "name": "dzire",
+                                            "url": "https://www.marutisuzuki.com/corporate/technology/automatic/dzire",
+                                            "status": "not connected",
+                                            "children": {}
+                                        }
+                                    }
+                                },
+                                "engine": {
+                                    "name": "engine",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/engine",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "cng": {
+                                    "name": "cng",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/cng",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "ags-automatic": {
+                                    "name": "ags-automatic",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/ags-automatic",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "at-automatic": {
+                                    "name": "at-automatic",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/at-automatic",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "suzuki-connect": {
+                                    "name": "suzuki-connect",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/suzuki-connect",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "smartplay-systems": {
+                                    "name": "smartplay-systems",
+                                    "url": "https://www.marutisuzuki.com/corporate/technology/smartplay-systems",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "reach-us": {
+                            "name": "reach-us",
+                            "url": "https://www.marutisuzuki.com/corporate/reach-us",
+                            "status": "not connected",
+                            "children": {
+                                "business-opportunities": {
+                                    "name": "business-opportunities",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/business-opportunities",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "all-offices": {
+                                    "name": "all-offices",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/all-offices",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "contact-us": {
+                                    "name": "contact-us",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/contact-us",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "locate-a-dealer": {
+                                    "name": "locate-a-dealer",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/locate-a-dealer",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "press-releases": {
+                                    "name": "press-releases",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/press-releases",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "business-payments": {
+                                    "name": "business-payments",
+                                    "url": "https://www.marutisuzuki.com/corporate/reach-us/business-payments",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "investors": {
+                            "name": "investors",
+                            "url": "https://www.marutisuzuki.com/corporate/investors",
+                            "status": "not connected",
+                            "children": {
+                                "stock-information": {
+                                    "name": "stock-information",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/stock-information",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "forms-and-circulars": {
+                                    "name": "forms-and-circulars",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/forms-and-circulars",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "terms-of-appointment-of-independent-directors": {
+                                    "name": "terms-of-appointment-of-independent-directors",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/terms-of-appointment-of-independent-directors",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "news": {
+                                    "name": "news",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/news",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "codes-and-policies": {
+                                    "name": "codes-and-policies",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/codes-and-policies",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "financials": {
+                                    "name": "financials",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/financials",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "details-of-the-business": {
+                                    "name": "details-of-the-business",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/details-of-the-business",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "contacts": {
+                                    "name": "contacts",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/contacts",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "committees": {
+                                    "name": "committees",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/committees",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "events": {
+                                    "name": "events",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/events",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "forms": {
+                                    "name": "forms",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/forms",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "company-reports": {
+                                    "name": "company-reports",
+                                    "url": "https://www.marutisuzuki.com/corporate/investors/company-reports",
+                                    "status": 200,
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "events": {
+                            "name": "events",
+                            "url": "https://www.marutisuzuki.com/corporate/events",
+                            "status": "not connected",
+                            "children": {
+                                "experiences": {
+                                    "name": "experiences",
+                                    "url": "https://www.marutisuzuki.com/corporate/events/experiences",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "alto-k10": {
+                    "name": "alto-k10",
+                    "url": "https://www.marutisuzuki.com/alto-k10",
+                    "status": 200,
+                    "children": {
+                        "alto-k10-mileage": {
+                            "name": "alto-k10-mileage",
+                            "url": "https://www.marutisuzuki.com/alto-k10/alto-k10-mileage",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "book-showroom-visit": {
+                    "name": "book-showroom-visit",
+                    "url": "https://www.marutisuzuki.com/book-showroom-visit",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "arenaworld": {
+                    "name": "arenaworld",
+                    "url": "https://www.marutisuzuki.com/arenaworld",
+                    "status": "not connected",
+                    "children": {
+                        "articles": {
+                            "name": "articles",
+                            "url": "https://www.marutisuzuki.com/arenaworld/articles",
+                            "status": "Unknown",
+                            "children": {
+                                "why-a-factory-fitted-cng-car": {
+                                    "name": "why-a-factory-fitted-cng-car",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/why-a-factory-fitted-cng-car",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "4-things-you-definitely-didnt-know-about-cng-vehicles": {
+                                    "name": "4-things-you-definitely-didnt-know-about-cng-vehicles",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/4-things-you-definitely-didnt-know-about-cng-vehicles",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "ushering-in-an-automatic-revolution-advanced-cvt-technology-from-maruti-suzuki": {
+                                    "name": "ushering-in-an-automatic-revolution-advanced-cvt-technology-from-maruti-suzuki",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/ushering-in-an-automatic-revolution-advanced-cvt-technology-from-maruti-suzuki",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "cng-common-myths-vs-reality": {
+                                    "name": "cng-common-myths-vs-reality",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/cng-common-myths-vs-reality",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "here-an-easy-guide-to-buying-a-Maruti-Suzuki-automatic-car": {
+                                    "name": "here-an-easy-guide-to-buying-a-Maruti-Suzuki-automatic-car",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/here-an-easy-guide-to-buying-a-Maruti-Suzuki-automatic-car",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "what-is-ags-technology-and-what-makes-it-highly-preferable": {
+                                    "name": "what-is-ags-technology-and-what-makes-it-highly-preferable",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/what-is-ags-technology-and-what-makes-it-highly-preferable",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "cng-adoption-in-india-where-we-are-and-where-we-will-be": {
+                                    "name": "cng-adoption-in-india-where-we-are-and-where-we-will-be",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/cng-adoption-in-india-where-we-are-and-where-we-will-be",
+                                    "status": 404,
+                                    "children": {}
+                                },
+                                "Everything-You-Need-to-Know-About-Automatic-Transmission": {
+                                    "name": "Everything-You-Need-to-Know-About-Automatic-Transmission",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/Everything-You-Need-to-Know-About-Automatic-Transmission",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "how-to-pick-the-right-cng-vehicle-things-to-consider": {
+                                    "name": "how-to-pick-the-right-cng-vehicle-things-to-consider",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/how-to-pick-the-right-cng-vehicle-things-to-consider",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "how-to-maintain-your-factory-fitted-scng-car": {
+                                    "name": "how-to-maintain-your-factory-fitted-scng-car",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/how-to-maintain-your-factory-fitted-scng-car",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "What-are-the-benefits-of-Automatic-Transmission": {
+                                    "name": "What-are-the-benefits-of-Automatic-Transmission",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/What-are-the-benefits-of-Automatic-Transmission",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "upgrade-to-a-great-drive-experience-with-the-advanced-automatic-transmission-at-from-maruti-suzuki": {
+                                    "name": "upgrade-to-a-great-drive-experience-with-the-advanced-automatic-transmission-at-from-maruti-suzuki",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/upgrade-to-a-great-drive-experience-with-the-advanced-automatic-transmission-at-from-maruti-suzuki",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "maruti-suzuki-pioneer-of-ags-in-india-enjoy-a-whole-new-automatic-experience": {
+                                    "name": "maruti-suzuki-pioneer-of-ags-in-india-enjoy-a-whole-new-automatic-experience",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/maruti-suzuki-pioneer-of-ags-in-india-enjoy-a-whole-new-automatic-experience",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "what-is-AGS-technology-and-what-makes-it-highly-preferable": {
+                                    "name": "what-is-AGS-technology-and-what-makes-it-highly-preferable",
+                                    "url": "https://www.marutisuzuki.com/arenaworld/articles/what-is-AGS-technology-and-what-makes-it-highly-preferable",
+                                    "status": 200,
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "finance": {
+                            "name": "finance",
+                            "url": "https://www.marutisuzuki.com/arenaworld/finance",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "segments": {
+                            "name": "segments",
+                            "url": "https://www.marutisuzuki.com/arenaworld/segments",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "events": {
+                            "name": "events",
+                            "url": "https://www.marutisuzuki.com/arenaworld/events",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "campaigns": {
+                            "name": "campaigns",
+                            "url": "https://www.marutisuzuki.com/arenaworld/campaigns",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "associations": {
+                            "name": "associations",
+                            "url": "https://www.marutisuzuki.com/arenaworld/associations",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "reviews": {
+                            "name": "reviews",
+                            "url": "https://www.marutisuzuki.com/arenaworld/reviews",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "autoexpo2023": {
+                    "name": "autoexpo2023",
+                    "url": "https://www.marutisuzuki.com/autoexpo2023",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "brezza": {
+                    "name": "brezza",
+                    "url": "https://www.marutisuzuki.com/brezza",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "more-from-us": {
+                    "name": "more-from-us",
+                    "url": "https://www.marutisuzuki.com/more-from-us",
+                    "status": "not connected",
+                    "children": {
+                        "maruti-suzuki-leasing": {
+                            "name": "maruti-suzuki-leasing",
+                            "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing",
+                            "status": 200,
+                            "children": {
+                                "about-retail": {
+                                    "name": "about-retail",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/about-retail",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "about-corporate": {
+                                    "name": "about-corporate",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/about-corporate",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "benefits": {
+                                    "name": "benefits",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/benefits",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "how-it-works": {
+                                    "name": "how-it-works",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/how-it-works",
+                                    "status": 200,
+                                    "children": {}
+                                },
+                                "price.aspx": {
+                                    "name": "price.aspx",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/price.aspx",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "faq": {
+                                    "name": "faq",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/faq",
+                                    "status": "not connected",
+                                    "children": {}
+                                },
+                                "contact-us": {
+                                    "name": "contact-us",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-leasing/contact-us",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "maruti-suzuki-driving-school": {
+                            "name": "maruti-suzuki-driving-school",
+                            "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-driving-school",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "insurance": {
+                            "name": "insurance",
+                            "url": "https://www.marutisuzuki.com/more-from-us/insurance",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "maruti-suzuki-rewards": {
+                            "name": "maruti-suzuki-rewards",
+                            "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-rewards",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "maruti-suzuki-subscribe": {
+                            "name": "maruti-suzuki-subscribe",
+                            "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-subscribe",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "price.aspx": {
+                            "name": "price.aspx",
+                            "url": "https://www.marutisuzuki.com/more-from-us/price.aspx",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "institutional-customers": {
+                            "name": "institutional-customers",
+                            "url": "https://www.marutisuzuki.com/more-from-us/institutional-customers",
+                            "status": "not connected",
+                            "children": {
+                                "enquiry": {
+                                    "name": "enquiry",
+                                    "url": "https://www.marutisuzuki.com/more-from-us/institutional-customers/enquiry",
+                                    "status": "not connected",
+                                    "children": {}
+                                }
+                            }
+                        },
+                        "exchange": {
+                            "name": "exchange",
+                            "url": "https://www.marutisuzuki.com/more-from-us/exchange",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "maruti-suzuki-genuine-parts": {
+                            "name": "maruti-suzuki-genuine-parts",
+                            "url": "https://www.marutisuzuki.com/more-from-us/maruti-suzuki-genuine-parts",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "finance": {
+                            "name": "finance",
+                            "url": "https://www.marutisuzuki.com/more-from-us/finance",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "s-presso": {
+                    "name": "s-presso",
+                    "url": "https://www.marutisuzuki.com/s-presso",
+                    "status": "not connected",
+                    "children": {
+                        "spresso-mileage": {
+                            "name": "spresso-mileage",
+                            "url": "https://www.marutisuzuki.com/s-presso/spresso-mileage",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "manifest.json": {
+                    "name": "manifest.json",
+                    "url": "https://www.marutisuzuki.com/manifest.json",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "engage": {
+                    "name": "engage",
+                    "url": "https://www.marutisuzuki.com/engage",
+                    "status": "Unknown",
+                    "children": {
+                        "index.html": {
+                            "name": "index.html",
+                            "url": "https://www.marutisuzuki.com/engage/index.html",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "tour": {
+                    "name": "tour",
+                    "url": "https://www.marutisuzuki.com/tour",
+                    "status": "not connected",
+                    "children": {
+                        "eeco": {
+                            "name": "eeco",
+                            "url": "https://www.marutisuzuki.com/tour/eeco",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "wagonr": {
+                            "name": "wagonr",
+                            "url": "https://www.marutisuzuki.com/tour/wagonr",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "ertiga": {
+                            "name": "ertiga",
+                            "url": "https://www.marutisuzuki.com/tour/ertiga",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "dzire": {
+                            "name": "dzire",
+                            "url": "https://www.marutisuzuki.com/tour/dzire",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "alto": {
+                            "name": "alto",
+                            "url": "https://www.marutisuzuki.com/tour/alto",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "celerio": {
+                    "name": "celerio",
+                    "url": "https://www.marutisuzuki.com/celerio",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "vans": {
+                    "name": "vans",
+                    "url": "https://www.marutisuzuki.com/vans",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "cng": {
+                    "name": "cng",
+                    "url": "https://www.marutisuzuki.com/cng",
+                    "status": "not connected",
+                    "children": {
+                        "alto-k10": {
+                            "name": "alto-k10",
+                            "url": "https://www.marutisuzuki.com/cng/alto-k10",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "wagonr": {
+                            "name": "wagonr",
+                            "url": "https://www.marutisuzuki.com/cng/wagonr",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "brezza": {
+                            "name": "brezza",
+                            "url": "https://www.marutisuzuki.com/cng/brezza",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "dzire": {
+                            "name": "dzire",
+                            "url": "https://www.marutisuzuki.com/cng/dzire",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "celerio": {
+                            "name": "celerio",
+                            "url": "https://www.marutisuzuki.com/cng/celerio",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "eeco": {
+                            "name": "eeco",
+                            "url": "https://www.marutisuzuki.com/cng/eeco",
+                            "status": 200,
+                            "children": {}
+                        },
+                        "s-presso": {
+                            "name": "s-presso",
+                            "url": "https://www.marutisuzuki.com/cng/s-presso",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "ertiga": {
+                            "name": "ertiga",
+                            "url": "https://www.marutisuzuki.com/cng/ertiga",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "swift": {
+                            "name": "swift",
+                            "url": "https://www.marutisuzuki.com/cng/swift",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "book-a-test-drive": {
+                    "name": "book-a-test-drive",
+                    "url": "https://www.marutisuzuki.com/book-a-test-drive",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "error-404": {
+                    "name": "error-404",
+                    "url": "https://www.marutisuzuki.com/error-404",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "configurator": {
+                    "name": "configurator",
+                    "url": "https://www.marutisuzuki.com/configurator",
+                    "status": "Unknown",
+                    "children": {
+                        "altok10": {
+                            "name": "altok10",
+                            "url": "https://www.marutisuzuki.com/configurator/altok10",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "newswift": {
+                            "name": "newswift",
+                            "url": "https://www.marutisuzuki.com/configurator/newswift",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "swift": {
+                    "name": "swift",
+                    "url": "https://www.marutisuzuki.com/swift",
+                    "status": 200,
+                    "children": {
+                        "swift-mileage": {
+                            "name": "swift-mileage",
+                            "url": "https://www.marutisuzuki.com/swift/swift-mileage",
+                            "status": "not connected",
+                            "children": {}
+                        },
+                        "brochure": {
+                            "name": "brochure",
+                            "url": "https://www.marutisuzuki.com/swift/brochure",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "genuine-parts": {
+                    "name": "genuine-parts",
+                    "url": "https://www.marutisuzuki.com/genuine-parts",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "Tour S": {
+                    "name": "Tour S",
+                    "url": "https://www.marutisuzuki.com/Tour S",
+                    "status": "Unknown",
+                    "children": {
+                        "brochure": {
+                            "name": "brochure",
+                            "url": "https://www.marutisuzuki.com/Tour S/brochure",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "carType_fdfe931bbc7d44ce93b4053f9d740716": {
+                    "name": "carType_fdfe931bbc7d44ce93b4053f9d740716",
+                    "url": "https://www.marutisuzuki.com/carType_fdfe931bbc7d44ce93b4053f9d740716",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "TOUR M": {
+                    "name": "TOUR M",
+                    "url": "https://www.marutisuzuki.com/TOUR M",
+                    "status": "Unknown",
+                    "children": {
+                        "brochure": {
+                            "name": "brochure",
+                            "url": "https://www.marutisuzuki.com/TOUR M/brochure",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "eeco": {
+                    "name": "eeco",
+                    "url": "https://www.marutisuzuki.com/eeco",
+                    "status": "not connected",
+                    "children": {
+                        "hindi": {
+                            "name": "hindi",
+                            "url": "https://www.marutisuzuki.com/eeco/hindi",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "cng-pump": {
+                    "name": "cng-pump",
+                    "url": "https://www.marutisuzuki.com/cng-pump",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "sitemap": {
+                    "name": "sitemap",
+                    "url": "https://www.marutisuzuki.com/sitemap",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "dzire": {
+                    "name": "dzire",
+                    "url": "https://www.marutisuzuki.com/dzire",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "carType_6306517C-73D2-4F89-9660-D5676017E70B": {
+                    "name": "carType_6306517C-73D2-4F89-9660-D5676017E70B",
+                    "url": "https://www.marutisuzuki.com/carType_6306517C-73D2-4F89-9660-D5676017E70B",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "dealer-showrooms": {
+                    "name": "dealer-showrooms",
+                    "url": "https://www.marutisuzuki.com/dealer-showrooms",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "sedans": {
+                    "name": "sedans",
+                    "url": "https://www.marutisuzuki.com/sedans",
+                    "status": 200,
+                    "children": {}
+                },
+                "suv-experiences": {
+                    "name": "suv-experiences",
+                    "url": "https://www.marutisuzuki.com/suv-experiences",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "carType_28AAACE1-8B33-4A1E-91C0-F8585DD990A2": {
+                    "name": "carType_28AAACE1-8B33-4A1E-91C0-F8585DD990A2",
+                    "url": "https://www.marutisuzuki.com/carType_28AAACE1-8B33-4A1E-91C0-F8585DD990A2",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "alto k10": {
+                    "name": "alto k10",
+                    "url": "https://www.marutisuzuki.com/alto k10",
+                    "status": "Unknown",
+                    "children": {
+                        "brochure": {
+                            "name": "brochure",
+                            "url": "https://www.marutisuzuki.com/alto k10/brochure",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "ertiga": {
+                    "name": "ertiga",
+                    "url": "https://www.marutisuzuki.com/ertiga",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "wagonr": {
+                    "name": "wagonr",
+                    "url": "https://www.marutisuzuki.com/wagonr",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "get-a-quote": {
+                    "name": "get-a-quote",
+                    "url": "https://www.marutisuzuki.com/get-a-quote",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "book-a-showroom-visit": {
+                    "name": "book-a-showroom-visit",
+                    "url": "https://www.marutisuzuki.com/book-a-showroom-visit",
+                    "status": 200,
+                    "children": {}
+                },
+                "imp-information-customer": {
+                    "name": "imp-information-customer",
+                    "url": "https://www.marutisuzuki.com/imp-information-customer",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "carType_84DA4506-0DC3-4A48-8C29-89FC42550A09": {
+                    "name": "carType_84DA4506-0DC3-4A48-8C29-89FC42550A09",
+                    "url": "https://www.marutisuzuki.com/carType_84DA4506-0DC3-4A48-8C29-89FC42550A09",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "terms-of-use": {
+                    "name": "terms-of-use",
+                    "url": "https://www.marutisuzuki.com/terms-of-use",
+                    "status": 200,
+                    "children": {}
+                },
+                "genuine-accessories": {
+                    "name": "genuine-accessories",
+                    "url": "https://www.marutisuzuki.com/genuine-accessories",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "data-provider-consent-policy": {
+                    "name": "data-provider-consent-policy",
+                    "url": "https://www.marutisuzuki.com/data-provider-consent-policy",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "privacy-policy": {
+                    "name": "privacy-policy",
+                    "url": "https://www.marutisuzuki.com/privacy-policy",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "alto": {
+                    "name": "alto",
+                    "url": "https://www.marutisuzuki.com/alto",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "subscribe": {
+                    "name": "subscribe",
+                    "url": "https://www.marutisuzuki.com/subscribe",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "book-car-online": {
+                    "name": "book-car-online",
+                    "url": "https://www.marutisuzuki.com/book-car-online",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "marutisuzukiworld": {
+                    "name": "marutisuzukiworld",
+                    "url": "https://www.marutisuzuki.com/marutisuzukiworld",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "ebook": {
+                    "name": "ebook",
+                    "url": "https://www.marutisuzuki.com/ebook",
+                    "status": 200,
+                    "children": {}
+                },
+                "suvs-muvs": {
+                    "name": "suvs-muvs",
+                    "url": "https://www.marutisuzuki.com/suvs-muvs",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "css": {
+                    "name": "css",
+                    "url": "https://www.marutisuzuki.com/css",
+                    "status": "Unknown",
+                    "children": {
+                        "technology_new.css ": {
+                            "name": "technology_new.css ",
+                            "url": "https://www.marutisuzuki.com/css/technology_new.css ",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "price-list": {
+                    "name": "price-list",
+                    "url": "https://www.marutisuzuki.com/price-list",
+                    "status": "Unknown",
+                    "children": {
+                        "alto-k10-price": {
+                            "name": "alto-k10-price",
+                            "url": "https://www.marutisuzuki.com/price-list/alto-k10-price",
+                            "status": "not connected",
+                            "children": {}
+                        }
+                    }
+                },
+                "hatchbacks": {
+                    "name": "hatchbacks",
+                    "url": "https://www.marutisuzuki.com/hatchbacks",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "carType_82650C08-E0C2-4978-91CD-6E81CDD14E8A": {
+                    "name": "carType_82650C08-E0C2-4978-91CD-6E81CDD14E8A",
+                    "url": "https://www.marutisuzuki.com/carType_82650C08-E0C2-4978-91CD-6E81CDD14E8A",
+                    "status": "not connected",
+                    "children": {}
+                },
+                "icon-192.webp": {
+                    "name": "icon-192.webp",
+                    "url": "https://www.marutisuzuki.com/icon-192.webp",
+                    "status": "not connected",
+                    "children": {}
+                }
+            }
+        }
+    },
+    "other_links": {
+        "marutistoragenew.blob.core.windows.net": {
+            "name": "marutistoragenew.blob.core.windows.net",
+            "url": "https://marutistoragenew.blob.core.windows.net",
+            "status": "Unknown",
+            "children": {
+                "msilintiwebpdf": {
+                    "name": "msilintiwebpdf",
+                    "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf",
+                    "status": "Unknown",
+                    "children": {
+                        "SEBI_Circular_dated_17th_November_2023.pdf": {
+                            "name": "SEBI_Circular_dated_17th_November_2023.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/SEBI_Circular_dated_17th_November_2023.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_ISR-5.pdf": {
+                            "name": "Form_ISR-5.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_ISR-5.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Maruti_Suzuki-Q2FY25-Result_Conference_Call_Invite_25.pdf": {
+                            "name": "Maruti_Suzuki-Q2FY25-Result_Conference_Call_Invite_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Maruti_Suzuki-Q2FY25-Result_Conference_Call_Invite_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "CGR_Website_Q3_FY_2024_25.pdf": {
+                            "name": "CGR_Website_Q3_FY_2024_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/CGR_Website_Q3_FY_2024_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "FS_SMG_2024_25.pdf": {
+                            "name": "FS_SMG_2024_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/FS_SMG_2024_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Maruti_Suzuki_Q4FY25_Result_Conference_Call_Invite.pdf": {
+                            "name": "Maruti_Suzuki_Q4FY25_Result_Conference_Call_Invite.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Maruti_Suzuki_Q4FY25_Result_Conference_Call_Invite.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Integrated_Filing_for_the_quarter_ended_on_31st_December_2024.pdf": {
+                            "name": "Integrated_Filing_for_the_quarter_ended_on_31st_December_2024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Integrated_Filing_for_the_quarter_ended_on_31st_December_2024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "SEBI_Standalone_and_Consolidated_SEP_2024.pdf": {
+                            "name": "SEBI_Standalone_and_Consolidated_SEP_2024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/SEBI_Standalone_and_Consolidated_SEP_2024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Transcript_earnings_call_Maruti_Suzuki_Q2_FY_25.pdf": {
+                            "name": "Transcript_earnings_call_Maruti_Suzuki_Q2_FY_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Transcript_earnings_call_Maruti_Suzuki_Q2_FY_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Master_Circular_for_Online_Dispute_Resolution_(Updated_as_on_28th_December_2023).pdf": {
+                            "name": "Master_Circular_for_Online_Dispute_Resolution_(Updated_as_on_28th_December_2023).pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Master_Circular_for_Online_Dispute_Resolution_(Updated_as_on_28th_December_2023).pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "4261_001.pdf": {
+                            "name": "4261_001.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/4261_001.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Maruti_Suzuki_Q1FY25_Result_Conference_Call_Invite.pdf": {
+                            "name": "Maruti_Suzuki_Q1FY25_Result_Conference_Call_Invite.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Maruti_Suzuki_Q1FY25_Result_Conference_Call_Invite.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Arena-Tour-M-Leaflet.pdf": {
+                            "name": "Arena-Tour-M-Leaflet.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Arena-Tour-M-Leaflet.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Audio-Recording-Q1-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-June-2024.mp3": {
+                            "name": "Audio-Recording-Q1-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-June-2024.mp3",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Audio-Recording-Q1-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-June-2024.mp3",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Final_quick_results_Q4_24_25.pdf": {
+                            "name": "Final_quick_results_Q4_24_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Final_quick_results_Q4_24_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "SEBI_Circular_dated_16th_March_2023.pdf": {
+                            "name": "SEBI_Circular_dated_16th_March_2023.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/SEBI_Circular_dated_16th_March_2023.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Investor_Presentation_Q3FY25.pdf": {
+                            "name": "Investor_Presentation_Q3FY25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Investor_Presentation_Q3FY25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "S-CNG_Nexa_Fronx_20_Seconder_Edit.mp4": {
+                            "name": "S-CNG_Nexa_Fronx_20_Seconder_Edit.mp4",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/S-CNG_Nexa_Fronx_20_Seconder_Edit.mp4",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_15G.PDF": {
+                            "name": "Form_15G.PDF",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_15G.PDF",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Audio-Recording-Q3-FY-2024-25-financial-results-investor-and-analyst-con-call-29th-January-2025.mp3": {
+                            "name": "Audio-Recording-Q3-FY-2024-25-financial-results-investor-and-analyst-con-call-29th-January-2025.mp3",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Audio-Recording-Q3-FY-2024-25-financial-results-investor-and-analyst-con-call-29th-January-2025.mp3",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "J_J_Impex_(Delhi)_Limited_Financial_Accounts_2024-25.pdf": {
+                            "name": "J_J_Impex_(Delhi)_Limited_Financial_Accounts_2024-25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/J_J_Impex_(Delhi)_Limited_Financial_Accounts_2024-25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_ISR_2.pdf": {
+                            "name": "Form_ISR_2.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_ISR_2.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Audio-Recording-Q2-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-September-2024.mp3": {
+                            "name": "Audio-Recording-Q2-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-September-2024.mp3",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Audio-Recording-Q2-FY-2024-25-financial-results-investor-and-analyst-con-call-30th-September-2024.mp3",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Integrated_Governance_report_Q4_FY_2024_25_for_website.pdf": {
+                            "name": "Integrated_Governance_report_Q4_FY_2024_25_for_website.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Integrated_Governance_report_Q4_FY_2024_25_for_website.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Audio_Recording_Q4_FY_2024_25_financial_results_investor_and_analyst_con_call_25th_April_2025.mp3": {
+                            "name": "Audio_Recording_Q4_FY_2024_25_financial_results_investor_and_analyst_con_call_25th_April_2025.mp3",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Audio_Recording_Q4_FY_2024_25_financial_results_investor_and_analyst_con_call_25th_April_2025.mp3",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "4260_001.pdf": {
+                            "name": "4260_001.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/4260_001.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Investor_Presentation_Q4FY25_and_FY25.pdf": {
+                            "name": "Investor_Presentation_Q4FY25_and_FY25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Investor_Presentation_Q4FY25_and_FY25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Master_90_Seconder_Down_Edit.mp4": {
+                            "name": "Master_90_Seconder_Down_Edit.mp4",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Master_90_Seconder_Down_Edit.mp4",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Unaudited_financial_results_for_the_quarter_ended_June_30_2024.pdf": {
+                            "name": "Unaudited_financial_results_for_the_quarter_ended_June_30_2024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Unaudited_financial_results_for_the_quarter_ended_June_30_2024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Maruti_Suzuki_Q3FY25_Result_Conference_Call_Invite.pdf": {
+                            "name": "Maruti_Suzuki_Q3FY25_Result_Conference_Call_Invite.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Maruti_Suzuki_Q3FY25_Result_Conference_Call_Invite.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "May_25_Model_TPA.pdf": {
+                            "name": "May_25_Model_TPA.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/May_25_Model_TPA.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Shareholding_Pattern_for_website.pdf": {
+                            "name": "Shareholding_Pattern_for_website.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Shareholding_Pattern_for_website.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Nomination_Forms.zip": {
+                            "name": "Nomination_Forms.zip",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Nomination_Forms.zip",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "SEBI_Standalone_and_Consolidated_DEC_2024.pdf": {
+                            "name": "SEBI_Standalone_and_Consolidated_DEC_2024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/SEBI_Standalone_and_Consolidated_DEC_2024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Investor_Presentation_Q1FY25.pdf": {
+                            "name": "Investor_Presentation_Q1FY25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Investor_Presentation_Q1FY25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_ISR_1.pdf": {
+                            "name": "Form_ISR_1.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_ISR_1.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "SEBI_Circular_dated_26th_September_2023.pdf": {
+                            "name": "SEBI_Circular_dated_26th_September_2023.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/SEBI_Circular_dated_26th_September_2023.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_15H.PDF": {
+                            "name": "Form_15H.PDF",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_15H.PDF",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Investor_Presentation_Q2FY25.pdf": {
+                            "name": "Investor_Presentation_Q2FY25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Investor_Presentation_Q2FY25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Shareholding_Pattern_30092024.pdf": {
+                            "name": "Shareholding_Pattern_30092024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Shareholding_Pattern_30092024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Corporate_Governance_Report_as_on_30th_September_2024.pdf": {
+                            "name": "Corporate_Governance_Report_as_on_30th_September_2024.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Corporate_Governance_Report_as_on_30th_September_2024.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "TVSL_Financial_Accounts_2024-25.pdf": {
+                            "name": "TVSL_Financial_Accounts_2024-25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/TVSL_Financial_Accounts_2024-25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "3550_001.pdf": {
+                            "name": "3550_001.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/3550_001.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Transcript_earnings_call_Maruti_Suzuki_Q4_FY_25.pdf": {
+                            "name": "Transcript_earnings_call_Maruti_Suzuki_Q4_FY_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Transcript_earnings_call_Maruti_Suzuki_Q4_FY_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Transcript_earnings_call_Maruti_Suzuki_Q1_FY_25.pdf": {
+                            "name": "Transcript_earnings_call_Maruti_Suzuki_Q1_FY_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Transcript_earnings_call_Maruti_Suzuki_Q1_FY_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_ISR-4.pdf": {
+                            "name": "Form_ISR-4.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_ISR-4.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "S-CNG_Nexa_Grand_Vitara_20_Seconder_Edit.mp4": {
+                            "name": "S-CNG_Nexa_Grand_Vitara_20_Seconder_Edit.mp4",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/S-CNG_Nexa_Grand_Vitara_20_Seconder_Edit.mp4",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_10F.PDF": {
+                            "name": "Form_10F.PDF",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_10F.PDF",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Form_ISR_3.pdf": {
+                            "name": "Form_ISR_3.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Form_ISR_3.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "Transcript_earnings_call_Maruti_Suzuki_Q3_FY_25.pdf": {
+                            "name": "Transcript_earnings_call_Maruti_Suzuki_Q3_FY_25.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/Transcript_earnings_call_Maruti_Suzuki_Q3_FY_25.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "29112024MSARENATour_S_Broucher_A4_CTC.pdf": {
+                            "name": "29112024MSARENATour_S_Broucher_A4_CTC.pdf",
+                            "url": "https://marutistoragenew.blob.core.windows.net/msilintiwebpdf/29112024MSARENATour_S_Broucher_A4_CTC.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                }
+            }
+        },
+        "cdnjs.cloudflare.com": {
+            "name": "cdnjs.cloudflare.com",
+            "url": "https://cdnjs.cloudflare.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "wa.me": {
+            "name": "wa.me",
+            "url": "https://wa.me",
+            "status": "Unknown",
+            "children": {
+                "+919289311487": {
+                    "name": "+919289311487",
+                    "url": "https://wa.me/+919289311487",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "www.instagram.com": {
+            "name": "www.instagram.com",
+            "url": "https://www.instagram.com",
+            "status": "Unknown",
+            "children": {
+                "msarenaofficial": {
+                    "name": "msarenaofficial",
+                    "url": "https://www.instagram.com/msarenaofficial",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "": {
+            "name": "",
+            "url": "https://",
+            "status": "Unknown",
+            "children": {
+                "einward.ris@kfintech.com": {
+                    "name": "einward.ris@kfintech.com",
+                    "url": "https:///einward.ris@kfintech.com",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "a.pranav@maruti.co.in": {
+                    "name": "a.pranav@maruti.co.in",
+                    "url": "https:///a.pranav@maruti.co.in",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "investor@maruti.co.in": {
+                    "name": "investor@maruti.co.in",
+                    "url": "https:///investor@maruti.co.in",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "1800 102 1800": {
+                    "name": "1800 102 1800",
+                    "url": "https:///1800 102 1800",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "18001021800": {
+                    "name": "18001021800",
+                    "url": "https:///18001021800",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "contact@maruti.co.in": {
+                    "name": "contact@maruti.co.in",
+                    "url": "https:///contact@maruti.co.in",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "img": {
+                    "name": "img",
+                    "url": "https:///img",
+                    "status": "Unknown",
+                    "children": {
+                        "png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC": {
+                            "name": "png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC",
+                            "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC",
+                            "status": "Unknown",
+                            "children": {
+                                "xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD": {
+                                    "name": "xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD",
+                                    "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+": {
+                                            "name": "8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+",
+                                            "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD/8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+",
+                                            "status": "Unknown",
+                                            "children": {
+                                                "AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9": {
+                                                    "name": "AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9",
+                                                    "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD/8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9",
+                                                    "status": "Unknown",
+                                                    "children": {
+                                                        "7+rmBE5k2dBmO1y6n2": {
+                                                            "name": "7+rmBE5k2dBmO1y6n2",
+                                                            "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD/8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9/7+rmBE5k2dBmO1y6n2",
+                                                            "status": "Unknown",
+                                                            "children": {
+                                                                "sa48zjLMjscwMsY0s34jcywLBAgQf4Y4EFJsW746ZCIKjkvEKXARReqTIggQ+8crbVKmiXLUc5SLcCvVTXyqxY86Km4+QuzfK0CAAKElUbOryhyfsBFBiUig06BAgOAlTuuWMvUzNqJBEQ2dBgUCRF7iXNo3zfSVdLElmlL1MpGwWvHabKcuVru2JdpxtdVJJqRjubyDMpP": {
+                                                                    "name": "sa48zjLMjscwMsY0s34jcywLBAgQf4Y4EFJsW746ZCIKjkvEKXARReqTIggQ+8crbVKmiXLUc5SLcCvVTXyqxY86Km4+QuzfK0CAAKElUbOryhyfsBFBiUig06BAgOAlTuuWMvUzNqJBEQ2dBgUCRF7iXNo3zfSVdLElmlL1MpGwWvHabKcuVru2JdpxtdVJJqRjubyDMpP",
+                                                                    "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD/8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9/7+rmBE5k2dBmO1y6n2/sa48zjLMjscwMsY0s34jcywLBAgQf4Y4EFJsW746ZCIKjkvEKXARReqTIggQ+8crbVKmiXLUc5SLcCvVTXyqxY86Km4+QuzfK0CAAKElUbOryhyfsBFBiUig06BAgOAlTuuWMvUzNqJBEQ2dBgUCRF7iXNo3zfSVdLElmlL1MpGwWvHabKcuVru2JdpxtdVJJqRjubyDMpP",
+                                                                    "status": "Unknown",
+                                                                    "children": {
+                                                                        "14D4L8RVuAGuOYib8E63ii63a36kpyLuBJF7FdEL79NVve47Pzou9Afqs6JBX0WoCylEtkGBAPELiIdHdZ6e2QixJiLYiG8YFAgQvMTwhciQjfCoV89jI0YBkZFOzwIECF5i7BAZsxGTVyITnQYFAgQvMX0jMmUjZj6RmU6DAgECBIifIubRacNi+en4YaeQkOWCLMyN1fqLs3oHBBBt7pMyNg4AAAAASUVORK5CYII=": {
+                                                                            "name": "14D4L8RVuAGuOYib8E63ii63a36kpyLuBJF7FdEL79NVve47Pzou9Afqs6JBX0WoCylEtkGBAPELiIdHdZ6e2QixJiLYiG8YFAgQvMTwhciQjfCoV89jI0YBkZFOzwIECF5i7BAZsxGTVyITnQYFAgQvMX0jMmUjZj6RmU6DAgECBIifIubRacNi+en4YaeQkOWCLMyN1fqLs3oHBBBt7pMyNg4AAAAASUVORK5CYII=",
+                                                                            "url": "https:///img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABwCAMAAADSZVWsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAAD/8AAADyogLTAAAAPHRSTlMAkKAmUL4lsPDggFVw01TUwGA5vTggLZ0qLD7uHjvk+K6B3OJ+s1EUEkXeCDAvBgEQAk0MQELQGCPmcfQyFng3AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAWNJREFUaN7t2GtTglAQBmCgQ4JoikVmltpFS7uYmnn9/7+rmBE5k2dBmO1y6n2/sa48zjLMjscwMsY0s34jcywLBAgQf4Y4EFJsW746ZCIKjkvEKXARReqTIggQ+8crbVKmiXLUc5SLcCvVTXyqxY86Km4+QuzfK0CAAKElUbOryhyfsBFBiUig06BAgOAlTuuWMvUzNqJBEQ2dBgUCRF7iXNo3zfSVdLElmlL1MpGwWvHabKcuVru2JdpxtdVJJqRjubyDMpP/14D4L8RVuAGuOYib8E63ii63a36kpyLuBJF7FdEL79NVve47Pzou9Afqs6JBX0WoCylEtkGBAPELiIdHdZ6e2QixJiLYiG8YFAgQvMTwhciQjfCoV89jI0YBkZFOzwIECF5i7BAZsxGTVyITnQYFAgQvMX0jMmUjZj6RmU6DAgECBIifIubRacNi+en4YaeQkOWCLMyN1fqLs3oHBBBt7pMyNg4AAAAASUVORK5CYII=",
+                                                                            "status": "Unknown",
+                                                                            "children": {}
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "contact@marutisuzuki.com": {
+                    "name": "contact@marutisuzuki.com",
+                    "url": "https:///contact@marutisuzuki.com",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "www.facebook.com": {
+            "name": "www.facebook.com",
+            "url": "https://www.facebook.com",
+            "status": "Unknown",
+            "children": {
+                "sharer.php": {
+                    "name": "sharer.php",
+                    "url": "https://www.facebook.com/sharer.php",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "MSArenaOfficial": {
+                    "name": "MSArenaOfficial",
+                    "url": "https://www.facebook.com/MSArenaOfficial",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "www.nexaexperience.com": {
+            "name": "www.nexaexperience.com",
+            "url": "https://www.nexaexperience.com",
+            "status": "Unknown",
+            "children": {
+                "cng": {
+                    "name": "cng",
+                    "url": "https://www.nexaexperience.com/cng",
+                    "status": "Unknown",
+                    "children": {
+                        "grand-vitara": {
+                            "name": "grand-vitara",
+                            "url": "https://www.nexaexperience.com/cng/grand-vitara",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "xl6": {
+                            "name": "xl6",
+                            "url": "https://www.nexaexperience.com/cng/xl6",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "baleno": {
+                            "name": "baleno",
+                            "url": "https://www.nexaexperience.com/cng/baleno",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                },
+                "ignis": {
+                    "name": "ignis",
+                    "url": "https://www.nexaexperience.com/ignis",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "grand-vitara": {
+                    "name": "grand-vitara",
+                    "url": "https://www.nexaexperience.com/grand-vitara",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "s-cross": {
+                    "name": "s-cross",
+                    "url": "https://www.nexaexperience.com/s-cross",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "fronx": {
+                    "name": "fronx",
+                    "url": "https://www.nexaexperience.com/fronx",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "xl6": {
+                    "name": "xl6",
+                    "url": "https://www.nexaexperience.com/xl6",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "baleno": {
+                    "name": "baleno",
+                    "url": "https://www.nexaexperience.com/baleno",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "invicto": {
+                    "name": "invicto",
+                    "url": "https://www.nexaexperience.com/invicto",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "ciaz": {
+                    "name": "ciaz",
+                    "url": "https://www.nexaexperience.com/ciaz",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "jimny": {
+                    "name": "jimny",
+                    "url": "https://www.nexaexperience.com/jimny",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "e-vitara": {
+                    "name": "e-vitara",
+                    "url": "https://www.nexaexperience.com/e-vitara",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "www.youtube.com": {
+            "name": "www.youtube.com",
+            "url": "https://www.youtube.com",
+            "status": "Unknown",
+            "children": {
+                "embed": {
+                    "name": "embed",
+                    "url": "https://www.youtube.com/embed",
+                    "status": "Unknown",
+                    "children": {
+                        "xY8yNH73C84": {
+                            "name": "xY8yNH73C84",
+                            "url": "https://www.youtube.com/embed/xY8yNH73C84",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "GALf0c53TYM": {
+                            "name": "GALf0c53TYM",
+                            "url": "https://www.youtube.com/embed/GALf0c53TYM",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "YdhkW8SRPTQ": {
+                            "name": "YdhkW8SRPTQ",
+                            "url": "https://www.youtube.com/embed/YdhkW8SRPTQ",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                }
+            }
+        },
+        "fonts.googleapis.com": {
+            "name": "fonts.googleapis.com",
+            "url": "https://fonts.googleapis.com",
+            "status": "Unknown",
+            "children": {
+                "css2": {
+                    "name": "css2",
+                    "url": "https://fonts.googleapis.com/css2",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "apps.apple.com": {
+            "name": "apps.apple.com",
+            "url": "https://apps.apple.com",
+            "status": "Unknown",
+            "children": {
+                "in": {
+                    "name": "in",
+                    "url": "https://apps.apple.com/in",
+                    "status": "Unknown",
+                    "children": {
+                        "app": {
+                            "name": "app",
+                            "url": "https://apps.apple.com/in/app",
+                            "status": "Unknown",
+                            "children": {
+                                "maruti-suzuki-rewards": {
+                                    "name": "maruti-suzuki-rewards",
+                                    "url": "https://apps.apple.com/in/app/maruti-suzuki-rewards",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "id1508484230": {
+                                            "name": "id1508484230",
+                                            "url": "https://apps.apple.com/in/app/maruti-suzuki-rewards/id1508484230",
+                                            "status": "Unknown",
+                                            "children": {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "expoverse.marutisuzuki.com": {
+            "name": "expoverse.marutisuzuki.com",
+            "url": "https://expoverse.marutisuzuki.com",
+            "status": "Unknown",
+            "children": {
+                "signin": {
+                    "name": "signin",
+                    "url": "https://expoverse.marutisuzuki.com/signin",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "marutisuzuki.com": {
+            "name": "marutisuzuki.com",
+            "url": "https://marutisuzuki.com",
+            "status": "Unknown",
+            "children": {
+                "get-a-quote": {
+                    "name": "get-a-quote",
+                    "url": "https://marutisuzuki.com/get-a-quote",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "marutistorage.blob.core.windows.net": {
+            "name": "marutistorage.blob.core.windows.net",
+            "url": "https://marutistorage.blob.core.windows.net",
+            "status": "Unknown",
+            "children": {
+                "marutisuzukipdf": {
+                    "name": "marutisuzukipdf",
+                    "url": "https://marutistorage.blob.core.windows.net/marutisuzukipdf",
+                    "status": "Unknown",
+                    "children": {
+                        "Notice and Proxy Form.pdf": {
+                            "name": "Notice and Proxy Form.pdf",
+                            "url": "https://marutistorage.blob.core.windows.net/marutisuzukipdf/Notice and Proxy Form.pdf",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                },
+                "marutisuzukizip": {
+                    "name": "marutisuzukizip",
+                    "url": "https://marutistorage.blob.core.windows.net/marutisuzukizip",
+                    "status": "Unknown",
+                    "children": {
+                        "ecs_mandate_forms.zip": {
+                            "name": "ecs_mandate_forms.zip",
+                            "url": "https://marutistorage.blob.core.windows.net/marutisuzukizip/ecs_mandate_forms.zip",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                }
+            }
+        },
+        "www.marutisuzukitruevalue.com": {
+            "name": "www.marutisuzukitruevalue.com",
+            "url": "https://www.marutisuzukitruevalue.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "twitter.com": {
+            "name": "twitter.com",
+            "url": "https://twitter.com",
+            "status": "Unknown",
+            "children": {
+                "Maruti_Corp": {
+                    "name": "Maruti_Corp",
+                    "url": "https://twitter.com/Maruti_Corp",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "MSArenaOfficial": {
+                    "name": "MSArenaOfficial",
+                    "url": "https://twitter.com/MSArenaOfficial",
+                    "status": "Unknown",
+                    "children": {}
+                },
+                "share": {
+                    "name": "share",
+                    "url": "https://twitter.com/share",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "ajax.googleapis.com": {
+            "name": "ajax.googleapis.com",
+            "url": "https://ajax.googleapis.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net": {
+            "name": "az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net",
+            "url": "https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net",
+            "status": "Unknown",
+            "children": {
+                "css": {
+                    "name": "css",
+                    "url": "https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/css",
+                    "status": "Unknown",
+                    "children": {
+                        "technology_new.css ": {
+                            "name": "technology_new.css ",
+                            "url": "https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/css/technology_new.css ",
+                            "status": "Unknown",
+                            "children": {}
+                        },
+                        "technology-component.css ": {
+                            "name": "technology-component.css ",
+                            "url": "https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/css/technology-component.css ",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                }
+            }
+        },
+        "cdn.treasuredata.com": {
+            "name": "cdn.treasuredata.com",
+            "url": "https://cdn.treasuredata.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "play.google.com": {
+            "name": "play.google.com",
+            "url": "https://play.google.com",
+            "status": "Unknown",
+            "children": {
+                "store": {
+                    "name": "store",
+                    "url": "https://play.google.com/store",
+                    "status": "Unknown",
+                    "children": {
+                        "apps": {
+                            "name": "apps",
+                            "url": "https://play.google.com/store/apps",
+                            "status": "Unknown",
+                            "children": {
+                                "details": {
+                                    "name": "details",
+                                    "url": "https://play.google.com/store/apps/details",
+                                    "status": "Unknown",
+                                    "children": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "www.googletagmanager.com": {
+            "name": "www.googletagmanager.com",
+            "url": "https://www.googletagmanager.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "www.marutisuzukicommercial.com": {
+            "name": "www.marutisuzukicommercial.com",
+            "url": "https://www.marutisuzukicommercial.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "www.marutisuzukidrivingschool.com": {
+            "name": "www.marutisuzukidrivingschool.com",
+            "url": "https://www.marutisuzukidrivingschool.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "www.kfintech.com": {
+            "name": "www.kfintech.com",
+            "url": "https://www.kfintech.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "marutisuzukirocknroad.com": {
+            "name": "marutisuzukirocknroad.com",
+            "url": "https://marutisuzukirocknroad.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "www.marutisuzuki.comhttps:": {
+            "name": "www.marutisuzuki.comhttps:",
+            "url": "https://www.marutisuzuki.comhttps:",
+            "status": "Unknown",
+            "children": {
+                "az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net": {
+                    "name": "az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net",
+                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net",
+                    "status": "Unknown",
+                    "children": {
+                        "-": {
+                            "name": "-",
+                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-",
+                            "status": "Unknown",
+                            "children": {
+                                "media": {
+                                    "name": "media",
+                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media",
+                                    "status": "Unknown",
+                                    "children": {
+                                        "images": {
+                                            "name": "images",
+                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images",
+                                            "status": "Unknown",
+                                            "children": {
+                                                "maruti": {
+                                                    "name": "maruti",
+                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti",
+                                                    "status": "Unknown",
+                                                    "children": {
+                                                        "marutisuzuki": {
+                                                            "name": "marutisuzuki",
+                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki",
+                                                            "status": "Unknown",
+                                                            "children": {
+                                                                "car": {
+                                                                    "name": "car",
+                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car",
+                                                                    "status": "Unknown",
+                                                                    "children": {
+                                                                        "car-profile-shots": {
+                                                                            "name": "car-profile-shots",
+                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-profile-shots",
+                                                                            "status": "Unknown",
+                                                                            "children": {
+                                                                                "tour": {
+                                                                                    "name": "tour",
+                                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-profile-shots/tour",
+                                                                                    "status": "Unknown",
+                                                                                    "children": {
+                                                                                        "tour-m_car1.webp": {
+                                                                                            "name": "tour-m_car1.webp",
+                                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-profile-shots/tour/tour-m_car1.webp",
+                                                                                            "status": "Unknown",
+                                                                                            "children": {}
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "car-detail": {
+                                                                            "name": "car-detail",
+                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail",
+                                                                            "status": "Unknown",
+                                                                            "children": {
+                                                                                "topgun-launch-2022": {
+                                                                                    "name": "topgun-launch-2022",
+                                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/topgun-launch-2022",
+                                                                                    "status": "Unknown",
+                                                                                    "children": {
+                                                                                        "new-car-colors": {
+                                                                                            "name": "new-car-colors",
+                                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/topgun-launch-2022/new-car-colors",
+                                                                                            "status": "Unknown",
+                                                                                            "children": {
+                                                                                                "alto-k10_688x360_red_new.webp": {
+                                                                                                    "name": "alto-k10_688x360_red_new.webp",
+                                                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/topgun-launch-2022/new-car-colors/alto-k10_688x360_red_new.webp",
+                                                                                                    "status": "Unknown",
+                                                                                                    "children": {}
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "modules": {
+                                                                    "name": "modules",
+                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/modules",
+                                                                    "status": "Unknown",
+                                                                    "children": {
+                                                                        "generic-hero": {
+                                                                            "name": "generic-hero",
+                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/modules/generic-hero",
+                                                                            "status": "Unknown",
+                                                                            "children": {
+                                                                                "tour-s-launch-2023": {
+                                                                                    "name": "tour-s-launch-2023",
+                                                                                    "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/modules/generic-hero/tour-s-launch-2023",
+                                                                                    "status": "Unknown",
+                                                                                    "children": {
+                                                                                        "car_color_image_new.webp": {
+                                                                                            "name": "car_color_image_new.webp",
+                                                                                            "url": "https://www.marutisuzuki.comhttps:/az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/modules/generic-hero/tour-s-launch-2023/car_color_image_new.webp",
+                                                                                            "status": "Unknown",
+                                                                                            "children": {}
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "www.marutisuzukicommercial.com ": {
+            "name": "www.marutisuzukicommercial.com ",
+            "url": "https://www.marutisuzukicommercial.com ",
+            "status": "Unknown",
+            "children": {}
+        },
+        "smartodr.in": {
+            "name": "smartodr.in",
+            "url": "https://smartodr.in",
+            "status": "Unknown",
+            "children": {
+                "login": {
+                    "name": "login",
+                    "url": "https://smartodr.in/login",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "www.jsviews.com": {
+            "name": "www.jsviews.com",
+            "url": "https://www.jsviews.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "arenaverse.marutisuzuki.com": {
+            "name": "arenaverse.marutisuzuki.com",
+            "url": "https://arenaverse.marutisuzuki.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "www": {
+            "name": "www",
+            "url": "https://www",
+            "status": "Unknown",
+            "children": {
+                "apple.com": {
+                    "name": "apple.com",
+                    "url": "https://www/apple.com",
+                    "status": "Unknown",
+                    "children": {
+                        "ios": {
+                            "name": "ios",
+                            "url": "https://www/apple.com/ios",
+                            "status": "Unknown",
+                            "children": {
+                                "carplay": {
+                                    "name": "carplay",
+                                    "url": "https://www/apple.com/ios/carplay",
+                                    "status": "Unknown",
+                                    "children": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ris.kfintech.com": {
+            "name": "ris.kfintech.com",
+            "url": "https://ris.kfintech.com",
+            "status": "Unknown",
+            "children": {
+                "clientservices": {
+                    "name": "clientservices",
+                    "url": "https://ris.kfintech.com/clientservices",
+                    "status": "Unknown",
+                    "children": {
+                        "isc": {
+                            "name": "isc",
+                            "url": "https://ris.kfintech.com/clientservices/isc",
+                            "status": "Unknown",
+                            "children": {}
+                        }
+                    }
+                }
+            }
+        },
+        "api.whatsapp.com": {
+            "name": "api.whatsapp.com",
+            "url": "https://api.whatsapp.com",
+            "status": "Unknown",
+            "children": {
+                "send": {
+                    "name": "send",
+                    "url": "https://api.whatsapp.com/send",
+                    "status": "Unknown",
+                    "children": {}
+                }
+            }
+        },
+        "code.jquery.com": {
+            "name": "code.jquery.com",
+            "url": "https://code.jquery.com",
+            "status": "Unknown",
+            "children": {}
+        },
+        "geolocation-db.com": {
+            "name": "geolocation-db.com",
+            "url": "https://geolocation-db.com",
+            "status": "Unknown",
+            "children": {}
+        }
+    }
+}

@@ -1,0 +1,1123 @@
+{% extends "base1.html" %}
+
+{% block title %}Sign Up | Fourth Dimension{% endblock %}
+
+{% block styles %}
+<style>
+  :root {
+    --primary: #4f46e5;
+    --primary-dark: #3c35b5;
+    --primary-rgb: 79, 70, 229;
+    --secondary: #7c3aed;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --surface: #ffffff;
+    --surface-dark: #f9fafb;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --text-muted: #9ca3af;
+    --border-color: #e5e7eb;
+    --header-height: 64px;
+    --border-radius: 10px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease-in-out;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9ff;
+    color: var(--text-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 750px;
+    padding: 2rem;
+    margin: auto;
+  }
+
+  .auth-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .auth-logo img {
+    height: 50px;
+  }
+
+  .auth-card {
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .auth-header {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+  }
+
+  .auth-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+  }
+
+  .auth-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  .auth-form {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    flex: 1;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+    background-color: var(--surface);
+    background-clip: padding-box;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .form-control:focus {
+    border-color: var(--primary);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+  }
+
+  .form-control.is-invalid {
+    border-color: var(--danger);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    padding-right: calc(1.5em + 0.75rem);
+  }
+
+  .password-wrapper {
+    position: relative;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 1;
+    font-size: 0.95rem;
+  }
+
+  .password-strength {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .password-strength-meter {
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: var(--border-color);
+    margin-top: 0.25rem;
+    overflow: hidden;
+  }
+
+  .password-strength-meter-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  .password-strength-text {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .password-strength-bar-weak {
+    background-color: var(--danger);
+    width: 25%;
+  }
+
+  .password-strength-bar-fair {
+    background-color: var(--warning);
+    width: 50%;
+  }
+
+  .password-strength-bar-good {
+    background-color: #60a5fa;
+    width: 75%;
+  }
+
+  .password-strength-bar-strong {
+    background-color: var(--success);
+    width: 100%;
+  }
+
+  .password-criteria {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+  }
+
+  .password-criteria li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  .password-criteria li.valid {
+    color: var(--success);
+  }
+
+  .password-criteria li i {
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-radius: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  .btn-with-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-with-icon i {
+    margin-right: 0.5rem;
+  }
+
+  .feedback-text {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  .feedback-text.text-danger {
+    color: var(--danger);
+  }
+
+  .auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  .auth-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .auth-footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Toast notifications */
+  .toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+  }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 1rem;
+    animation: slideInRight 0.3s ease forwards;
+  }
+
+  .toast.toast-error {
+    border-left: 4px solid var(--danger);
+  }
+
+  .toast.toast-success {
+    border-left: 4px solid var(--success);
+  }
+
+  .toast.toast-warning {
+    border-left: 4px solid var(--warning);
+  }
+
+  .toast-icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .toast-error .toast-icon {
+    color: var(--danger);
+  }
+
+  .toast-success .toast-icon {
+    color: var(--success);
+  }
+
+  .toast-warning .toast-icon {
+    color: var(--warning);
+  }
+
+  .toast-content {
+    flex: 1;
+  }
+
+  .toast-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .toast-message {
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+
+  .toast-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+
+  .toast-close:hover {
+    color: var(--text-dark);
+  }
+
+  /* Animation */
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Step indicator */
+  .signup-steps {
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .signup-steps::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border-color);
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+
+  .signup-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .signup-step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--surface);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+  }
+
+  .signup-step.active .signup-step-circle {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+
+  .signup-step.completed .signup-step-circle {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+
+  .signup-step-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-light);
+  }
+
+  .signup-step.active .signup-step-text {
+    color: var(--primary);
+  }
+
+  .signup-step.completed .signup-step-text {
+    color: var(--success);
+  }
+
+  /* Form multi-step */
+  .signup-form-step {
+    display: none;
+  }
+
+  .signup-form-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  .form-actions .btn {
+    min-width: 120px;
+  }
+
+  /* Promo sidebar */
+  .promo-sidebar {
+    flex: 1;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .promo-sidebar-content {
+    padding: 3rem;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .promo-sidebar h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .promo-sidebar p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .promo-sidebar .features {
+    margin-bottom: 2rem;
+  }
+
+  .promo-sidebar .feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .promo-sidebar .feature i {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+  }
+
+  .promo-sidebar .shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .promo-sidebar .shape {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  .promo-sidebar .shape:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+  }
+
+  .promo-sidebar .shape:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -100px;
+  }
+
+  .promo-sidebar .shape:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    right: -75px;
+  }
+
+  /* Form check styling */
+  .form-check {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .form-check-input {
+    margin-top: 0.25rem;
+  }
+
+  .form-check-label {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .form-check-label a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .form-check-label a:hover {
+    text-decoration: underline;
+  }
+
+  /* Verification message styling */
+  .verification-message {
+    background-color: rgba(var(--primary-rgb), 0.05);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+  }
+
+  /* Responsive styles */
+  @media (min-width: 992px) {
+    .promo-sidebar {
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .auth-container {
+      padding: 1rem;
+    }
+
+    .auth-header, 
+    .auth-form {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Main auth content -->
+  <div class="auth-container">
+    <div class="auth-logo">
+      <img src="{{ url_for('static', filename='images/logo.png', _external=True) if 'logo.png' else 'https://placeholder.pics/svg/200x50/4F46E5/FFFFFF/LOGO' }}" alt="Fourth Dimension Logo">
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Create your account</h1>
+        <p>Get started with Fourth Dimension</p>
+      </div>
+
+      <!-- Step indicator -->
+      <div class="signup-steps">
+        <div class="signup-step active" id="stepIndicator1">
+          <div class="signup-step-circle">1</div>
+          <div class="signup-step-text">Account</div>
+        </div>
+        <div class="signup-step" id="stepIndicator2">
+          <div class="signup-step-circle">2</div>
+          <div class="signup-step-text">Password</div>
+        </div>
+        <div class="signup-step" id="stepIndicator3">
+          <div class="signup-step-circle">3</div>
+          <div class="signup-step-text">Verification</div>
+        </div>
+      </div>
+
+      <form id="signupForm" class="auth-form" method="post" action="{{ url_for('signup') }}">
+        <!-- Add CSRF token -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        <!-- Step 1: Basic information -->
+        <div class="signup-form-step active" id="step1">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required value="{{ name if name }}">
+            <div id="nameFeedback" class="feedback-text text-danger" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="companyEmail" class="form-label">Company Email</label>
+            <input type="email" id="companyEmail" name="companyEmail" class="form-control" placeholder="john.doe@company.com" required value="{{ company_email if company_email }}">
+            <div id="emailFeedback" class="feedback-text text-danger" style="display: none;"></div>
+          </div>
+
+          <div class="form-actions">
+            <div></div> <!-- Empty div for spacing -->
+            <button type="button" class="btn btn-primary" id="nextToStep2">
+              Continue <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Password setup -->
+        <div class="signup-form-step" id="step2">
+          <div class="form-group">
+            <label for="password" class="form-label">Create Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" class="form-control" placeholder="Create a strong password" required>
+              <span class="password-toggle" id="passwordToggle">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+            
+            <div class="password-strength">
+              <div class="password-strength-meter">
+                <div class="password-strength-meter-bar" id="passwordStrengthBar"></div>
+              </div>
+              <div class="password-strength-text">
+                <span id="passwordStrengthText">Password strength</span>
+                <span id="passwordStrengthLevel"></span>
+              </div>
+              
+              <ul class="password-criteria" id="passwordCriteria">
+                <li id="criteriaLength"><i class="fas fa-circle"></i> At least 8 characters</li>
+                <li id="criteriaUppercase"><i class="fas fa-circle"></i> At least one uppercase letter</li>
+                <li id="criteriaLowercase"><i class="fas fa-circle"></i> At least one lowercase letter</li>
+                <li id="criteriaNumber"><i class="fas fa-circle"></i> At least one number</li>
+                <li id="criteriaSpecial"><i class="fas fa-circle"></i> At least one special character</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="retypePassword" class="form-label">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="retypePassword" name="retypePassword" class="form-control" placeholder="Retype your password" required>
+              <span class="password-toggle" id="retypePasswordToggle">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+            <div id="retypePasswordFeedback" class="feedback-text text-danger" style="display: none;"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" id="backToStep1">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="button" class="btn btn-primary" id="nextToStep3">
+              Continue <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Terms and verification -->
+        <div class="signup-form-step" id="step3">
+          <div class="form-group">
+            <div class="verification-message">
+              <i class="fas fa-info-circle" style="color: var(--primary); font-size: 2rem; display: block; text-align: center; margin-bottom: 1rem;"></i>
+              <p style="text-align: center; margin-bottom: 1rem;">
+                After creating your account, you'll need to verify your email address. We'll send you a verification link to activate your account.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <input type="checkbox" id="termsCheck" name="termsCheck" class="form-check-input" required style="width: auto; margin-right: 0.75rem;">
+              <label for="termsCheck" class="form-check-label">
+                I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+              </label>
+            </div>
+            <div id="termsCheckFeedback" class="feedback-text text-danger" style="display: none;"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" id="backToStep2">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-primary" id="createAccount">
+              Create Account
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="auth-footer">
+      <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+    </div>
+  </div>
+
+  <!-- Promo sidebar (visible on larger screens) -->
+  <div class="promo-sidebar">
+    <div class="promo-sidebar-content">
+      <h2>Join Fourth Dimension</h2>
+      <p>Access powerful web analysis tools and unlock insights that drive growth and optimization.</p>
+      
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-search"></i>
+          <span>Complete URL analysis in seconds</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chart-line"></i>
+          <span>Track performance metrics over time</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-globe"></i>
+          <span>Visualize site structures and hierarchies</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-lock"></i>
+          <span>Secure and private data processing</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Form elements
+    const form = document.getElementById('signupForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('companyEmail');
+    const passwordInput = document.getElementById('password');
+    const retypePasswordInput = document.getElementById('retypePassword');
+    const termsCheck = document.getElementById('termsCheck');
+    
+    // Feedback elements
+    const nameFeedback = document.getElementById('nameFeedback');
+    const emailFeedback = document.getElementById('emailFeedback');
+    const retypePasswordFeedback = document.getElementById('retypePasswordFeedback');
+    const termsCheckFeedback = document.getElementById('termsCheckFeedback');
+    
+    // Password strength elements
+    const passwordStrengthBar = document.getElementById('passwordStrengthBar');
+    const passwordStrengthText = document.getElementById('passwordStrengthText');
+    const passwordStrengthLevel = document.getElementById('passwordStrengthLevel');
+    
+    // Password criteria elements
+    const criteriaLength = document.getElementById('criteriaLength');
+    const criteriaUppercase = document.getElementById('criteriaUppercase');
+    const criteriaLowercase = document.getElementById('criteriaLowercase');
+    const criteriaNumber = document.getElementById('criteriaNumber');
+    const criteriaSpecial = document.getElementById('criteriaSpecial');
+    
+    // Step navigation buttons
+    const nextToStep2 = document.getElementById('nextToStep2');
+    const backToStep1 = document.getElementById('backToStep1');
+    const nextToStep3 = document.getElementById('nextToStep3');
+    const backToStep2 = document.getElementById('backToStep2');
+    const createAccount = document.getElementById('createAccount');
+    
+    // Step indicators
+    const stepIndicator1 = document.getElementById('stepIndicator1');
+    const stepIndicator2 = document.getElementById('stepIndicator2');
+    const stepIndicator3 = document.getElementById('stepIndicator3');
+    
+    // Step content
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    
+    // Password toggle buttons
+    const passwordToggle = document.getElementById('passwordToggle');
+    const retypePasswordToggle = document.getElementById('retypePasswordToggle');
+    
+    // Step navigation
+    nextToStep2.addEventListener('click', function() {
+      if (validateStep1()) {
+        showStep(2);
+      }
+    });
+    
+    backToStep1.addEventListener('click', function() {
+      showStep(1);
+    });
+    
+    nextToStep3.addEventListener('click', function() {
+      if (validateStep2()) {
+        showStep(3);
+      }
+    });
+    
+    backToStep2.addEventListener('click', function() {
+      showStep(2);
+    });
+    
+    // Show a specific step
+    function showStep(stepNumber) {
+      // Hide all steps
+      step1.classList.remove('active');
+      step2.classList.remove('active');
+      step3.classList.remove('active');
+      
+      // Reset step indicators
+      stepIndicator1.classList.remove('active', 'completed');
+      stepIndicator2.classList.remove('active', 'completed');
+      stepIndicator3.classList.remove('active', 'completed');
+      
+      // Show the requested step
+      if (stepNumber === 1) {
+        step1.classList.add('active');
+        stepIndicator1.classList.add('active');
+      } else if (stepNumber === 2) {
+        step2.classList.add('active');
+        stepIndicator1.classList.add('completed');
+        stepIndicator2.classList.add('active');
+      } else if (stepNumber === 3) {
+        step3.classList.add('active');
+        stepIndicator1.classList.add('completed');
+        stepIndicator2.classList.add('completed');
+        stepIndicator3.classList.add('active');
+      }
+    }
+    
+    // Validate step 1
+    function validateStep1() {
+      let isValid = true;
+      
+      // Validate name (only letters and spaces allowed)
+      if (!nameInput.value.trim() || !/^[A-Za-z\s]+$/.test(nameInput.value)) {
+        nameInput.classList.add('is-invalid');
+        nameFeedback.textContent = 'Please enter a valid name (letters and spaces only).';
+        nameFeedback.style.display = 'block';
+        isValid = false;
+      } else {
+        nameInput.classList.remove('is-invalid');
+        nameFeedback.style.display = 'none';
+      }
+      
+      // Validate email
+      if (!validateEmail(emailInput.value)) {
+        emailInput.classList.add('is-invalid');
+        emailFeedback.textContent = 'Please enter a valid email address.';
+        emailFeedback.style.display = 'block';
+        isValid = false;
+      } else {
+        emailInput.classList.remove('is-invalid');
+        emailFeedback.style.display = 'none';
+      }
+      
+      return isValid;
+    }
+    
+    // Validate step 2
+    function validateStep2() {
+      let isValid = true;
+      
+      // Check if password meets all criteria
+      if (!meetsAllCriteria()) {
+        passwordInput.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        passwordInput.classList.remove('is-invalid');
+      }
+      
+      // Check if passwords match
+      if (passwordInput.value !== retypePasswordInput.value) {
+        retypePasswordInput.classList.add('is-invalid');
+        retypePasswordFeedback.textContent = 'Passwords do not match.';
+        retypePasswordFeedback.style.display = 'block';
+        isValid = false;
+      } else {
+        retypePasswordInput.classList.remove('is-invalid');
+        retypePasswordFeedback.style.display = 'none';
+      }
+      
+      return isValid;
+    }
+    
+    // Validate email format
+    function validateEmail(email) {
+      const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return re.test(String(email).toLowerCase());
+    }
+    
+    // Password strength meter
+    passwordInput.addEventListener('input', function() {
+      updatePasswordStrength();
+    });
+    
+    function updatePasswordStrength() {
+      const password = passwordInput.value;
+      let strength = 0;
+      let level = '';
+      
+      // Update criteria
+      if (password.length >= 8) {
+        criteriaLength.classList.add('valid');
+        criteriaLength.querySelector('i').className = 'fas fa-check-circle';
+        strength++;
+      } else {
+        criteriaLength.classList.remove('valid');
+        criteriaLength.querySelector('i').className = 'fas fa-circle';
+      }
+      
+      if (/[A-Z]/.test(password)) {
+        criteriaUppercase.classList.add('valid');
+        criteriaUppercase.querySelector('i').className = 'fas fa-check-circle';
+        strength++;
+      } else {
+        criteriaUppercase.classList.remove('valid');
+        criteriaUppercase.querySelector('i').className = 'fas fa-circle';
+      }
+      
+      if (/[a-z]/.test(password)) {
+        criteriaLowercase.classList.add('valid');
+        criteriaLowercase.querySelector('i').className = 'fas fa-check-circle';
+        strength++;
+      } else {
+        criteriaLowercase.classList.remove('valid');
+        criteriaLowercase.querySelector('i').className = 'fas fa-circle';
+      }
+      
+      if (/[0-9]/.test(password)) {
+        criteriaNumber.classList.add('valid');
+        criteriaNumber.querySelector('i').className = 'fas fa-check-circle';
+        strength++;
+      } else {
+        criteriaNumber.classList.remove('valid');
+        criteriaNumber.querySelector('i').className = 'fas fa-circle';
+      }
+      
+      if (/[^A-Za-z0-9]/.test(password)) {
+        criteriaSpecial.classList.add('valid');
+        criteriaSpecial.querySelector('i').className = 'fas fa-check-circle';
+        strength++;
+      } else {
+        criteriaSpecial.classList.remove('valid');
+        criteriaSpecial.querySelector('i').className = 'fas fa-circle';
+      }
+      
+      // Update strength meter and label
+      passwordStrengthBar.className = 'password-strength-meter-bar';
+      
+      if (password === '') {
+        passwordStrengthBar.style.width = '0';
+        passwordStrengthLevel.textContent = '';
+      } else if (strength === 1) {
+        passwordStrengthBar.classList.add('password-strength-bar-weak');
+        passwordStrengthLevel.textContent = 'Weak';
+      } else if (strength === 2) {
+        passwordStrengthBar.classList.add('password-strength-bar-weak');
+        passwordStrengthLevel.textContent = 'Weak';
+      } else if (strength === 3) {
+        passwordStrengthBar.classList.add('password-strength-bar-fair');
+        passwordStrengthLevel.textContent = 'Fair';
+      } else if (strength === 4) {
+        passwordStrengthBar.classList.add('password-strength-bar-good');
+        passwordStrengthLevel.textContent = 'Good';
+      } else if (strength === 5) {
+        passwordStrengthBar.classList.add('password-strength-bar-strong');
+        passwordStrengthLevel.textContent = 'Strong';
+      }
+    }
+    
+    // Check if password meets all criteria
+    function meetsAllCriteria() {
+      const password = passwordInput.value;
+      return (
+        password.length >= 8 &&
+        /[A-Z]/.test(password) &&
+        /[a-z]/.test(password) &&
+        /[0-9]/.test(password) &&
+        /[^A-Za-z0-9]/.test(password)
+      );
+    }
+    
+    // Toggle password visibility
+    passwordToggle.addEventListener('click', function() {
+      togglePasswordVisibility(passwordInput, passwordToggle);
+    });
+    
+    retypePasswordToggle.addEventListener('click', function() {
+      togglePasswordVisibility(retypePasswordInput, retypePasswordToggle);
+    });
+    
+    function togglePasswordVisibility(input, toggle) {
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      
+      const icon = toggle.querySelector('i');
+      icon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+    }
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+      
+      // Validate step 3
+      if (!termsCheck.checked) {
+        termsCheckFeedback.textContent = 'You must agree to the Terms of Service and Privacy Policy.';
+        termsCheckFeedback.style.display = 'block';
+        isValid = false;
+      } else {
+        termsCheckFeedback.style.display = 'none';
+      }
+      
+      // Revalidate all steps
+      if (!validateStep1() || !validateStep2() || !isValid) {
+        return;
+      }
+      
+      // Submit form
+      this.submit();
+    });
+    
+    // Initialize form
+    updatePasswordStrength();
+  });
+</script>
+{% endblock %}

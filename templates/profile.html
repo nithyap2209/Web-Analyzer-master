@@ -1,0 +1,757 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - {{ user.name }}{% endblock %}
+
+{% block content %}
+<div class="w-full min-h-screen py-8" style="background:transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Profile Header with subscription colors -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+            <div class="h-32" style="background: linear-gradient(45deg, #3498db, #2ecc71);"></div>
+            <div class="px-6 pb-6">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start -mt-16">
+                    <div class="w-32 h-32 rounded-full bg-white border-4 border-white flex items-center justify-center shadow-lg">
+                        <div class="w-28 h-28 rounded-full flex items-center justify-center" style="background: linear-gradient(45deg, #3498db, #2ecc71);">
+                            <span class="text-5xl font-bold text-white">{{ user.name|first|upper }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left flex-grow">
+                        <h1 class="text-3xl font-bold" style="color: #2c3e50;">{{ user.name }}</h1>
+                        <p style="color: #34495e;" class="flex items-center justify-center sm:justify-start mt-1">
+                            <i class="fas fa-envelope mr-2"></i>{{ user.company_email }}
+                        </p>
+                        {% if subscription %}
+                        <span class="inline-block mt-2 text-white text-sm font-medium px-3 py-1 rounded-full" style="background-color: #2ecc71;">
+                            <i class="fas fa-crown mr-1"></i>{{ subscription.subscription.plan }} Plan
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="mt-4 sm:mt-0">
+                        <p class="text-sm" style="color: #34495e;">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Member since {% if user.created_at %}{{ user.created_at.strftime('%B %Y') }}{% else %}N/A{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-6 border-l-4 p-4 rounded relative" 
+                         style="{% if category == 'success' %}background-color: #d4edda; border-color: #2ecc71; color: #155724;{% elif category == 'danger' %}background-color: #f8d7da; border-color: #e74c3c; color: #721c24;{% elif category == 'warning' %}background-color: #fff3cd; border-color: #f1c40f; color: #856404;{% else %}background-color: #d1ecf1; border-color: #3498db; color: #004085;{% endif %}">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas {% if category == 'success' %}fa-check-circle{% elif category == 'danger' %}fa-times-circle{% elif category == 'warning' %}fa-exclamation-triangle{% else %}fa-info-circle{% endif %}"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm">{{ message }}</p>
+                            </div>
+                            <button type="button" class="ml-auto -mr-1 px-2" onclick="this.parentElement.parentElement.remove()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Left Sidebar Navigation -->
+            <div class="lg:w-1/4">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <nav class="p-4">
+                        <button type="button" 
+                                class="tab-btn w-full flex items-center px-6 py-4 text-left rounded-lg transition-colors duration-200 font-medium" 
+                                style="background-color: rgba(52, 152, 219, 0.1); color: #2c3e50;"
+                                data-tab="overview">
+                            <i class="fas fa-th-large w-6" style="color: #3498db;"></i>
+                            <span class="ml-3">Overview</span>
+                        </button>
+                        <button type="button" 
+                                class="tab-btn w-full flex items-center px-6 py-4 text-left rounded-lg transition-colors duration-200 mt-2" 
+                                style="color: #34495e;"
+                                data-tab="account">
+                            <i class="fas fa-user-circle w-6" style="color: #bdc3c7;"></i>
+                            <span class="ml-3">Account Settings</span>
+                        </button>
+                        <button type="button" 
+                                class="tab-btn w-full flex items-center px-6 py-4 text-left rounded-lg transition-colors duration-200 mt-2" 
+                                style="color: #34495e;"
+                                data-tab="subscription">
+                            <i class="fas fa-credit-card w-6" style="color: #bdc3c7;"></i>
+                            <span class="ml-3">Subscription</span>
+                        </button>
+                        <button type="button" 
+                                class="tab-btn w-full flex items-center px-6 py-4 text-left rounded-lg transition-colors duration-200 mt-2" 
+                                style="color: #34495e;"
+                                data-tab="security">
+                            <i class="fas fa-shield-alt w-6" style="color: #bdc3c7;"></i>
+                            <span class="ml-3">Security</span>
+                        </button>
+                        
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Right Content Area -->
+            <div class="lg:w-3/4">
+                <!-- Overview Tab -->
+                <div class="tab-pane" data-tab-content="overview">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <!-- Quick Stats -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4" style="color: #2c3e50;">
+                                <i class="fas fa-chart-line mr-2" style="color: #3498db;"></i>Quick Stats
+                            </h3>
+                            <div class="space-y-3">
+                                {% if subscription %}
+                                <div class="flex justify-between">
+                                    <span style="color: #34495e;">Daily Usage</span>
+                                    <span class="font-medium" style="color: #2c3e50;">{{ subscription.current_usage }} / {{ subscription.subscription.usage_per_day }}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span style="color: #34495e;">Days Remaining</span>
+                                    <span class="font-medium" style="color: #2c3e50;">{{ subscription.days_remaining }} days</span>
+                                </div>
+                                {% endif %}
+                                <div class="flex justify-between">
+                                    <span style="color: #34495e;">Account Status</span>
+                                    <span class="font-medium" style="color: #2ecc71;">Active</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4" style="color: #2c3e50;">
+                                <i class="fas fa-clock mr-2" style="color: #3498db;"></i>Recent Activity
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm">
+                                    <div class="w-2 h-2 rounded-full mr-3" style="background-color: #2ecc71;"></div>
+                                    <span style="color: #34495e;">Last login: Today</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <div class="w-2 h-2 rounded-full mr-3" style="background-color: #3498db;"></div>
+                                    <span style="color: #34495e;">Profile updated: Last week</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full mr-3"></div>
+                                    <span style="color: #34495e;">Password changed: 1 month ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4" style="color: #2c3e50;">
+                            <i class="fas fa-bolt mr-2" style="color: #3498db;"></i>Quick Actions
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <a href="{{ url_for('user_subscriptions') }}" class="flex items-center p-4 rounded-lg transition-colors" 
+                               style="background-color: rgba(52, 152, 219, 0.1);" 
+                               onmouseover="this.style.backgroundColor='rgba(52, 152, 219, 0.2)'" 
+                               onmouseout="this.style.backgroundColor='rgba(52, 152, 219, 0.1)'">
+                                <i class="fas fa-shopping-cart text-xl mr-3" style="color: #3498db;"></i>
+                                <span class="font-medium" style="color: #2c3e50;">Manage Subscription</span>
+                            </a>
+                            <button onclick="showTab('security')" class="flex items-center p-4 rounded-lg transition-colors text-left" 
+                                    style="background-color: rgba(46, 204, 113, 0.1);" 
+                                    onmouseover="this.style.backgroundColor='rgba(46, 204, 113, 0.2)'" 
+                                    onmouseout="this.style.backgroundColor='rgba(46, 204, 113, 0.1)'">
+                                <i class="fas fa-key text-xl mr-3" style="color: #2ecc71;"></i>
+                                <span class="font-medium" style="color: #2c3e50;">Change Password</span>
+                            </button>
+                            <a href="{{ url_for('index') }}" class="flex items-center p-4 rounded-lg transition-colors" 
+                               style="background-color: rgba(189, 195, 199, 0.1);" 
+                               onmouseover="this.style.backgroundColor='rgba(189, 195, 199, 0.2)'" 
+                               onmouseout="this.style.backgroundColor='rgba(189, 195, 199, 0.1)'">
+                                <i class="fas fa-tachometer-alt text-xl mr-3" style="color: #34495e;"></i>
+                                <span class="font-medium" style="color: #2c3e50;">Go to Dashboard</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings Tab -->
+                <div class="tab-pane hidden" data-tab-content="account">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b" style="border-color: #ecf0f1;">
+                            <h2 class="text-xl font-semibold" style="color: #2c3e50;">Account Settings</h2>
+                        </div>
+                        <div class="p-6">
+                            <form method="POST" action="{{ url_for('update_profile') }}">
+                                <input type="hidden" name="update_type" value="account">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium mb-2" style="color: #2c3e50;">Full Name</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-user" style="color: #bdc3c7;"></i>
+                                            </div>
+                                            <input type="text" class="w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:border-transparent transition-colors" 
+                                                  style="border-color: #bdc3c7; color: #2c3e50;" 
+                                                  onfocus="this.style.borderColor='#3498db'; this.style.boxShadow='0 0 0 3px rgba(52, 152, 219, 0.1)'"
+                                                  onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none'"
+                                                  id="name" name="name" value="{{ user.name }}" required>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="companyEmail" class="block text-sm font-medium mb-2" style="color: #2c3e50;">Company Email</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-envelope" style="color: #bdc3c7;"></i>
+                                            </div>
+                                            <input type="email" class="w-full pl-10 pr-3 py-2 border rounded-lg cursor-not-allowed" 
+                                                  style="border-color: #bdc3c7; background-color: #ecf0f1; color: #34495e;"
+                                                  id="companyEmail" value="{{ user.company_email }}" readonly>
+                                        </div>
+                                        <p class="mt-1 text-sm" style="color: #34495e;">Email address cannot be changed</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 flex justify-end">
+                                    <button type="submit" class="text-white font-medium py-2 px-6 rounded-lg transition-all duration-300" 
+                                            style="background-color: #3498db;"
+                                            onmouseover="this.style.backgroundColor='#2980b9'"
+                                            onmouseout="this.style.backgroundColor='#3498db'">
+                                        <i class="fas fa-save mr-2"></i>Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Subscription Tab -->
+                <div class="tab-pane hidden" data-tab-content="subscription">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b" style="border-color: #ecf0f1;">
+                            <h2 class="text-xl font-semibold" style="color: #2c3e50;">Subscription Details</h2>
+                        </div>
+                        <div class="p-6">
+                            {% if subscription %}
+                                <div class="rounded-xl p-6 text-white mb-6" style="background: linear-gradient(45deg, #3498db, #2ecc71);">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="text-2xl font-bold mb-2">{{ subscription.subscription.plan }} Plan</h3>
+                                            <p class="opacity-90">Your premium subscription</p>
+                                        </div>
+                                        <div class="text-right">
+                                            {% if subscription.is_active %}
+                                                <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-medium">
+                                                    <i class="fas fa-check-circle mr-1"></i>Active
+                                                </span>
+                                            {% else %}
+                                                <span class="bg-red-500/20 backdrop-blur-sm px-4 py-2 rounded-full font-medium">
+                                                    <i class="fas fa-times-circle mr-1"></i>Expired
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="space-y-4">
+                                        <div class="border-l-4 pl-4" style="border-color: #3498db;">
+                                            <p class="text-sm" style="color: #34495e;">Subscription Period</p>
+                                            <p class="font-medium" style="color: #2c3e50;">{{ subscription.start_date.strftime('%B %d, %Y') }} - {{ subscription.end_date.strftime('%B %d, %Y') }}</p>
+                                        </div>
+                                        
+                                        <div class="border-l-4 pl-4" style="border-color: #2ecc71;">
+                                            <p class="text-sm" style="color: #34495e;">Daily Limit</p>
+                                            <p class="font-medium" style="color: #2c3e50;">{{ subscription.subscription.usage_per_day }} operations</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <div>
+                                            <p class="text-sm mb-2" style="color: #34495e;">Days Remaining</p>
+                                            <div class="w-full rounded-full h-3" style="background-color: #ecf0f1;">
+                                                <div class="h-3 rounded-full transition-all duration-500" 
+                                                    style="background: linear-gradient(45deg, #3498db, #2ecc71); width: {{ (subscription.days_remaining / subscription.subscription.days) * 100 }}%">
+                                                </div>
+                                            </div>
+                                            <p class="text-sm mt-1" style="color: #34495e;">{{ subscription.days_remaining }} of {{ subscription.subscription.days }} days</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="text-sm mb-2" style="color: #34495e;">Today's Usage</p>
+                                            <div class="w-full rounded-full h-3" style="background-color: #ecf0f1;">
+                                                {% set usage_percent = (subscription.current_usage / subscription.subscription.usage_per_day) * 100 %}
+                                                <div class="h-3 rounded-full transition-all duration-500" 
+                                                     style="background-color: {% if usage_percent < 70 %}#2ecc71{% elif usage_percent < 90 %}#f1c40f{% else %}#e74c3c{% endif %}; width: {{ usage_percent }}%">
+                                                </div>
+                                            </div>
+                                            <p class="text-sm mt-1" style="color: #34495e;">{{ subscription.current_usage }} of {{ subscription.subscription.usage_per_day }} operations</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex flex-col sm:flex-row gap-4">
+                                    <a href="{{ url_for('user_subscriptions') }}" class="flex-1 text-center text-white font-medium py-3 px-6 rounded-lg transition-all duration-300" 
+                                       style="background-color: #3498db;"
+                                       onmouseover="this.style.backgroundColor='#2980b9'"
+                                       onmouseout="this.style.backgroundColor='#3498db'">
+                                        <i class="fas fa-cog mr-2"></i>Manage Subscription
+                                    </a>
+                                    <a href="{{ url_for('subscription_details', subscription_id=subscription.id) }}" class="flex-1 text-center border-2 font-medium py-3 px-6 rounded-lg transition-all duration-300" 
+                                       style="border-color: #3498db; color: #3498db;"
+                                       onmouseover="this.style.backgroundColor='#3498db'; this.style.color='white'"
+                                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#3498db'">
+                                        <i class="fas fa-chart-line mr-2"></i>View Details
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="text-center py-12">
+                                    <div class="mb-6">
+                                        <i class="fas fa-credit-card text-6xl" style="color: #ecf0f1;"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-semibold mb-3" style="color: #2c3e50;">No Active Subscription</h3>
+                                    <p class="mb-6 max-w-md mx-auto" style="color: #34495e;">Unlock premium features and increase your daily limits by subscribing to one of our plans</p>
+                                    <a href="{{ url_for('user_subscriptions') }}" class="inline-flex items-center text-white font-medium py-3 px-8 rounded-lg transition-all duration-300" 
+                                       style="background-color: #3498db;"
+                                       onmouseover="this.style.backgroundColor='#2980b9'"
+                                       onmouseout="this.style.backgroundColor='#3498db'">
+                                        <i class="fas fa-rocket mr-2"></i>Explore Plans
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Tab -->
+                <div class="tab-pane hidden" data-tab-content="security">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b" style="border-color: #ecf0f1;">
+                            <h2 class="text-xl font-semibold" style="color: #2c3e50;">Security Settings</h2>
+                        </div>
+                        <div class="p-6">
+                            <form method="POST" action="{{ url_for('update_profile') }}" id="passwordForm">
+                                <input type="hidden" name="update_type" value="security">
+                                
+                                <div class="border-l-4 p-4 mb-6" style="background-color: #d1ecf1; border-color: #3498db;">
+                                    <p style="color: #004085;">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        Choose a strong password that you don't use for other accounts
+                                    </p>
+                                </div>
+
+                                <div class="space-y-6">
+                                    <div>
+                                        <label for="currentPassword" class="block text-sm font-medium mb-2" style="color: #2c3e50;">Current Password</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-lock" style="color: #bdc3c7;"></i>
+                                            </div>
+                                            <input type="password" class="w-full pl-10 pr-10 py-2 border rounded-lg focus:ring-2 focus:border-transparent transition-colors" 
+                                                  style="border-color: #bdc3c7; color: #2c3e50;" 
+                                                  onfocus="this.style.borderColor='#3498db'; this.style.boxShadow='0 0 0 3px rgba(52, 152, 219, 0.1)'"
+                                                  onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none'"
+                                                  id="currentPassword" name="currentPassword">
+                                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password" data-target="currentPassword">
+                                                <i class="fas fa-eye" style="color: #bdc3c7;"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="newPassword" class="block text-sm font-medium mb-2" style="color: #2c3e50;">New Password</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-key" style="color: #bdc3c7;"></i>
+                                            </div>
+                                            <input type="password" class="w-full pl-10 pr-10 py-2 border rounded-lg focus:ring-2 focus:border-transparent transition-colors" 
+                                                  style="border-color: #bdc3c7; color: #2c3e50;" 
+                                                  onfocus="this.style.borderColor='#3498db'; this.style.boxShadow='0 0 0 3px rgba(52, 152, 219, 0.1)'"
+                                                  onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none'"
+                                                  id="newPassword" name="newPassword">
+                                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password" data-target="newPassword">
+                                                <i class="fas fa-eye" style="color: #bdc3c7;"></i>
+                                            </button>
+                                        </div>
+                                        <div id="passwordStrength" class="mt-2"></div>
+                                        <div class="mt-3 p-4 rounded-lg" style="background-color: #ecf0f1;">
+                                            <p class="text-sm font-medium mb-2" style="color: #2c3e50;">Password Requirements:</p>
+                                            <ul class="text-sm space-y-1">
+                                                <li id="length-check" class="flex items-center" style="color: #34495e;">
+                                                    <i class="fas fa-circle text-xs mr-2"></i>At least 8 characters
+                                                </li>
+                                                <li id="uppercase-check" class="flex items-center" style="color: #34495e;">
+                                                    <i class="fas fa-circle text-xs mr-2"></i>At least one uppercase letter
+                                                </li>
+                                                <li id="lowercase-check" class="flex items-center" style="color: #34495e;">
+                                                    <i class="fas fa-circle text-xs mr-2"></i>At least one lowercase letter
+                                                </li>
+                                                <li id="number-check" class="flex items-center" style="color: #34495e;">
+                                                    <i class="fas fa-circle text-xs mr-2"></i>At least one number
+                                                </li>
+                                                <li id="special-check" class="flex items-center" style="color: #34495e;">
+                                                    <i class="fas fa-circle text-xs mr-2"></i>At least one special character
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="confirmPassword" class="block text-sm font-medium mb-2" style="color: #2c3e50;">Confirm New Password</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-check-double" style="color: #bdc3c7;"></i>
+                                            </div>
+                                            <input type="password" class="w-full pl-10 pr-10 py-2 border rounded-lg focus:ring-2 focus:border-transparent transition-colors" 
+                                                  style="border-color: #bdc3c7; color: #2c3e50;" 
+                                                  onfocus="this.style.borderColor='#3498db'; this.style.boxShadow='0 0 0 3px rgba(52, 152, 219, 0.1)'"
+                                                  onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none'"
+                                                  id="confirmPassword" name="confirmPassword">
+                                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center toggle-password" data-target="confirmPassword">
+                                                <i class="fas fa-eye" style="color: #bdc3c7;"></i>
+                                            </button>
+                                        </div>
+                                        <div id="passwordMatch" class="mt-2"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-8 flex justify-end">
+                                    <button type="submit" class="text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" 
+                                            style="background-color: #3498db;"
+                                            onmouseover="this.style.backgroundColor='#2980b9'"
+                                            onmouseout="this.style.backgroundColor='#3498db'"
+                                            id="changePasswordBtn" disabled>
+                                        <i class="fas fa-shield-alt mr-2"></i>Update Password
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Activity Tab -->
+                <div class="tab-pane hidden" data-tab-content="activity">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b flex justify-between items-center" style="border-color: #ecf0f1;">
+                            <h2 class="text-xl font-semibold" style="color: #2c3e50;">Account Activity</h2>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4" style="color: #2c3e50;">
+                                    <i class="fas fa-clock mr-2" style="color: #3498db;"></i>Recent Activities
+                                </h3>
+                                
+                                {% if activities %}
+                                    <div class="relative">
+                                        <div class="absolute h-full w-0.5" style="background-color: #ecf0f1; left: 10px; top: 0;"></div>
+                                        <ul class="space-y-6">
+                                            {% for activity in activities %}
+                                            <li class="relative pl-10">
+                                                <div class="absolute left-0 top-1.5 w-5 h-5 rounded-full flex items-center justify-center z-10"
+                                                     style="background-color: {% if activity.type == 'login' %}#3498db
+                                                                           {% elif activity.type == 'payment' %}#2ecc71
+                                                                           {% elif activity.type == 'security' %}#f1c40f
+                                                                           {% else %}#bdc3c7{% endif %}">
+                                                    <i class="fas {% if activity.type == 'login' %}fa-sign-in-alt
+                                                               {% elif activity.type == 'payment' %}fa-credit-card
+                                                               {% elif activity.type == 'security' %}fa-shield-alt
+                                                               {% else %}fa-clock{% endif %} text-white text-xs"></i>
+                                                </div>
+                                                <div class="flex items-start justify-between">
+                                                    <div>
+                                                        <p class="font-medium" style="color: #2c3e50;">{{ activity.description }}</p>
+                                                        {% if activity.details %}
+                                                        <p class="text-sm mt-1" style="color: #7f8c8d;">{{ activity.details }}</p>
+                                                        {% endif %}
+                                                    </div>
+                                                    <p class="text-sm" style="color: #7f8c8d;">{{ activity.timestamp.strftime('%b %d, %Y %H:%M') }}</p>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                    <div class="text-center py-12">
+                                        <div class="mb-6">
+                                            <i class="fas fa-history text-6xl" style="color: #ecf0f1;"></i>
+                                        </div>
+                                        <h3 class="text-2xl font-semibold mb-3" style="color: #2c3e50;">No Activity</h3>
+                                        <p style="color: #7f8c8d;">No recent activity found for your account</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="border-t" style="border-color: #ecf0f1;">
+                                <h3 class="text-lg font-semibold my-6" style="color: #2c3e50;">
+                                    <i class="fas fa-shield-alt mr-2" style="color: #3498db;"></i>Login History
+                                </h3>
+
+                                {% if login_history %}
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full">
+                                            <thead>
+                                                <tr class="border-b" style="border-color: #ecf0f1;">
+                                                    <th class="px-4 py-3 text-left text-sm font-medium" style="color: #2c3e50;">Device</th>
+                                                    <th class="px-4 py-3 text-left text-sm font-medium" style="color: #2c3e50;">Location</th>
+                                                    <th class="px-4 py-3 text-left text-sm font-medium" style="color: #2c3e50;">IP Address</th>
+                                                    <th class="px-4 py-3 text-left text-sm font-medium" style="color: #2c3e50;">Time</th>
+                                                    <th class="px-4 py-3 text-left text-sm font-medium" style="color: #2c3e50;">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for login in login_history %}
+                                                <tr class="border-b" style="border-color: #ecf0f1;">
+                                                    <td class="px-4 py-4">
+                                                        <div class="flex items-center">
+                                                            <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center mr-3">
+                                                                <i class="fas {% if login.device_type == 'mobile' %}fa-mobile-alt
+                                                                           {% elif login.device_type == 'tablet' %}fa-tablet-alt
+                                                                           {% else %}fa-laptop{% endif %}" style="color: #7f8c8d;"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="font-medium" style="color: #2c3e50;">{{ login.browser }}</div>
+                                                                <div class="text-sm" style="color: #7f8c8d;">{{ login.operating_system }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-4 py-4" style="color: #2c3e50;">{{ login.location }}</td>
+                                                    <td class="px-4 py-4" style="color: #7f8c8d;">{{ login.ip_address }}</td>
+                                                    <td class="px-4 py-4" style="color: #7f8c8d;">{{ login.timestamp.strftime('%b %d, %Y %H:%M') }}</td>
+                                                    <td class="px-4 py-4">
+                                                        {% if login.status == 'success' %}
+                                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" 
+                                                                  style="background-color: #d4edda; color: #155724;">Success</span>
+                                                        {% else %}
+                                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" 
+                                                                  style="background-color: #f8d7da; color: #721c24;">Failed</span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                {% else %}
+                                    <div class="text-center py-12">
+                                        <div class="mb-6">
+                                            <i class="fas fa-sign-in-alt text-6xl" style="color: #ecf0f1;"></i>
+                                        </div>
+                                        <h3 class="text-2xl font-semibold mb-3" style="color: #2c3e50;">No Login History</h3>
+                                        <p style="color: #7f8c8d;">We haven't recorded any login activity yet</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom JavaScript for Profile Page -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab system
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    function showTab(tabName) {
+        // Hide all panes
+        tabPanes.forEach(pane => {
+            pane.classList.add('hidden');
+        });
+        
+        // Remove active state from all buttons
+        tabButtons.forEach(btn => {
+            btn.style.backgroundColor = 'transparent';
+            btn.style.color = '#34495e';
+            btn.style.fontWeight = 'normal';
+            const icon = btn.querySelector('i');
+            icon.style.color = '#bdc3c7';
+        });
+        
+        // Show selected pane
+        const selectedPane = document.querySelector(`[data-tab-content="${tabName}"]`);
+        if (selectedPane) {
+            selectedPane.classList.remove('hidden');
+        }
+        
+        // Activate selected button
+        const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
+        if (selectedButton) {
+            selectedButton.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+            selectedButton.style.color = '#2c3e50';
+            selectedButton.style.fontWeight = '500';
+            const icon = selectedButton.querySelector('i');
+            icon.style.color = '#3498db';
+        }
+    }
+    
+    // Add click handlers to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabName = button.getAttribute('data-tab');
+            showTab(tabName);
+        });
+        
+        // Add hover effects
+        button.addEventListener('mouseenter', () => {
+            if (button.style.backgroundColor !== 'rgba(52, 152, 219, 0.1)') {
+                button.style.backgroundColor = 'rgba(236, 240, 241, 0.5)';
+            }
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            if (button.style.backgroundColor !== 'rgba(52, 152, 219, 0.1)') {
+                button.style.backgroundColor = 'transparent';
+            }
+        });
+    });
+    
+    // Show first tab by default
+    showTab('overview');
+    
+    // Make showTab function globally available
+    window.showTab = showTab;
+    
+    // Password visibility toggle
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+    
+    // Password strength meter
+    const newPassword = document.getElementById('newPassword');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const passwordStrength = document.getElementById('passwordStrength');
+    const passwordMatch = document.getElementById('passwordMatch');
+    const requirementChecks = {
+        length: document.getElementById('length-check'),
+        uppercase: document.getElementById('uppercase-check'),
+        lowercase: document.getElementById('lowercase-check'),
+        number: document.getElementById('number-check'),
+        special: document.getElementById('special-check')
+    };
+    const changePasswordBtn = document.getElementById('changePasswordBtn');
+    
+    if (newPassword) {
+        newPassword.addEventListener('input', function() {
+            const value = this.value;
+            let strength = 0;
+            
+            // Update requirement checks
+            const checks = {
+                length: value.length >= 8,
+                uppercase: /[A-Z]/.test(value),
+                lowercase: /[a-z]/.test(value),
+                number: /[0-9]/.test(value),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(value)
+            };
+            
+            Object.entries(checks).forEach(([key, passed]) => {
+                const element = requirementChecks[key];
+                const icon = element.querySelector('i');
+                
+                if (passed) {
+                    element.style.color = '#2ecc71';
+                    icon.classList.remove('fa-circle');
+                    icon.classList.add('fa-check-circle');
+                    strength++;
+                } else {
+                    element.style.color = '#34495e';
+                    icon.classList.remove('fa-check-circle');
+                    icon.classList.add('fa-circle');
+                }
+            });
+            
+            // Update strength meter
+            let strengthText, strengthColor, strengthIcon;
+            if (value.length === 0) {
+                strengthText = '';
+                strengthColor = '';
+                strengthIcon = '';
+            } else if (strength < 3) {
+                strengthText = 'Weak password';
+                strengthColor = '#e74c3c';
+                strengthIcon = 'fa-exclamation-circle';
+            } else if (strength < 5) {
+                strengthText = 'Medium password';
+                strengthColor = '#f1c40f';
+                strengthIcon = 'fa-exclamation-circle';
+            } else {
+                strengthText = 'Strong password';
+                strengthColor = '#2ecc71';
+                strengthIcon = 'fa-check-circle';
+            }
+            
+            passwordStrength.innerHTML = strengthText ? `
+                <div class="flex items-center" style="color: ${strengthColor};">
+                    <i class="fas ${strengthIcon} mr-2"></i>
+                    <span class="font-medium">${strengthText}</span>
+                </div>
+            ` : '';
+            
+            validatePasswords();
+        });
+        
+        confirmPassword.addEventListener('input', function() {
+            validatePasswords();
+        });
+    }
+    
+    function validatePasswords() {
+        const newPasswordValue = newPassword.value;
+        const confirmPasswordValue = confirmPassword.value;
+        
+        if (!confirmPasswordValue) {
+            passwordMatch.innerHTML = '';
+            changePasswordBtn.disabled = true;
+            return;
+        }
+        
+        if (newPasswordValue === confirmPasswordValue) {
+            passwordMatch.innerHTML = `
+                <div class="flex items-center" style="color: #2ecc71;">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="font-medium">Passwords match</span>
+                </div>
+            `;
+            
+            // Check if all password requirements are met
+            const allRequirementsMet = 
+                newPasswordValue.length >= 8 && 
+                /[A-Z]/.test(newPasswordValue) && 
+                /[a-z]/.test(newPasswordValue) && 
+                /[0-9]/.test(newPasswordValue) && 
+                /[!@#$%^&*(),.?":{}|<>]/.test(newPasswordValue);
+            
+            changePasswordBtn.disabled = !allRequirementsMet;
+        } else {
+            passwordMatch.innerHTML = `
+                <div class="flex items-center" style="color: #e74c3c;">
+                    <i class="fas fa-times-circle mr-2"></i>
+                    <span class="font-medium">Passwords do not match</span>
+                </div>
+            `;
+            changePasswordBtn.disabled = true;
+        }
+    }
+});
+</script>
+{% endblock %}
